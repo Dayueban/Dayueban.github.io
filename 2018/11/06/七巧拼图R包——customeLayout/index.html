@@ -4,27 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>强烈推荐|代谢组学数据分析R包 | 有味</title>
+    <title>七巧拼图R包——customeLayout | 有味</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dayueban">
     
 
     
-    <meta name="description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
-<meta name="keywords" content="R,bioconductor,data analysis">
+    <meta name="description" content="杜雨老师在10月份更新的R包中选择了一个可以用来将图形进行拼接的R包customLayout    特点 它可以用来完成自由拼图，可以使用矩阵自定义图形位置和顺序，用数字来定义每一个模块的长宽比 这个包不仅支持数字拼图，还支持R内置的base绘图对象、grid绘图对象等（也就是支持ggplot2对象）。  包的下载 可以通过CRAN网站下载 同时也提供了github版本">
+<meta name="keywords" content="R,实用软件包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强烈推荐|代谢组学数据分析R包">
-<meta property="og:url" content="https://dayueban.com/2018/10/05/强烈推荐-代谢组学数据分析R包/index.html">
+<meta property="og:title" content="七巧拼图R包——customeLayout">
+<meta property="og:url" content="https://dayueban.com/2018/11/06/七巧拼图R包——customeLayout/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
+<meta property="og:description" content="杜雨老师在10月份更新的R包中选择了一个可以用来将图形进行拼接的R包customLayout    特点 它可以用来完成自由拼图，可以使用矩阵自定义图形位置和顺序，用数字来定义每一个模块的长宽比 这个包不仅支持数字拼图，还支持R内置的base绘图对象、grid绘图对象等（也就是支持ggplot2对象）。  包的下载 可以通过CRAN网站下载 同时也提供了github版本">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg">
-<meta property="og:updated_time" content="2018-10-05T13:06:00.116Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-570052751beaa849.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-0594f3f65a5ec4f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-f4ab2e97fa4e4092.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-72b918e40a14e28f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-84f9035cda58b629.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-dbf7d162a7a94905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-06T12:54:49.985Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="强烈推荐|代谢组学数据分析R包">
-<meta name="twitter:description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
-<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg">
+<meta name="twitter:title" content="七巧拼图R包——customeLayout">
+<meta name="twitter:description" content="杜雨老师在10月份更新的R包中选择了一个可以用来将图形进行拼接的R包customLayout    特点 它可以用来完成自由拼图，可以使用矩阵自定义图形位置和顺序，用数字来定义每一个模块的长宽比 这个包不仅支持数字拼图，还支持R内置的base绘图对象、grid绘图对象等（也就是支持ggplot2对象）。  包的下载 可以通过CRAN网站下载 同时也提供了github版本">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6673686-570052751beaa849.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
     
@@ -85,14 +90,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/10/05/强烈推荐-代谢组学数据分析R包/" title="强烈推荐|代谢组学数据分析R包" itemprop="url">强烈推荐|代谢组学数据分析R包</a>
+      <a href="/2018/11/06/七巧拼图R包——customeLayout/" title="七巧拼图R包——customeLayout" itemprop="url">七巧拼图R包——customeLayout</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
 		
   <p class="article-time">
-    <time datetime="2018-10-05T03:38:41.000Z" itemprop="datePublished"> Published 2018-10-05</time>
+    <time datetime="2018-11-06T12:46:58.000Z" itemprop="datePublished"> Published 2018-11-06</time>
     
   </p>
 </header>
@@ -101,36 +106,66 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R代码"><span class="toc-number">2.2.</span> <span class="toc-text">R代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包的下载"><span class="toc-number">2.</span> <span class="toc-text">包的下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持基础绘图拼接"><span class="toc-number">4.</span> <span class="toc-text">支持基础绘图拼接</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><blockquote>
-<p>包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中</p>
+		<blockquote>
+<p>杜雨老师在10月份更新的R包中选择了一个可以用来将图形进行拼接的R包<code>customLayout</code>  </p>
 </blockquote>
-<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><h2 id="该包提供了可供练习的数据集"><a href="#该包提供了可供练习的数据集" class="headerlink" title="该包提供了可供练习的数据集"></a>该包提供了可供练习的数据集</h2><ul>
-<li>小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)</li>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>它可以用来完成自由拼图，可以使用矩阵自定义图形位置和顺序，用数字来定义每一个模块的长宽比</li>
+<li>这个包不仅支持数字拼图，还支持R内置的base绘图对象、grid绘图对象等（也就是支持ggplot2对象）。</li>
 </ul>
+<h2 id="包的下载"><a href="#包的下载" class="headerlink" title="包的下载"></a>包的下载</h2><ul>
+<li>可以通过CRAN网站下载</li>
+<li>同时也提供了github版本</li>
+</ul>
+<a id="more"></a>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 第一种方法</span></span><br><span class="line">install.packages(<span class="string">"customLayout"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 第二种方法</span></span><br><span class="line"><span class="keyword">library</span>(devtools)</span><br><span class="line">install_github(<span class="string">"zzawadz/customLayout"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><ul>
+<li>通过设置基本的参数看这个包的工作原理是什么</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(customLayout)</span><br><span class="line"><span class="keyword">library</span>(magrittr)</span><br><span class="line"></span><br><span class="line">lay &lt;- lay_new(</span><br><span class="line">  mat = matrix(<span class="number">1</span>:<span class="number">4</span>, ncol = <span class="number">2</span>),</span><br><span class="line">  widths = c(<span class="number">3</span>, <span class="number">2</span>),</span><br><span class="line">  heights = c(<span class="number">2</span>, <span class="number">1</span>))  </span><br><span class="line">lay_show(lay)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-570052751beaa849.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一"></p>
 <ul>
-<li>过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差</li>
-<li>特别是在变量比样品数多的情况下容易产生过拟合的情况</li>
-<li>如果实在是变量比样品数多，因为毕竟不是人人都能搞得起大样本的数据的，那么这时候就要结合permutation的结果，看是否达到显著(诊断值pQ2Y)</li>
+<li>参数解释：mat给出要拼图的数据矩阵，将1：4数字按照纵向顺序拼成两行，因为ncol指定了两列，只能是两行两列，宽比例为3：2，高的比例为2：1。</li>
+<li>再给个例子</li>
 </ul>
-<h2 id="R代码"><a href="#R代码" class="headerlink" title="R代码"></a>R代码</h2><a id="more"></a>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ropls)</span><br><span class="line"><span class="comment">#' 加载数据</span></span><br><span class="line">data(<span class="string">"sacurine"</span>)</span><br><span class="line">names(sacurine)</span><br><span class="line"><span class="comment">## [1] "dataMatrix"       "sampleMetadata"   "variableMetadata"</span></span><br><span class="line"><span class="keyword">attach</span>(sacurine)</span><br><span class="line">strF(sacurine)</span><br><span class="line"><span class="comment">#----------------------- Principal Component Analysis (PCA) --------------------------#</span></span><br><span class="line"><span class="comment">#' We perform a PCA on the dataMatrix matrix (samples as rows, variables as columns), with</span></span><br><span class="line"><span class="comment">#' the opls method:</span></span><br><span class="line">sacurine.pca &lt;- opls(dataMatrix)</span><br><span class="line">genderFc &lt;- sampleMetadata[, <span class="string">"gender"</span>]</span><br><span class="line">plot(sacurine.pca, typeVc = <span class="string">"x-score"</span>,</span><br><span class="line">     parAsColFcVn = genderFc, parEllipsesL = <span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------- Partial least-squares: PLS and PLS-DA -----------------------#</span></span><br><span class="line"><span class="comment">#' For PLS (and OPLS), the Y response(s) must be provided to the opls method. Y can</span></span><br><span class="line"><span class="comment">#' be either a numeric vector (respectively matrix) for single (respectively multiple) (O)PLS</span></span><br><span class="line"><span class="comment">#' regression, or a character factor for (O)PLS-DA classification as in the following example</span></span><br><span class="line"><span class="comment">#' with the gender qualitative response:</span></span><br><span class="line">sacurine.plsda &lt;- opls(dataMatrix, genderFc)</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------- Orthogonal partial least squares: OPLS and OPLS-DA -----------#</span></span><br><span class="line"><span class="comment">#' To perform OPLS(-DA), we set orthoI (number of components which are orthogonal;</span></span><br><span class="line"><span class="comment">#' Integer) to either a specific number of orthogonal components, or to NA. Let us build an</span></span><br><span class="line"><span class="comment">#' OPLS-DA model of the gender response.</span></span><br><span class="line">sacurine.oplsda &lt;- opls(dataMatrix, genderFc,</span><br><span class="line">                        predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>)</span><br><span class="line"><span class="comment">#' Let us assess the predictive performance of our model. We first train the model on a subset</span></span><br><span class="line"><span class="comment">#' of the samples (here we use the odd subset value which splits the data set into two halves</span></span><br><span class="line"><span class="comment">#' with similar proportions of samples for each class; alternatively, we could have used a specific</span></span><br><span class="line"><span class="comment">#' subset of indices for training):</span></span><br><span class="line">sacurine.oplsda &lt;- opls(dataMatrix, genderFc, predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>,</span><br><span class="line">                        subset = <span class="string">"odd"</span>)</span><br><span class="line"><span class="comment">#' 1)We first check the predictions on the training subset:</span></span><br><span class="line">trainVi &lt;- getSubsetVi(sacurine.oplsda)</span><br><span class="line">table(genderFc[trainVi], fitted(sacurine.oplsda))</span><br><span class="line"><span class="comment">#' 2)We then compute the performances on the test subset:</span></span><br><span class="line">table(genderFc[-trainVi],</span><br><span class="line">      predict(sacurine.oplsda, dataMatrix[-trainVi, ]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------- Pre-processing and annotation of mass spectrometry data ---------#</span></span><br><span class="line"><span class="comment">#' To illustrate how dataMatrix, sampleMetadata and variableMetadata can be obtained from</span></span><br><span class="line"><span class="comment">#' raw mass spectra file, we use the LC-MS data from the faahKO package (Saghatelian et</span></span><br><span class="line"><span class="comment">#' al. 2004). We will pre-process the raw files with the xcms package (Smith et al. 2006) and</span></span><br><span class="line"><span class="comment">#' annotate isotopes and adducts with the CAMERA package (Kuhl et al. 2012), as described</span></span><br><span class="line"><span class="comment">#' in the corresponding vignettes (all these packages are from bioconductor).</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#' Let us start by getting the paths to the 12 raw files (6 KO and 6 WT mice) in the .cdf open</span></span><br><span class="line"><span class="comment">#' format. The files are grouped in two sub-directories (KO and WT) since xcms can use sample</span></span><br><span class="line"><span class="comment">#' class information when grouping the peaks and correcting retention times.</span></span><br><span class="line"><span class="keyword">library</span>(faahKO)</span><br></pre></td></tr></table></figure>
-<p><img src="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg" alt=""></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/ropls/inst/doc/ropls-vignette.html#44_orthogonal_partial_least_squares:_opls_and_opls-da" target="_blank" rel="noopener">ropls</a></li>
-</ol>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lay2 &lt;- lay_new(</span><br><span class="line">  matrix(<span class="number">1</span>:<span class="number">4</span>, nc = <span class="number">2</span>),</span><br><span class="line">  widths = c(<span class="number">3</span>, <span class="number">5</span>),</span><br><span class="line">  heights = c(<span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line">lay_show(lay2)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-0594f3f65a5ec4f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二"></p>
+<ul>
+<li>还支持将上面两个图形矩阵拼接为一个，并且还可以设置比例（不过这里的比例是以每个矩阵为整体而变化）</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cl = lay_bind_col(lay, lay2, widths = c(<span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line">lay_show(cl)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-f4ab2e97fa4e4092.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图三"></p>
+<ul>
+<li>除此之外，还可以将一个模块嵌入到另一个模块的特定位置，如将一幅图插入到另一幅图的第四个区域<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">lay &lt;- lay_new(</span><br><span class="line">  matrix(<span class="number">1</span>:<span class="number">4</span>, nc = <span class="number">2</span>),</span><br><span class="line">  widths = c(<span class="number">3</span>, <span class="number">2</span>),</span><br><span class="line">  heights = c(<span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">lay_show(lay)</span><br><span class="line"></span><br><span class="line">lay2 &lt;- lay_new(</span><br><span class="line">  matrix(<span class="number">1</span>:<span class="number">4</span>, nc = <span class="number">2</span>),</span><br><span class="line">  widths = c(<span class="number">3</span>, <span class="number">5</span>),</span><br><span class="line">  heights = c(<span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line">lay_show(lay2)</span><br><span class="line"></span><br><span class="line">slay &lt;- lay_split_field(lay, lay2, field = <span class="number">4</span>)</span><br><span class="line">lay_show(slay)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-72b918e40a14e28f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图四"></p>
+<h2 id="支持基础绘图拼接"><a href="#支持基础绘图拼接" class="headerlink" title="支持基础绘图拼接"></a>支持基础绘图拼接</h2><ul>
+<li>设定模块<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">par(mar = c(<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">lay  &lt;- lay_new(</span><br><span class="line">  matrix(<span class="number">1</span>:<span class="number">4</span>, nc = <span class="number">2</span>),</span><br><span class="line">  widths = c(<span class="number">3</span>, <span class="number">2</span>),</span><br><span class="line">  heights = c(<span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">lay2 &lt;- lay_new(matrix(<span class="number">1</span>:<span class="number">3</span>))</span><br><span class="line">cl   &lt;- lay_bind_col(lay, lay2, widths = c(<span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line">lay_show(cl)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-84f9035cda58b629.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图五 模块设定"></p>
+<ul>
+<li>绘图<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lay_set(cl) <span class="comment"># initialize drawing areaset.seed(123)</span></span><br><span class="line">plot(<span class="number">1</span>:<span class="number">100</span> + rnorm(<span class="number">100</span>))</span><br><span class="line">plot(rnorm(<span class="number">100</span>), type = <span class="string">"l"</span>)</span><br><span class="line">hist(rnorm(<span class="number">500</span>))</span><br><span class="line">acf(rnorm(<span class="number">100</span>))</span><br><span class="line">pie(c(<span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>), col = <span class="number">2</span>:<span class="number">4</span>)</span><br><span class="line">pie(c(<span class="number">3</span>, <span class="number">2</span>, <span class="number">7</span>), col = <span class="number">2</span>:<span class="number">4</span> + <span class="number">3</span>)</span><br><span class="line">pie(c(<span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span>), col = <span class="number">2</span>:<span class="number">4</span> + <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-dbf7d162a7a94905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图六 往上面设定好的模块中放图"></p>
+<blockquote>
+<p>以上就是关于R包customLayout的介绍，可以用于临时的对图形的拼接，后期再用ps进行调整。而且只要你想象力足够丰富，拼成意见艺术品也不是不可能，动起手来吧！</p>
+</blockquote>
   
 	</div>
 		
     <script type="text/javascript">
     var disqus_shortname = 'dayueban';
     var disqus_config = function () {
-        this.page.url = 'https://dayueban.com/2018/10/05/强烈推荐-代谢组学数据分析R包/';
-        this.page.identifier = '/2018/10/05/强烈推荐-代谢组学数据分析R包/';
-        this.page.title = '强烈推荐|代谢组学数据分析R包';
+        this.page.url = 'https://dayueban.com/2018/11/06/七巧拼图R包——customeLayout/';
+        this.page.identifier = '/2018/11/06/七巧拼图R包——customeLayout/';
+        this.page.title = '七巧拼图R包——customeLayout';
     };
     (function(){
       var d = document;
@@ -146,19 +181,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/10/06/有味系列-大鼠模型构建及饲喂分组实验设计-1/" title="有味系列 | 大鼠模型构建及饲喂分组实验设计-1">
-  <strong>上一篇：</strong><br/>
-  <span>
-  有味系列 | 大鼠模型构建及饲喂分组实验设计-1</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/10/03/My-New-Post/"  title="My New Post">
+<a href="/2018/11/05/回归专题-1-线线性回归基础/"  title="回归专题-1 | 线线性回归基础">
  <strong>下一篇：</strong><br/> 
- <span>My New Post
+ <span>回归专题-1 | 线线性回归基础
 </span>
 </a>
 </div>
@@ -180,7 +207,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R代码"><span class="toc-number">2.2.</span> <span class="toc-text">R代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包的下载"><span class="toc-number">2.</span> <span class="toc-text">包的下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持基础绘图拼接"><span class="toc-number">4.</span> <span class="toc-text">支持基础绘图拼接</span></a></li></ol>
  
   </div>
 

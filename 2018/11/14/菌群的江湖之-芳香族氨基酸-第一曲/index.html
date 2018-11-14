@@ -4,27 +4,31 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>强烈推荐|代谢组学数据分析R包 | 有味</title>
+    <title>菌群的江湖之 | 芳香族氨基酸 第一曲 | 有味</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dayueban">
     
 
     
-    <meta name="description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
-<meta name="keywords" content="R,bioconductor,data analysis">
+    <meta name="description" content="导读 厌氧细菌发酵芳香族氨基酸产生各式多样的代谢产物，并且保留了其稳定的芳香环结构（图1）。 由生活在人/动物肠道中的厌氧细菌产生，这些化合物可在宿主血液中积累，达到亚毫摩尔的浓度会具有全局生理或病理效应。 因此，详细了解这些发酵途径及其产品对人类健康至关重要。 许多发酵细菌能够分别降解芳香族氨基酸酪氨酸（Tyrosine, Tyr），苯丙氨酸（Phenylalanine, Phe）和色氨酸（Tr">
+<meta name="keywords" content="芳香族氨基酸,比较基因组学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强烈推荐|代谢组学数据分析R包">
-<meta property="og:url" content="https://dayueban.com/2018/10/05/强烈推荐-代谢组学数据分析R包/index.html">
+<meta property="og:title" content="菌群的江湖之 | 芳香族氨基酸 第一曲">
+<meta property="og:url" content="https://dayueban.com/2018/11/14/菌群的江湖之-芳香族氨基酸-第一曲/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
+<meta property="og:description" content="导读 厌氧细菌发酵芳香族氨基酸产生各式多样的代谢产物，并且保留了其稳定的芳香环结构（图1）。 由生活在人/动物肠道中的厌氧细菌产生，这些化合物可在宿主血液中积累，达到亚毫摩尔的浓度会具有全局生理或病理效应。 因此，详细了解这些发酵途径及其产品对人类健康至关重要。 许多发酵细菌能够分别降解芳香族氨基酸酪氨酸（Tyrosine, Tyr），苯丙氨酸（Phenylalanine, Phe）和色氨酸（Tr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg">
-<meta property="og:updated_time" content="2018-10-05T13:06:00.116Z">
+<meta property="og:image" content="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig1_HTML.png">
+<meta property="og:image" content="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig2_HTML.png">
+<meta property="og:image" content="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig3_HTML.png">
+<meta property="og:image" content="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig4_HTML.png">
+<meta property="og:image" content="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig5_HTML.png">
+<meta property="og:updated_time" content="2018-11-14T03:59:53.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="强烈推荐|代谢组学数据分析R包">
-<meta name="twitter:description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
-<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg">
+<meta name="twitter:title" content="菌群的江湖之 | 芳香族氨基酸 第一曲">
+<meta name="twitter:description" content="导读 厌氧细菌发酵芳香族氨基酸产生各式多样的代谢产物，并且保留了其稳定的芳香环结构（图1）。 由生活在人/动物肠道中的厌氧细菌产生，这些化合物可在宿主血液中积累，达到亚毫摩尔的浓度会具有全局生理或病理效应。 因此，详细了解这些发酵途径及其产品对人类健康至关重要。 许多发酵细菌能够分别降解芳香族氨基酸酪氨酸（Tyrosine, Tyr），苯丙氨酸（Phenylalanine, Phe）和色氨酸（Tr">
+<meta name="twitter:image" content="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig1_HTML.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
     
@@ -85,14 +89,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/10/05/强烈推荐-代谢组学数据分析R包/" title="强烈推荐|代谢组学数据分析R包" itemprop="url">强烈推荐|代谢组学数据分析R包</a>
+      <a href="/2018/11/14/菌群的江湖之-芳香族氨基酸-第一曲/" title="菌群的江湖之 | 芳香族氨基酸 第一曲" itemprop="url">菌群的江湖之 | 芳香族氨基酸 第一曲</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
 		
   </p><p class="article-time">
-    <time datetime="2018-10-05T03:38:41.000Z" itemprop="datePublished"> Published 2018-10-05</time>
+    <time datetime="2018-11-14T01:39:13.000Z" itemprop="datePublished"> Published 2018-11-14</time>
     
   </p>
 </header>
@@ -101,36 +105,50 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R代码"><span class="toc-number">2.2.</span> <span class="toc-text">R代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总括"><span class="toc-number">2.</span> <span class="toc-text">总括</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#粪臭素"><span class="toc-number">2.1.</span> <span class="toc-text">粪臭素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">2.2.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果节选"><span class="toc-number">3.</span> <span class="toc-text">结果节选</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过比较基因组学鉴定候选的IAD"><span class="toc-number">3.1.</span> <span class="toc-text">通过比较基因组学鉴定候选的IAD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重组体IAD的生物化学实验"><span class="toc-number">3.2.</span> <span class="toc-text">重组体IAD的生物化学实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析IAD的保守结构域"><span class="toc-number">3.3.</span> <span class="toc-text">分析IAD的保守结构域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><blockquote>
-<p>包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中</p>
+		<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
+<p>厌氧细菌发酵芳香族氨基酸产生各式多样的代谢产物，并且保留了其稳定的芳香环结构（图1）。 由生活在人/动物肠道中的厌氧细菌产生，这些化合物可在宿主血液中积累，达到亚毫摩尔的浓度会具有全局生理或病理效应。 因此，详细了解这些发酵途径及其产品对人类健康至关重要。 许多发酵细菌能够分别降解芳香族氨基酸<code>酪氨酸（Tyrosine, Tyr）</code>，<code>苯丙氨酸（Phenylalanine, Phe）</code>和<code>色氨酸（Tryptophan, Trp）</code>以形成<code>对羟基苯乙酸酯(p-hydroxyphenylacetate)</code>，<code>苯基乙酸酯(phenylacetate)</code>和<code>吲哚乙酸酯(indoleacetate)</code>。 另外，还存在一些细菌能够对前面的代谢物进一步代谢的能力，主要是对这些代谢物的一个脱羧作用，以形成挥发性芳族化合物<code>甲酚(cresol)</code>，<code>甲苯(toluene)</code>和<code>粪臭素(skatole)</code>。</p>
 </blockquote>
-<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><h2 id="该包提供了可供练习的数据集"><a href="#该包提供了可供练习的数据集" class="headerlink" title="该包提供了可供练习的数据集"></a>该包提供了可供练习的数据集</h2><ul>
-<li>小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)</li>
+<a id="more"></a>
+<p><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig1_HTML.png" alt="图1 发酵芳香族氨基酸的路径"></p>
+<h1 id="总括"><a href="#总括" class="headerlink" title="总括"></a>总括</h1><h2 id="粪臭素"><a href="#粪臭素" class="headerlink" title="粪臭素"></a>粪臭素</h2><blockquote>
+<p>在上述三种挥发性代谢产物中，<code>粪臭素</code>的关注度较高，因为它在比较低的浓度(at a threshold of 0.00056 ppm (0.0030 mg/m3))的情况就能散发出一种独特的粪便的恶臭味。虽然<code>甲酚</code>也能发出讨厌的味道(at a threshold of 0.00186 ppm (0.0082 mg/m3))。<strong>科研工作者们早就知道粪臭素是来自于细菌代谢产物</strong>，而且弄懂产生粪臭素的生化途径对于农业领域来说是相当令人感兴趣的，因为粪臭素是粪便中令人讨厌的气味的主要成分，并且是导致公猪膻味和牛呼吸道疾病的元凶。细菌产生的粪臭素也存在于人的粪便和其它组织，它还被发现是一种肺毒素，一种可能的肺致癌物质和一种局部芳香烃受体激动剂。 此外，作为Culex蚊子的产卵引诱剂，粪臭素有助于昆虫传播的人类感染如丝虫病，日本脑炎和西尼罗河病毒的繁殖和爆发。然而，催化甲酚和甲苯形成的酶相对来说较为清楚，但催化粪臭素形成的酶尚未见报道。</p>
+</blockquote>
+<ul>
+<li>催化甲酚形成的酶，对甲基苯乙酸脱羧酶在2001就由Selmer和Andrei报道，该酶是<code>甘氨酰基自由基酶超家族( glycyl radical enzyme, GRE)</code>的一员。这种酶超家族催化多种自由基介导的反应，并在厌氧发酵细菌的初级代谢中发挥重要作用。它们的催化机制需要对O2敏感的甘氨酰基（G•）辅因子参与，它是通过涉及S-腺苷甲硫氨酸（SAM）和[4Fe-4S] 1+簇的化学活化酶产生的。 先前在Clostridium scatologenes和Lactobacillus菌株的无细胞提取物中报道了氧敏感性<code>吲哚乙酸脱羧酶（IAD）</code>活性，并且已经提出但未证明是GRE。</li>
 </ul>
 <ul>
-<li>过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差</li>
-<li>特别是在变量比样品数多的情况下容易产生过拟合的情况</li>
-<li>如果实在是变量比样品数多，因为毕竟不是人人都能搞得起大样本的数据的，那么这时候就要结合permutation的结果，看是否达到显著(诊断值pQ2Y)</li>
+<li>已经分别通过实验和计算手段研究了<strong>HPAD</strong>的催化机理，其涉及通过电子和酚类质子的协同提取来活化对羟基苯乙酸酯以产生苯氧基 - 乙酸根自由基阴离子，其中自由基在芳环上离域。 由于吲哚和苯基基团的反应方式不同，尚不清楚吲哚乙酸和苯乙酸的脱羧作用是否也可以通过类似的机制被GRE催化。 然而，GRE超家族中存在大量功能未表征的序列（迄今为止InterPro家族IPR004184中的14,288个序列）提示我们可以通过生物信息学的方法搜索候选IAD。 虽然我们的工作正在进行中，但Beller等人报道甲苯形成酶苯乙酸脱羧酶（PhdB）是一种新型GRE，尽管其催化机制目前尚不清楚，并且可能与HPAD显著不同。</li>
 </ul>
-<h2 id="R代码"><a href="#R代码" class="headerlink" title="R代码"></a>R代码</h2><a id="more"></a>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ropls)</span><br><span class="line"><span class="comment">#' 加载数据</span></span><br><span class="line">data(<span class="string">"sacurine"</span>)</span><br><span class="line">names(sacurine)</span><br><span class="line"><span class="comment">## [1] "dataMatrix"       "sampleMetadata"   "variableMetadata"</span></span><br><span class="line"><span class="keyword">attach</span>(sacurine)</span><br><span class="line">strF(sacurine)</span><br><span class="line"><span class="comment">#----------------------- Principal Component Analysis (PCA) --------------------------#</span></span><br><span class="line"><span class="comment">#' We perform a PCA on the dataMatrix matrix (samples as rows, variables as columns), with</span></span><br><span class="line"><span class="comment">#' the opls method:</span></span><br><span class="line">sacurine.pca &lt;- opls(dataMatrix)</span><br><span class="line">genderFc &lt;- sampleMetadata[, <span class="string">"gender"</span>]</span><br><span class="line">plot(sacurine.pca, typeVc = <span class="string">"x-score"</span>,</span><br><span class="line">     parAsColFcVn = genderFc, parEllipsesL = <span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------- Partial least-squares: PLS and PLS-DA -----------------------#</span></span><br><span class="line"><span class="comment">#' For PLS (and OPLS), the Y response(s) must be provided to the opls method. Y can</span></span><br><span class="line"><span class="comment">#' be either a numeric vector (respectively matrix) for single (respectively multiple) (O)PLS</span></span><br><span class="line"><span class="comment">#' regression, or a character factor for (O)PLS-DA classification as in the following example</span></span><br><span class="line"><span class="comment">#' with the gender qualitative response:</span></span><br><span class="line">sacurine.plsda &lt;- opls(dataMatrix, genderFc)</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------- Orthogonal partial least squares: OPLS and OPLS-DA -----------#</span></span><br><span class="line"><span class="comment">#' To perform OPLS(-DA), we set orthoI (number of components which are orthogonal;</span></span><br><span class="line"><span class="comment">#' Integer) to either a specific number of orthogonal components, or to NA. Let us build an</span></span><br><span class="line"><span class="comment">#' OPLS-DA model of the gender response.</span></span><br><span class="line">sacurine.oplsda &lt;- opls(dataMatrix, genderFc,</span><br><span class="line">                        predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>)</span><br><span class="line"><span class="comment">#' Let us assess the predictive performance of our model. We first train the model on a subset</span></span><br><span class="line"><span class="comment">#' of the samples (here we use the odd subset value which splits the data set into two halves</span></span><br><span class="line"><span class="comment">#' with similar proportions of samples for each class; alternatively, we could have used a specific</span></span><br><span class="line"><span class="comment">#' subset of indices for training):</span></span><br><span class="line">sacurine.oplsda &lt;- opls(dataMatrix, genderFc, predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>,</span><br><span class="line">                        subset = <span class="string">"odd"</span>)</span><br><span class="line"><span class="comment">#' 1)We first check the predictions on the training subset:</span></span><br><span class="line">trainVi &lt;- getSubsetVi(sacurine.oplsda)</span><br><span class="line">table(genderFc[trainVi], fitted(sacurine.oplsda))</span><br><span class="line"><span class="comment">#' 2)We then compute the performances on the test subset:</span></span><br><span class="line">table(genderFc[-trainVi],</span><br><span class="line">      predict(sacurine.oplsda, dataMatrix[-trainVi, ]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------- Pre-processing and annotation of mass spectrometry data ---------#</span></span><br><span class="line"><span class="comment">#' To illustrate how dataMatrix, sampleMetadata and variableMetadata can be obtained from</span></span><br><span class="line"><span class="comment">#' raw mass spectra file, we use the LC-MS data from the faahKO package (Saghatelian et</span></span><br><span class="line"><span class="comment">#' al. 2004). We will pre-process the raw files with the xcms package (Smith et al. 2006) and</span></span><br><span class="line"><span class="comment">#' annotate isotopes and adducts with the CAMERA package (Kuhl et al. 2012), as described</span></span><br><span class="line"><span class="comment">#' in the corresponding vignettes (all these packages are from bioconductor).</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#' Let us start by getting the paths to the 12 raw files (6 KO and 6 WT mice) in the .cdf open</span></span><br><span class="line"><span class="comment">#' format. The files are grouped in two sub-directories (KO and WT) since xcms can use sample</span></span><br><span class="line"><span class="comment">#' class information when grouping the peaks and correcting retention times.</span></span><br><span class="line"><span class="keyword">library</span>(faahKO)</span><br></pre></td></tr></table></figure>
-<p><img src="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg" alt=""></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/ropls/inst/doc/ropls-vignette.html#44_orthogonal_partial_least_squares:_opls_and_opls-da" target="_blank" rel="noopener">ropls</a></li>
-</ol>
+<ul>
+<li>产生粪臭素（甲酚）的模式生物是来自于厚壁菌门，梭菌目的Clostridium scatologenes (Cs)，分离自酸性沉积物。不久前，发现粪臭素（甲酚）可以由Olsenella scatoligenes (Os)产生，该菌来自于放线菌门，红椿菌目，分离自猪的粪便。这些进化上不同的粪臭素生产者的基因组序列呈现了通过<code>比较基因组学</code>鉴定IAD的前景，这是由我们对GRE的催化机制和化学中涉及的关键活性位点残基的逐步了解所指导的。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>作者在这篇文章主要报道了从O. scatoligenes菌种鉴定到<strong>IAD</strong>，并且通过体外的生物化学实验进行验证。</li>
+</ul>
+<h1 id="结果节选"><a href="#结果节选" class="headerlink" title="结果节选"></a>结果节选</h1><h2 id="通过比较基因组学鉴定候选的IAD"><a href="#通过比较基因组学鉴定候选的IAD" class="headerlink" title="通过比较基因组学鉴定候选的IAD"></a>通过比较基因组学鉴定候选的IAD</h2><p><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig2_HTML.png" alt="图2 GRE的最大似然系统发育树：包括Cs GREs（红色），Os GREs（绿色）和前期通过生物化学在其他生物体验证过的GRE（黑色）。 在Cs和Os 中，只有CsHPAD已经过生物化学验证。 其它的Cs和Os GRE用括号表示。 候选IAD在蓝色椭圆中，其中OsIAD在本研究中得到验证。 PFL丙酮酸甲酸裂解酶，TdcE 2-酮酸甲酸裂解酶，CutC胆碱 - 三甲胺裂解酶，PDH丙二醇脱水酶，GDH甘油脱水酶，HypD反式-4-羟基-L-脯氨酸脱水酶，BssA苄基琥珀酸合成酶，AssA烷基琥珀酸合成酶，PhdB苯乙酸脱羧酶 ，本研究报道了HPAD对羟基苯乙酸脱羧酶和IAD吲哚乙酸脱羧酶。 Bootstrap置信度值&gt; 50在节点上展示"></p>
+<p><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig3_HTML.png" alt="图3 Cs和Os菌上的IAD和HPAD基因附近区域"></p>
+<h2 id="重组体IAD的生物化学实验"><a href="#重组体IAD的生物化学实验" class="headerlink" title="重组体IAD的生物化学实验"></a>重组体IAD的生物化学实验</h2><ul>
+<li>接下来研究候选的IAD, OsIAD和他们基因组位置临近的活性酶OsIADAE重组体的生物化学活性</li>
+</ul>
+<p><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig4_HTML.png" alt="图4 OsIAD的EPR光谱和酶学测定：a.在存在或不存在还原剂（柠檬酸钛（III））的情况下，用IADAE和SAM重构的IAD的X-带EPR光谱。 b.IAD的反应要求和底物特异性. IAAK，HPAAK和PAAK分别是吲哚乙酸，对羟基苯乙酸和苯乙酸的钾盐。（误差棒表示三次单独实验的标准偏差。）。c.使用GC-MS检测IAD催化的IAAK脱羧中的粪臭素形成. 粪臭素的真实标准品的GC-MS洗脱曲线，去除SAM和IAAK的阴性对照和完整的测定由标记所示。 每个样品中包括内标2,3-二甲基吲哚。 d粪臭素峰的质谱"></p>
+<h2 id="分析IAD的保守结构域"><a href="#分析IAD的保守结构域" class="headerlink" title="分析IAD的保守结构域"></a>分析IAD的保守结构域</h2><p><img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41467-018-06627-x/MediaObjects/41467_2018_6627_Fig5_HTML.png" alt="图5 HPADs和IADs序列的多重比对，突出核心的蛋白结构域残基：含有保守的Cys和Glu1残基的硫基自由基环区域，分别以红色和蓝色突出显示。 可能参与IAD催化机制的His残基是橙色的（艰难梭菌（Clostridium difficile）;福赛斯坦纳菌（Tf Tannerella forsythia）;肉毒梭菌（Cb Clostridium botulinum）; Fc （Faecalicatena contorta）。 b.包含Glu2的区域，以绿色突出显示。 Glu2在HPAD中是保守的，但在IAD中不是"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>IAD的发现为鉴定产生粪臭素的细菌提供了生物标记。 这是特别重要的，因为迄今为止还没有系统的方法用于粪臭素产生菌的富集培养，并且尽管在人/动物相关环境中存在着粪臭素，但<strong>Os</strong>菌是迄今为止从动物中分离的唯一产生粪臭素的细菌。 作者通过生物信息学分析（补充图9）还发现来源于人类的另外两种细菌中存在IAD序列：如来自人牙龈缝隙的Olsenella uli DSM 7084和来自坏疽性阑尾炎的Faecalicatena contorta，强调了其与人类健康的相关性。 特别值得注意的是，它在口腔微生物组中的存在暗示其对口臭的潜在影响。</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a href="https://www.nature.com/articles/s41467-018-06627-x" target="_blank" rel="noopener">原文链家</a></p>
   
 	</div>
 		
     <script type="text/javascript">
     var disqus_shortname = 'dayueban';
     var disqus_config = function () {
-        this.page.url = 'https://dayueban.com/2018/10/05/强烈推荐-代谢组学数据分析R包/';
-        this.page.identifier = '/2018/10/05/强烈推荐-代谢组学数据分析R包/';
-        this.page.title = '强烈推荐|代谢组学数据分析R包';
+        this.page.url = 'https://dayueban.com/2018/11/14/菌群的江湖之-芳香族氨基酸-第一曲/';
+        this.page.identifier = '/2018/11/14/菌群的江湖之-芳香族氨基酸-第一曲/';
+        this.page.title = '菌群的江湖之 | 芳香族氨基酸 第一曲';
     };
     (function(){
       var d = document;
@@ -146,19 +164,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev">
- <a href="/2018/10/06/有味系列-大鼠模型构建及饲喂分组实验设计-1/" title="有味系列 | 大鼠模型构建及饲喂分组实验设计-1">
-  <strong>上一篇：</strong><br>
-  <span>
-  有味系列 | 大鼠模型构建及饲喂分组实验设计-1</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/10/03/My-New-Post/" title="My New Post">
+<a href="/2018/11/06/七巧拼图R包——customeLayout/" title="七巧拼图R包——customeLayout">
  <strong>下一篇：</strong><br> 
- <span>My New Post
+ <span>七巧拼图R包——customeLayout
 </span>
 </a>
 </div>
@@ -180,7 +190,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R代码"><span class="toc-number">2.2.</span> <span class="toc-text">R代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总括"><span class="toc-number">2.</span> <span class="toc-text">总括</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#粪臭素"><span class="toc-number">2.1.</span> <span class="toc-text">粪臭素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">2.2.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果节选"><span class="toc-number">3.</span> <span class="toc-text">结果节选</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过比较基因组学鉴定候选的IAD"><span class="toc-number">3.1.</span> <span class="toc-text">通过比较基因组学鉴定候选的IAD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重组体IAD的生物化学实验"><span class="toc-number">3.2.</span> <span class="toc-text">重组体IAD的生物化学实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析IAD的保守结构域"><span class="toc-number">3.3.</span> <span class="toc-text">分析IAD的保守结构域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
  
   </div>
 

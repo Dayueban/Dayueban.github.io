@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://media.springernature.com/lw785/springer-static/image/art%3A10.1186%2Fs40168-018-0584-3/MediaObjects/40168_2018_584_Fig2_HTML.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/12/18/FBi1FU.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/12/18/FBZ61S.png">
-<meta property="og:updated_time" content="2018-12-18T05:55:27.624Z">
+<meta property="og:updated_time" content="2018-12-18T05:57:29.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ggplot2 | 如何将菌群分类数据作面积图">
 <meta name="twitter:description" content="导读 菌群分类数据的可视化，包括丰度在个体之间以以及组间的一个比较怎么生动形象，一直是我想解决的问题，今天看到一篇文章上面用的是ggplot2包做的一个面积图，主要利用到了里面的geom_area()函数，这样的图有一个好处就是可以看菌群丰度随着采样时间点的变化而变化。那么我在想，如果横坐标是个体号呢，怎么想办法也能像下图（图1）这样展示。所以我想通过自己平时下载的数据来重现这个图。好了，话不多说">
@@ -117,7 +117,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="R代码"><a href="#R代码" class="headerlink" title="R代码"></a>R代码</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">rm(list = ls()) </span><br><span class="line"><span class="comment"># 加载系列包</span></span><br><span class="line"><span class="keyword">library</span>(reshape2) </span><br><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line"><span class="keyword">library</span>(phyloseq)</span><br><span class="line"><span class="keyword">library</span>(magrittr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载数据</span></span><br><span class="line">setwd(<span class="string">"D:\\元基因组\\3. 16S 扩增子下游测序分析&amp;其他分析方法集锦\\Rhea_amplicon_analysis\\4.Taxonomic-Binning"</span>)</span><br><span class="line">otu_file&lt;-<span class="string">"Families.all.tab"</span></span><br><span class="line">otu_table &lt;-  read.table (otu_file,</span><br><span class="line">                          check.names = <span class="literal">FALSE</span>,</span><br><span class="line">                          header = <span class="literal">TRUE</span>,</span><br><span class="line">                          dec = <span class="string">"."</span>,</span><br><span class="line">                          sep = <span class="string">"\t"</span>,</span><br><span class="line">                          comment.char = <span class="string">""</span>)</span><br><span class="line">otu_table &lt;- otu_table[<span class="number">1</span>:<span class="number">10</span>,] <span class="comment"># 为了展示方便，这里只取前面10个科</span></span><br><span class="line">otu_table[,<span class="number">2</span>:ncol(otu_table)] &lt;- sweep(otu_table[,<span class="number">2</span>:ncol(otu_table)],<span class="number">2</span>, colSums(otu_table[,<span class="number">2</span>:ncol(otu_table)]),<span class="string">'/'</span>)*<span class="number">100</span></span><br><span class="line">col &lt;- c(<span class="string">"f__Bacteroidaceae"</span> = <span class="string">"#E5CD34"</span>, <span class="string">"f__Deferribacteraceae"</span> = <span class="string">"#6C6011"</span>, </span><br><span class="line">         <span class="string">"f__Desulfovibrionaceae"</span> = <span class="string">"#2B5B51"</span>, <span class="string">"f__Enterobacteriaceae"</span> = <span class="string">"#1D9376"</span>, <span class="string">"f__Erysipelotrichaceae"</span> = <span class="string">"#A3E4D5"</span>, </span><br><span class="line">         <span class="string">"f__Lachnospiraceae"</span> = <span class="string">"#4D2599"</span>, <span class="string">"f__Lactobacillaceae"</span> = <span class="string">"#1E0748"</span>, <span class="string">"f__Peptostreptococcaceae"</span> = <span class="string">"#9C74E3"</span>, </span><br><span class="line">         <span class="string">"f__Porphyromonadaceae"</span> = <span class="string">"#6B2B0B"</span>, <span class="string">"f__Rikenellaceae"</span> = <span class="string">"#E46628"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将原始数据表进行转换，将宽矩阵转为长矩阵</span></span><br><span class="line">otu_table_1 &lt;- melt(otu_table)</span><br><span class="line">names(otu_table_1)[<span class="number">1</span>] &lt;- <span class="string">"family"</span></span><br><span class="line">otu_table_1$variable &lt;- as.factor(otu_table_1$variable)</span><br><span class="line"></span><br><span class="line">p &lt;- ggplot(otu_table_1,aes(x=variable, y = value)) +</span><br><span class="line">  geom_area(aes(group=family, fill = family),position = <span class="string">"stack"</span>) + <span class="comment">##这里要添加group和fill,不然个体之间连接不成面积图，而是和条形图差不多</span></span><br><span class="line">  <span class="comment">#facet_wrap(~vessel) +</span></span><br><span class="line">  theme_minimal() +</span><br><span class="line">  scale_fill_manual(values = col) +</span><br><span class="line">  <span class="comment">#scale_x_datetime(date_labels="Day %d") +</span></span><br><span class="line">  ylab(<span class="string">"Proportions"</span>) +</span><br><span class="line">  <span class="comment">#guides(fill = element_text(size=16))+</span></span><br><span class="line">  theme(panel.grid.major = element_blank(), </span><br><span class="line">        panel.grid.minor = element_blank(), </span><br><span class="line">        legend.position=<span class="string">"bottom"</span>, </span><br><span class="line">        axis.title.x = element_blank(), </span><br><span class="line">        axis.text.x = element_text(angle=<span class="number">45</span>,color=<span class="string">"black"</span>,vjust = <span class="number">0.95</span>,hjust = <span class="number">0.95</span>,size=<span class="number">12</span>), </span><br><span class="line">        axis.title.y = element_text(size=<span class="number">16</span>),</span><br><span class="line">        axis.text.y = element_text(size=<span class="number">14</span>), </span><br><span class="line">        strip.text.x = element_text(size=<span class="number">18</span>), </span><br><span class="line">        legend.text = element_text(size=<span class="number">14</span>), </span><br><span class="line">        legend.title = element_text(size=<span class="number">16</span>))</span><br><span class="line">ggsave(<span class="string">"family.tiff"</span>, height=<span class="number">8</span>, width=<span class="number">20</span>, units=<span class="string">"in"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="R代码"><a href="#R代码" class="headerlink" title="R代码"></a>R代码</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">rm(list = ls()) </span><br><span class="line"><span class="comment"># 加载系列包</span></span><br><span class="line"><span class="keyword">library</span>(reshape2) </span><br><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line"><span class="keyword">library</span>(phyloseq)</span><br><span class="line"><span class="keyword">library</span>(magrittr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载数据</span></span><br><span class="line">setwd(<span class="string">"D:\\元基因组\\3. 16S 扩增子下游测序分析&amp;其他分析方法集锦\\Rhea_amplicon_analysis\\4.Taxonomic-Binning"</span>)</span><br><span class="line">otu_file&lt;-<span class="string">"Families.all.tab"</span></span><br><span class="line">otu_table &lt;-  read.table (otu_file,</span><br><span class="line">                          check.names = <span class="literal">FALSE</span>,</span><br><span class="line">                          header = <span class="literal">TRUE</span>,</span><br><span class="line">                          dec = <span class="string">"."</span>,</span><br><span class="line">                          sep = <span class="string">"\t"</span>,</span><br><span class="line">                          comment.char = <span class="string">""</span>)</span><br><span class="line">otu_table &lt;- otu_table[<span class="number">1</span>:<span class="number">10</span>,] <span class="comment"># 为了展示方便，这里只取前面10个科</span></span><br><span class="line">otu_table[,<span class="number">2</span>:ncol(otu_table)] &lt;- sweep(otu_table[,<span class="number">2</span>:ncol(otu_table)],<span class="number">2</span>, colSums(otu_table[,<span class="number">2</span>:ncol(otu_table)]),<span class="string">'/'</span>)*<span class="number">100</span></span><br><span class="line">col &lt;- c(<span class="string">"f__Bacteroidaceae"</span> = <span class="string">"#E5CD34"</span>, <span class="string">"f__Deferribacteraceae"</span> = <span class="string">"#6C6011"</span>, </span><br><span class="line">         <span class="string">"f__Desulfovibrionaceae"</span> = <span class="string">"#2B5B51"</span>, <span class="string">"f__Enterobacteriaceae"</span> = <span class="string">"#1D9376"</span>, <span class="string">"f__Erysipelotrichaceae"</span> = <span class="string">"#A3E4D5"</span>, </span><br><span class="line">         <span class="string">"f__Lachnospiraceae"</span> = <span class="string">"#4D2599"</span>, <span class="string">"f__Lactobacillaceae"</span> = <span class="string">"#1E0748"</span>, <span class="string">"f__Peptostreptococcaceae"</span> = <span class="string">"#9C74E3"</span>, </span><br><span class="line">         <span class="string">"f__Porphyromonadaceae"</span> = <span class="string">"#6B2B0B"</span>, <span class="string">"f__Rikenellaceae"</span> = <span class="string">"#E46628"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将原始数据表进行转换，将宽矩阵转为长矩阵</span></span><br><span class="line">otu_table_1 &lt;- melt(otu_table)</span><br><span class="line">names(otu_table_1)[<span class="number">1</span>] &lt;- <span class="string">"family"</span></span><br><span class="line">otu_table_1$variable &lt;- as.factor(otu_table_1$variable)</span><br><span class="line"></span><br><span class="line">p &lt;- ggplot(otu_table_1,aes(x=variable, y = value)) +</span><br><span class="line">  geom_area(aes(group=family, fill = family),position = <span class="string">"stack"</span>) + <span class="comment">##这里要添加group和fill,不然个体之间连接不成面积图，而是和条形图差不多。并且要选择stack是堆砌图。</span></span><br><span class="line">  <span class="comment">#facet_wrap(~vessel) +</span></span><br><span class="line">  theme_minimal() +</span><br><span class="line">  scale_fill_manual(values = col) +</span><br><span class="line">  <span class="comment">#scale_x_datetime(date_labels="Day %d") +</span></span><br><span class="line">  ylab(<span class="string">"Proportions"</span>) +</span><br><span class="line">  <span class="comment">#guides(fill = element_text(size=16))+</span></span><br><span class="line">  theme(panel.grid.major = element_blank(), </span><br><span class="line">        panel.grid.minor = element_blank(), </span><br><span class="line">        legend.position=<span class="string">"bottom"</span>, </span><br><span class="line">        axis.title.x = element_blank(), </span><br><span class="line">        axis.text.x = element_text(angle=<span class="number">45</span>,color=<span class="string">"black"</span>,vjust = <span class="number">0.95</span>,hjust = <span class="number">0.95</span>,size=<span class="number">12</span>), </span><br><span class="line">        axis.title.y = element_text(size=<span class="number">16</span>),</span><br><span class="line">        axis.text.y = element_text(size=<span class="number">14</span>), </span><br><span class="line">        strip.text.x = element_text(size=<span class="number">18</span>), </span><br><span class="line">        legend.text = element_text(size=<span class="number">14</span>), </span><br><span class="line">        legend.title = element_text(size=<span class="number">16</span>))</span><br><span class="line">ggsave(<span class="string">"family.tiff"</span>, height=<span class="number">8</span>, width=<span class="number">20</span>, units=<span class="string">"in"</span>)</span><br></pre></td></tr></table></figure>
 <h1 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h1><ul>
 <li>结果展示如下图所示（图3）<br><img src="https://s1.ax1x.com/2018/12/18/FBZ61S.png" alt="图3"></li>
 </ul>
@@ -145,6 +145,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev">
+ <a href="/2018/12/18/20181214-hmz-多元统计模型-MUVR的使用/" title="利用R语言构建一种无偏变量选择的多元统计方法">
+  <strong>上一篇：</strong><br>
+  <span>
+  利用R语言构建一种无偏变量选择的多元统计方法</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2018/11/15/长篇综述-胆汁酸如何影响糖代谢？/" title="长篇综述 | 胆汁酸如何影响糖代谢？">
@@ -185,7 +193,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Bioinformatics/" title="Bioinformatics">Bioinformatics<sup>2</sup></a></li>
+			<li><a href="/categories/Bioinformatics/" title="Bioinformatics">Bioinformatics<sup>3</sup></a></li>
 		  
 		
 		  
@@ -214,7 +222,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>3</sup></a></li>
+				<li><a href="/tags/R/" title="R">R<sup>4</sup></a></li>
 			
 		
 			
@@ -226,11 +234,15 @@
 			
 		
 			
-				<li><a href="/tags/面积图/" title="面积图">面积图<sup>1</sup></a></li>
+				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/生化指标/" title="生化指标">生化指标<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
 			
 		
 			
@@ -258,23 +270,11 @@
 			
 		
 			
-				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/bioconductor/" title="bioconductor">bioconductor<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/杂谈/" title="杂谈">杂谈<sup>1</sup></a></li>
 			
 		
 			
@@ -283,6 +283,14 @@
 		
 			
 				<li><a href="/tags/Regression/" title="Regression">Regression<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
 			
 		
 			
@@ -325,7 +333,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">Archives</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">8</span></li></ul>
   </div>
 
 
@@ -333,7 +341,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">Tag Cloud</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/FXR受体/" style="font-size: 10px;">FXR受体</a> <a href="/tags/ORF预测/" style="font-size: 10px;">ORF预测</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/Regression/" style="font-size: 10px;">Regression</a> <a href="/tags/Statistics/" style="font-size: 10px;">Statistics</a> <a href="/tags/TGR5受体/" style="font-size: 10px;">TGR5受体</a> <a href="/tags/bioconductor/" style="font-size: 10px;">bioconductor</a> <a href="/tags/data-analysis/" style="font-size: 10px;">data analysis</a> <a href="/tags/ggplot2/" style="font-size: 10px;">ggplot2</a> <a href="/tags/代谢组学/" style="font-size: 10px;">代谢组学</a> <a href="/tags/免疫/" style="font-size: 10px;">免疫</a> <a href="/tags/实用软件包/" style="font-size: 10px;">实用软件包</a> <a href="/tags/实验设计/" style="font-size: 15px;">实验设计</a> <a href="/tags/数据分析/" style="font-size: 10px;">数据分析</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/比较基因组学/" style="font-size: 10px;">比较基因组学</a> <a href="/tags/生化指标/" style="font-size: 10px;">生化指标</a> <a href="/tags/粘膜屏障/" style="font-size: 10px;">粘膜屏障</a> <a href="/tags/糖代谢/" style="font-size: 10px;">糖代谢</a> <a href="/tags/肠道/" style="font-size: 10px;">肠道</a> <a href="/tags/肠道菌群定植/" style="font-size: 10px;">肠道菌群定植</a> <a href="/tags/芳香族氨基酸/" style="font-size: 10px;">芳香族氨基酸</a> <a href="/tags/菌群/" style="font-size: 10px;">菌群</a> <a href="/tags/菌群-宿主互作/" style="font-size: 10px;">菌群-宿主互作</a> <a href="/tags/面积图/" style="font-size: 10px;">面积图</a>
+       <a href="/tags/FXR受体/" style="font-size: 10px;">FXR受体</a> <a href="/tags/ORF预测/" style="font-size: 10px;">ORF预测</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/Regression/" style="font-size: 10px;">Regression</a> <a href="/tags/Statistics/" style="font-size: 10px;">Statistics</a> <a href="/tags/TGR5受体/" style="font-size: 10px;">TGR5受体</a> <a href="/tags/bioconductor/" style="font-size: 10px;">bioconductor</a> <a href="/tags/data-analysis/" style="font-size: 10px;">data analysis</a> <a href="/tags/ggplot2/" style="font-size: 10px;">ggplot2</a> <a href="/tags/代谢组学/" style="font-size: 10px;">代谢组学</a> <a href="/tags/免疫/" style="font-size: 10px;">免疫</a> <a href="/tags/变量选择/" style="font-size: 10px;">变量选择</a> <a href="/tags/实用软件包/" style="font-size: 10px;">实用软件包</a> <a href="/tags/实验设计/" style="font-size: 15px;">实验设计</a> <a href="/tags/数据分析/" style="font-size: 10px;">数据分析</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/比较基因组学/" style="font-size: 10px;">比较基因组学</a> <a href="/tags/生化指标/" style="font-size: 10px;">生化指标</a> <a href="/tags/粘膜屏障/" style="font-size: 10px;">粘膜屏障</a> <a href="/tags/糖代谢/" style="font-size: 10px;">糖代谢</a> <a href="/tags/肠道/" style="font-size: 10px;">肠道</a> <a href="/tags/肠道菌群定植/" style="font-size: 10px;">肠道菌群定植</a> <a href="/tags/芳香族氨基酸/" style="font-size: 10px;">芳香族氨基酸</a> <a href="/tags/菌群/" style="font-size: 10px;">菌群</a> <a href="/tags/菌群-宿主互作/" style="font-size: 10px;">菌群-宿主互作</a> <a href="/tags/面积图/" style="font-size: 10px;">面积图</a>
     </div>
   </div>
 

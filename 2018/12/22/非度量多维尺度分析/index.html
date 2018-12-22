@@ -4,27 +4,30 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>有味系列 | 大鼠模型构建及饲喂分组实验设计-1 | 有味</title>
+    <title>非度量多维尺度分析 | 有味</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dayueban">
     
 
     
-    <meta name="description" content="导读  与未发酵的苦瓜多糖（NFP）相比，植物乳杆菌NCU116发酵后的苦瓜多糖多糖（FP）的物理化学特性、单糖组成、分子量和粘度发生改变； 诱导的Ⅱ型糖尿病大鼠模型分为对照组、高/中/低剂量FP组和中剂量NFP组，正常饮食大鼠分为对照组、中剂量FP和中剂量NFP组； 不同剂量的FP可改善Ⅱ型糖尿病大鼠的血糖、血脂、血液胰岛素水平和氧化应激反应； 相比于NFP组，FP组大鼠的肠道菌群多样性和丰度显">
-<meta name="keywords" content="实验设计,生化指标">
+    <meta name="description" content="导读 非度量多维尺度分析（nonmetric multidimensional scaling, NMDS），是一种简介的梯度分析方法，也是基于距离或者相异性矩阵。与其它主要用于最大化变异和一致性的方法不一样，NMDS是一种排序方法。这对于距离缺失的数据有优势，只要先办法确定对象之间的位置关系，便可以进行NMDS分析。NMDS的计算过程会以代码的形式贴在下方，供大家参考">
+<meta name="keywords" content="NMDS,beta多样性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="有味系列 | 大鼠模型构建及饲喂分组实验设计-1">
-<meta property="og:url" content="https://dayueban.com/2018/10/06/有味系列-大鼠模型构建及饲喂分组实验设计-1/index.html">
+<meta property="og:title" content="非度量多维尺度分析">
+<meta property="og:url" content="https://dayueban.com/2018/12/22/非度量多维尺度分析/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="导读  与未发酵的苦瓜多糖（NFP）相比，植物乳杆菌NCU116发酵后的苦瓜多糖多糖（FP）的物理化学特性、单糖组成、分子量和粘度发生改变； 诱导的Ⅱ型糖尿病大鼠模型分为对照组、高/中/低剂量FP组和中剂量NFP组，正常饮食大鼠分为对照组、中剂量FP和中剂量NFP组； 不同剂量的FP可改善Ⅱ型糖尿病大鼠的血糖、血脂、血液胰岛素水平和氧化应激反应； 相比于NFP组，FP组大鼠的肠道菌群多样性和丰度显">
+<meta property="og:description" content="导读 非度量多维尺度分析（nonmetric multidimensional scaling, NMDS），是一种简介的梯度分析方法，也是基于距离或者相异性矩阵。与其它主要用于最大化变异和一致性的方法不一样，NMDS是一种排序方法。这对于距离缺失的数据有优势，只要先办法确定对象之间的位置关系，便可以进行NMDS分析。NMDS的计算过程会以代码的形式贴在下方，供大家参考">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a04e7d69gy1fvyabpbb22j210y0yn776.jpg">
-<meta property="og:updated_time" content="2018-10-06T02:39:53.728Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/22/Fy0vPs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/22/FyBdL8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/22/Fy0OaQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/22/Fy0X5j.png">
+<meta property="og:updated_time" content="2018-12-22T15:33:30.164Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有味系列 | 大鼠模型构建及饲喂分组实验设计-1">
-<meta name="twitter:description" content="导读  与未发酵的苦瓜多糖（NFP）相比，植物乳杆菌NCU116发酵后的苦瓜多糖多糖（FP）的物理化学特性、单糖组成、分子量和粘度发生改变； 诱导的Ⅱ型糖尿病大鼠模型分为对照组、高/中/低剂量FP组和中剂量NFP组，正常饮食大鼠分为对照组、中剂量FP和中剂量NFP组； 不同剂量的FP可改善Ⅱ型糖尿病大鼠的血糖、血脂、血液胰岛素水平和氧化应激反应； 相比于NFP组，FP组大鼠的肠道菌群多样性和丰度显">
-<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/a04e7d69gy1fvyabpbb22j210y0yn776.jpg">
+<meta name="twitter:title" content="非度量多维尺度分析">
+<meta name="twitter:description" content="导读 非度量多维尺度分析（nonmetric multidimensional scaling, NMDS），是一种简介的梯度分析方法，也是基于距离或者相异性矩阵。与其它主要用于最大化变异和一致性的方法不一样，NMDS是一种排序方法。这对于距离缺失的数据有优势，只要先办法确定对象之间的位置关系，便可以进行NMDS分析。NMDS的计算过程会以代码的形式贴在下方，供大家参考">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/12/22/Fy0vPs.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
     
@@ -85,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/10/06/有味系列-大鼠模型构建及饲喂分组实验设计-1/" title="有味系列 | 大鼠模型构建及饲喂分组实验设计-1" itemprop="url">有味系列 | 大鼠模型构建及饲喂分组实验设计-1</a>
+      <a href="/2018/12/22/非度量多维尺度分析/" title="非度量多维尺度分析" itemprop="url">非度量多维尺度分析</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
 		
   </p><p class="article-time">
-    <time datetime="2018-10-06T02:10:33.000Z" itemprop="datePublished"> Published 2018-10-06</time>
+    <time datetime="2018-12-22T14:57:14.000Z" itemprop="datePublished"> Published 2018-12-22</time>
     
   </p>
 </header>
@@ -101,35 +104,37 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#大鼠实验设计"><span class="toc-number">2.</span> <span class="toc-text">大鼠实验设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据格式"><span class="toc-number">2.</span> <span class="toc-text">数据格式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析代码"><span class="toc-number">3.</span> <span class="toc-text">分析代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行NMDS分析"><span class="toc-number">3.1.</span> <span class="toc-text">运行NMDS分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作图"><span class="toc-number">3.2.</span> <span class="toc-text">作图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><hr>
-<ul>
-<li>与未发酵的苦瓜多糖（NFP）相比，植物乳杆菌NCU116发酵后的苦瓜多糖多糖（FP）的物理化学特性、单糖组成、分子量和粘度发生改变；</li>
-<li>诱导的Ⅱ型糖尿病大鼠模型分为对照组、高/中/低剂量FP组和中剂量NFP组，正常饮食大鼠分为对照组、中剂量FP和中剂量NFP组；</li>
-<li>不同剂量的FP可改善Ⅱ型糖尿病大鼠的血糖、血脂、血液胰岛素水平和氧化应激反应；</li>
-<li>相比于NFP组，FP组大鼠的肠道菌群多样性和丰度显著增加、肠道短链脂肪酸增加、肠道pH值降低。</li>
-</ul>
+		<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
+<p><code>非度量多维尺度分析（nonmetric multidimensional scaling, NMDS）</code>，是一种简介的梯度分析方法，也是基于距离或者相异性矩阵。与其它主要用于最大化变异和一致性的方法不一样，NMDS是一种排序方法。这对于距离缺失的数据有优势，只要先办法确定对象之间的位置关系，便可以进行NMDS分析。NMDS的计算过程会以代码的形式贴在下方，供大家参考</p>
+</blockquote>
 <a id="more"></a>
-<h1 id="大鼠实验设计"><a href="#大鼠实验设计" class="headerlink" title="大鼠实验设计"></a>大鼠实验设计</h1><hr>
-<ul>
-<li>对照文章的大鼠灌喂实验，总结了以下的思维导图<br><img src="http://wx3.sinaimg.cn/mw690/a04e7d69gy1fvyabpbb22j210y0yn776.jpg" alt=""></li>
-</ul>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="http://www.mr-gut.cn/papers/read/1065131592" target="_blank" rel="noopener">热心肠</a></li>
-<li><a href="https://www.sciencedirect.com/science/article/pii/S0144861718309846#!" target="_blank" rel="noopener">文章链接</a></li>
-</ol>
+<h1 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h1><blockquote>
+<p>NMDS与PCoA一样，NMDS可以基于任何类型距离、相异性矩阵对象（样方）进行排序。当然也可以是原始数据矩阵。这里我用的是weighted unifrac距离矩阵数据</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2018/12/22/Fy0vPs.png" alt="图1 weighted 距离矩阵"></p>
+<h1 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h1><blockquote>
+<p>NMDS排序分析可以通过生态学分析R包<code>vegan</code>中的<code>metaMDS()</code>函数实现。因为输入metaNMDS()的数据可以是原始数据矩阵，也可以是距离矩阵，这里拿上面列举的数据做示范。</p>
+</blockquote>
+<h2 id="运行NMDS分析"><a href="#运行NMDS分析" class="headerlink" title="运行NMDS分析"></a>运行NMDS分析</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">rm(list = ls())</span><br><span class="line">path &lt;- <span class="string">"D:/元基因组/3. 16S 扩增子下游测序分析&amp;其他分析方法集锦/土壤菌群与水稻土溶解有机质/16S"</span></span><br><span class="line">setwd(path)</span><br><span class="line"><span class="keyword">library</span>(vegan) <span class="comment">## 加载包</span></span><br><span class="line">weight_dm &lt;- read.table(<span class="string">"weighted_unifrac_otu_table_css.txt"</span>,header = <span class="literal">T</span>,row.names = <span class="number">1</span>,</span><br><span class="line">                        sep = <span class="string">"\t"</span>,check.names = <span class="literal">F</span>) <span class="comment">## 加载weighted距离矩阵数据</span></span><br><span class="line">meta_info &lt;- read.csv(<span class="string">"meta_info.csv"</span>,header = <span class="literal">T</span>,row.names = <span class="number">1</span>,check.names = <span class="literal">F</span>) <span class="comment">## 加载样品分组信息</span></span><br><span class="line"><span class="comment">#group &lt;- meta_info$group </span></span><br><span class="line">set.seed(<span class="number">1234</span>) <span class="comment">## 设置随机种子，以便结果可以重复</span></span><br><span class="line">weight_nmds &lt;- metaMDS(weight_dm,trace = <span class="literal">F</span>) <span class="comment"># trace = F 表示的是不要在屏幕上输出运行的过程和结果</span></span><br><span class="line">weight_nmds$stress <span class="comment"># 压力值，一般小于0.1比较好，但是也要根据所选择的的主成分数目来看</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/12/22/FyBdL8.png" alt="图2 strees的scree图，stress随着主成分数的增加而减少"><br>图片来源<a href="https://mb3is.megx.net/gustame/dissimilarity-based-methods/nmds" target="_blank" rel="noopener">GUSTA ME</a>[2]</p>
+<h2 id="作图"><a href="#作图" class="headerlink" title="作图"></a>作图</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tiff(<span class="string">"NMDS.tiff"</span>,width=<span class="number">1000</span>,height=<span class="number">1000</span>)</span><br><span class="line">p&lt;- plot(scores(weight_nmds, choice=c(<span class="number">1</span>, <span class="number">2</span>)), col=c(<span class="string">"purple"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>,<span class="string">"red"</span>)[meta_info$group], </span><br><span class="line">         cex=<span class="number">1.5</span>, font=<span class="number">1</span>,  pch=<span class="number">5</span>) <span class="comment">##NMDS作图###</span></span><br><span class="line">legend(<span class="string">'topleft'</span>, legend=levels(meta_info$group), col=c(<span class="string">"purple"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>,<span class="string">"red"</span>),pch=<span class="number">5</span>,cex=<span class="number">1.5</span>,box.lty =<span class="number">1</span>)<span class="comment">###NMDS添加Legend###</span></span><br><span class="line">with(weight_nmds,ordiellipse(weight_nmds, meta_info$group,display = <span class="string">"sites"</span>, kind = <span class="string">"se"</span>, conf = <span class="number">0.95</span>, lwd=<span class="number">2</span>,cex=<span class="number">0.8</span>,lty=<span class="number">1</span>,col=c(<span class="string">"purple"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>,<span class="string">"red"</span>),font=<span class="number">2</span>,label = <span class="literal">FALSE</span>))</span><br><span class="line"><span class="comment">#dev.off()</span></span><br><span class="line"><span class="comment">#env&lt;-meta_table[,c(5:10)]</span></span><br><span class="line"><span class="comment">#head(env)</span></span><br><span class="line"><span class="comment">#ef1&lt;-envfit(otu.nmds,env,na.rm=TRUE)###环境变量envfit###</span></span><br><span class="line"><span class="comment">#p&lt;- p+ plot(ef1,p.max=0.05,col="black") #####plot(ef1)##所有环境因子图添加箭头###</span></span><br><span class="line"><span class="comment">#ef1</span></span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/12/22/Fy0OaQ.png" alt="图3 常规方法作图"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">site.scores &lt;- as.data.frame(scores(weight_nmds)) <span class="comment">## 抽提出样本和NMDS1，NMDS2信息</span></span><br><span class="line">site.scores &lt;- cbind(site.scores,group)</span><br><span class="line">head(site.scores)</span><br><span class="line"><span class="keyword">library</span>(<span class="string">"FactoMineR"</span>)</span><br><span class="line"><span class="keyword">library</span>(<span class="string">"factoextra"</span>)</span><br><span class="line">p &lt;- ggplot(data = site.scores,aes(x=NMDS1,y=NMDS2)) + </span><br><span class="line">  geom_point(aes(shape=group,color=group,fill=group),size=<span class="number">3</span>) </span><br><span class="line">  </span><br><span class="line">p &lt;- p + theme_bw()</span><br><span class="line">p &lt;- p + theme(panel.grid.major = element_blank(), plot.background=element_blank(),</span><br><span class="line">         panel.grid.minor = element_blank(), </span><br><span class="line">         legend.position=<span class="string">"top"</span>, </span><br><span class="line">         axis.title.x = element_text(size = <span class="number">16</span>), </span><br><span class="line">         axis.text.x = element_text(angle=<span class="number">0</span>,color=<span class="string">"black"</span>,vjust = <span class="number">0.95</span>,hjust = <span class="number">0.95</span>,size=<span class="number">12</span>), </span><br><span class="line">         axis.title.y = element_text(size=<span class="number">16</span>),</span><br><span class="line">         axis.text.y = element_text(size=<span class="number">14</span>,color=<span class="string">"black"</span>), </span><br><span class="line">         strip.text.x = element_text(size=<span class="number">18</span>), </span><br><span class="line">         legend.text = element_text(size=<span class="number">14</span>), </span><br><span class="line">         legend.title = element_text(size=<span class="number">16</span>))</span><br><span class="line">p&lt;-p+geom_vline(xintercept=<span class="number">0</span>,linetype=<span class="string">"dashed"</span>,color=<span class="string">"blue"</span>)+geom_hline(yintercept = <span class="number">0</span>,linetype=<span class="string">"dashed"</span>,color=<span class="string">"blue"</span>)</span><br><span class="line">p &lt;- p + geom_text(x=<span class="number">0.12</span>,y=-<span class="number">0.2</span>,label=paste(<span class="string">"stress = "</span>,round(weight_nmds$stress,<span class="number">3</span>),sep = <span class="string">""</span>),color=<span class="string">"blue"</span>,size=<span class="number">6</span>)</span><br><span class="line">ggsave(<span class="string">"NMDS.tiff"</span>, height=<span class="number">8</span>, width=<span class="number">8</span>, units=<span class="string">"in"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/12/22/Fy0X5j.png" alt="图4 ggplot2作图"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] 中文版 《数量生态学-R语言的应用》（赖江山 译）高等教育出版社出版<br>[2] <a href="https://mb3is.megx.net/gustame/dissimilarity-based-methods/nmds" target="_blank" rel="noopener">https://mb3is.megx.net/gustame/dissimilarity-based-methods/nmds</a></p>
   
 	</div>
 		
     <script type="text/javascript">
     var disqus_shortname = 'dayueban';
     var disqus_config = function () {
-        this.page.url = 'https://dayueban.com/2018/10/06/有味系列-大鼠模型构建及饲喂分组实验设计-1/';
-        this.page.identifier = '/2018/10/06/有味系列-大鼠模型构建及饲喂分组实验设计-1/';
-        this.page.title = '有味系列 | 大鼠模型构建及饲喂分组实验设计-1';
+        this.page.url = 'https://dayueban.com/2018/12/22/非度量多维尺度分析/';
+        this.page.identifier = '/2018/12/22/非度量多维尺度分析/';
+        this.page.title = '非度量多维尺度分析';
     };
     (function(){
       var d = document;
@@ -145,19 +150,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev">
- <a href="/2018/10/06/有味系列-药膳成分对大鼠2型糖尿病干预及实验设计-2/" title="有味系列 | 药膳成分对大鼠2型糖尿病干预及实验设计-2">
-  <strong>上一篇：</strong><br>
-  <span>
-  有味系列 | 药膳成分对大鼠2型糖尿病干预及实验设计-2</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/10/05/强烈推荐-代谢组学数据分析R包/" title="强烈推荐|代谢组学数据分析R包">
+<a href="/2018/12/20/如何正确理解菌群alpha-beta多样性/" title="如何正确理解菌群alpha-beta多样性">
  <strong>下一篇：</strong><br> 
- <span>强烈推荐|代谢组学数据分析R包
+ <span>如何正确理解菌群alpha-beta多样性
 </span>
 </a>
 </div>
@@ -179,7 +176,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#大鼠实验设计"><span class="toc-number">2.</span> <span class="toc-text">大鼠实验设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据格式"><span class="toc-number">2.</span> <span class="toc-text">数据格式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析代码"><span class="toc-number">3.</span> <span class="toc-text">分析代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行NMDS分析"><span class="toc-number">3.1.</span> <span class="toc-text">运行NMDS分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作图"><span class="toc-number">3.2.</span> <span class="toc-text">作图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
  
   </div>
 

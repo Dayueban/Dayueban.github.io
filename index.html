@@ -96,88 +96,15 @@
 </header>
     <div class="article-content">
         
-        <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
+        <p><img src="https://s1.ax1x.com/2018/12/26/F2Sx2T.png" alt=""></p>
+<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
 <p>通路富集分析技术对于理解代谢组学数据背后的潜在生物学意义是非常有用的，它们的目的是根据代谢途径中所包含的先验知识，为受影响的代谢物提供上下游关系。然而，对广义代谢通路的解释仍然具有挑战性，因为路径之间会有重叠和交叉。</p>
 </blockquote>
-<h1 id="文献介绍"><a href="#文献介绍" class="headerlink" title="文献介绍"></a>文献介绍</h1><ul>
-<li>原标题：FELLA: an R package to enrich metabolomics data</li>
-<li>译名：FELLA，一个代谢组学富集分析的R包</li>
-<li>期刊：《BMC Bioinformatics》</li>
-<li>作者：Sergio Picart-Armada（一作），Alexandre Perera Lluna（通讯作者）</li>
-<li>实验室主页：<a href="http://b2slab.upc.edu/team/alexandre-perera-lluna/" target="_blank" rel="noopener">B2SLab</a></li>
-<li>单位：加泰罗尼亚理工大学等</li>
-<li>领域： 混合生物信息学&amp;生物工程学、心血管疾病、代谢组学数据处理、软件开发应用</li>
-</ul>
-<h1 id="主要成果"><a href="#主要成果" class="headerlink" title="主要成果"></a>主要成果</h1><blockquote>
-<p>本篇文章主要介绍了一个R包<code>FELLA</code>，基于前期分析得到的差异代谢物来构建基于网络的富集分析。结果包括代谢通路、模块、酶、反应及代谢物。那么除了能够提供通路列表，FELLA还能够生成输入代谢物相关的中间物质（如模块、酶、反应）。可以反映特定研究条件下代谢通路之间的交集以及靶向潜在的酶和代谢物。</p>
-</blockquote>
-<h1 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h1><blockquote>
-<p>下面这幅图高度概括了该软件的一个使用流程</p>
-</blockquote>
-<p><img src="https://media.springernature.com/lw785/springer-static/image/art%3A10.1186%2Fs12859-018-2487-5/MediaObjects/12859_2018_2487_Fig1_HTML.png" alt="图1 R包FELLA的设计思路。「Ⅰ选择物种和数据库；Ⅱ代谢物list输入和算法的选择；Ⅲ结果的生成导出」"></p>
-<ol>
-<li>Block Ⅰ：本地数据库</li>
-<li>Block Ⅱ：富集分析</li>
-<li>Block Ⅲ:结果导出</li>
-</ol>
-<blockquote>
-<p>那么FELLA同时通过<code>shiny</code>包又具备了可交互的工作模式</p>
-</blockquote>
-<h2 id="包的下载及演示"><a href="#包的下载及演示" class="headerlink" title="包的下载及演示"></a>包的下载及演示</h2><h3 id="包的下载"><a href="#包的下载" class="headerlink" title="包的下载"></a>包的下载</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 该包位于bioinformatics网站上</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!requireNamespace(<span class="string">"BiocManager"</span>, quietly = <span class="literal">TRUE</span>))</span><br><span class="line">    install.packages(<span class="string">"BiocManager"</span>)</span><br><span class="line">BiocManager::install(<span class="string">"FELLA"</span>, version = <span class="string">"3.8"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">library</span>(FELLA)  <span class="comment">##加载包</span></span><br></pre></td></tr></table></figure>
-<h3 id="加载数据库"><a href="#加载数据库" class="headerlink" title="加载数据库"></a>加载数据库</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一部分就是创建数据库，这里加载已经创建好的</span></span><br><span class="line"></span><br><span class="line">data(<span class="string">"FELLA.sample"</span>)</span><br><span class="line">class(FELLA.sample)</span><br><span class="line"><span class="comment">## [1] "FELLA.DATA"</span></span><br><span class="line"><span class="comment">## attr(,"package")</span></span><br><span class="line"><span class="comment">## [1] "FELLA"</span></span><br><span class="line">show(FELLA.sample)</span><br><span class="line"><span class="comment">## General data:</span></span><br><span class="line"><span class="comment">## - KEGG graph:</span></span><br><span class="line"><span class="comment">##   * Nodes:  670 </span></span><br><span class="line"><span class="comment">##   * Edges:  1677 </span></span><br><span class="line"><span class="comment">##   * Density:  0.003741383 </span></span><br><span class="line"><span class="comment">##   * Categories:</span></span><br><span class="line"><span class="comment">##     + pathway [2]</span></span><br><span class="line"><span class="comment">##     + module [6]</span></span><br><span class="line"><span class="comment">##     + enzyme [58]</span></span><br><span class="line"><span class="comment">##     + reaction [279]</span></span><br><span class="line"><span class="comment">##     + compound [325]</span></span><br><span class="line"><span class="comment">##   * Size:  366.9 Kb </span></span><br><span class="line"><span class="comment">## - KEGG names are ready.</span></span><br><span class="line"><span class="comment">## -----------------------------</span></span><br><span class="line"><span class="comment">## Hypergeometric test:</span></span><br><span class="line"><span class="comment">## - Matrix is ready</span></span><br><span class="line"><span class="comment">##   * Dim:  325 x 2 </span></span><br><span class="line"><span class="comment">##   * Size:  25 Kb</span></span><br><span class="line"><span class="comment">## -----------------------------</span></span><br><span class="line"><span class="comment">## Heat diffusion:</span></span><br><span class="line"><span class="comment">## - Matrix not loaded.</span></span><br><span class="line"><span class="comment">## - RowSums are ready.</span></span><br><span class="line"><span class="comment">## -----------------------------</span></span><br><span class="line"><span class="comment">## PageRank:</span></span><br><span class="line"><span class="comment">## - Matrix not loaded.</span></span><br><span class="line"><span class="comment">## - RowSums are ready.</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>这里需要注意的是，<code>FELLA.DATA</code>只需要通过函数<code>buildGraphFromKEGGREST</code>和<code>buildDataFromGraph</code>创建一次即可，并且后期不允许认为修改</li>
-</ul>
-<h3 id="加载演示数据"><a href="#加载演示数据" class="headerlink" title="加载演示数据"></a>加载演示数据</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第二部分就是加载数据集，也就是前面说的输入分析得到对结果有影响的代谢物list</span></span><br><span class="line"></span><br><span class="line">data(<span class="string">"input.sample"</span>)</span><br><span class="line">input.full &lt;- c(input.sample, paste0(<span class="string">"intruder"</span>, <span class="number">1</span>:<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">show(input.full)</span><br><span class="line"><span class="comment">##  [1] "C00143"     "C00546"     "C04225"     "C16328"     "C00091"    </span></span><br><span class="line"><span class="comment">##  [6] "C15979"     "C16333"     "C05264"     "C05258"     "C00011"    </span></span><br><span class="line"><span class="comment">## [11] "C00083"     "C00044"     "C05266"     "C00479"     "C05280"    </span></span><br><span class="line"><span class="comment">## [16] "C01352"     "C05268"     "C16329"     "C00334"     "C05275"    </span></span><br><span class="line"><span class="comment">## [21] "C14145"     "C00081"     "C04253"     "C00027"     "C00111"    </span></span><br><span class="line"><span class="comment">## [26] "C00332"     "C00003"     "C00288"     "C05467"     "C00164"    </span></span><br><span class="line"><span class="comment">## [31] "intruder1"  "intruder2"  "intruder3"  "intruder4"  "intruder5" </span></span><br><span class="line"><span class="comment">## [36] "intruder6"  "intruder7"  "intruder8"  "intruder9"  "intruder10"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面就是通过函数`defineCompounds`来看下有哪些物质是与数据库匹配上的</span></span><br><span class="line"></span><br><span class="line">myAnalysis &lt;- defineCompounds(</span><br><span class="line">    compounds = input.full, </span><br><span class="line">    data = FELLA.sample)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 要注意的是有些你前期分析鉴定出的化合物可能并不一定能比对上KEGG数据库收集的化合物，那么这些比对失败的化合物就需要通过函数`getExcluded`排除，而比对上的代谢物用`getInput`函数</span></span><br><span class="line"></span><br><span class="line">getInput(myAnalysis)</span><br><span class="line"><span class="comment">##  [1] "C00003" "C00011" "C00027" "C00044" "C00081" "C00083" "C00091" "C00111"</span></span><br><span class="line"><span class="comment">##  [9] "C00143" "C00164" "C00288" "C00332" "C00334" "C00479" "C00546" "C01352"</span></span><br><span class="line"><span class="comment">## [17] "C04225" "C04253" "C05258" "C05264" "C05266" "C05268" "C05275" "C05280"</span></span><br><span class="line"><span class="comment">## [25] "C05467" "C14145" "C15979" "C16328" "C16329" "C16333"</span></span><br><span class="line"></span><br><span class="line">getExcluded(myAnalysis)</span><br><span class="line"><span class="comment">##  [1] "intruder1"  "intruder2"  "intruder3"  "intruder4"  "intruder5" </span></span><br><span class="line"><span class="comment">##  [6] "intruder6"  "intruder7"  "intruder8"  "intruder9"  "intruder10"</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>需要注意的是，这里是准确匹配的方式，所以要特别小心有空格或者tab键。</li>
-</ul>
-<h3 id="具体分析"><a href="#具体分析" class="headerlink" title="具体分析"></a>具体分析</h3><ul>
-<li><p>接下来就是富集分析：一旦FELLA.DATA和FELLA.USER确定下来，那么就可以很轻松的开始下一步的富集分析流程了，富集分析的方法有三种</p>
-<ul>
-<li>超几何检验(method = “hypergeom”)</li>
-<li>Diffusion（分析有意义子网络）</li>
-<li>PageRank（和Diffusion类似，只不过会对网络进行排序）</li>
-</ul>
-</li>
-<li><p>统计分析：对于前面<code>Diffusion</code>和<code>PageRank</code>方法，提供了两种统计方法</p>
-<ul>
-<li>Normal approximation(approx = “normality”)，基于无效假设的分析的期望值和协方差矩阵的z-score计算得到得分值</li>
-<li>Monte Carlo trials(approx = “simulation”)，随机变量的蒙特卡罗实验计算得分值</li>
-</ul>
-</li>
-<li><p>富集：方法、近似值和集成方法</p>
-<ul>
-<li><code>enrich</code>函数包括前面的<code>defineCompounds</code> ，<code>runHypergeom</code> ，<code>runDiffusion</code>和<code>runPagerank</code>四种函数。一步分析法</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">myAnalysis &lt;- enrich(</span><br><span class="line">    compounds = input.full, </span><br><span class="line">    method = listMethods(), </span><br><span class="line">    approx = <span class="string">"normality"</span>, </span><br><span class="line">    data = FELLA.sample)</span><br><span class="line"><span class="comment">#No background compounds specified. Default background will be used.</span></span><br><span class="line"><span class="comment">#Running hypergeom...</span></span><br><span class="line"><span class="comment">#Starting hypergeometric p-values calculation...</span></span><br><span class="line"><span class="comment">#Done.</span></span><br><span class="line"><span class="comment">#Running diffusion...</span></span><br><span class="line"><span class="comment">#Computing p-scores through the specified distribution.</span></span><br><span class="line"><span class="comment">#Done.</span></span><br><span class="line"><span class="comment">#Running PageRank...</span></span><br><span class="line"><span class="comment">#Computing p-scores through the specified distribution.</span></span><br><span class="line"><span class="comment">#Using provided damping factor...</span></span><br><span class="line"><span class="comment">#Done.</span></span><br><span class="line"><span class="comment">#Warning message:</span></span><br><span class="line"><span class="comment">#In defineCompounds(compounds = compounds, compoundsBackground = compoundsBackground,  :</span></span><br><span class="line"><span class="comment">#  Some compounds were introduced as affected but they do not belong to the background. These compounds will be excluded from the analysis. Use 'getExcluded' #  to see them.</span></span><br><span class="line">show(myAnalysis)</span><br><span class="line"><span class="comment">## Compounds in the input: 30</span></span><br><span class="line"><span class="comment">##  [1] "C00003" "C00011" "C00027" "C00044" "C00081" "C00083" "C00091" "C00111"</span></span><br><span class="line"><span class="comment">##  [9] "C00143" "C00164" "C00288" "C00332" "C00334" "C00479" "C00546" "C01352"</span></span><br><span class="line"><span class="comment">## [17] "C04225" "C04253" "C05258" "C05264" "C05266" "C05268" "C05275" "C05280"</span></span><br><span class="line"><span class="comment">## [25] "C05467" "C14145" "C15979" "C16328" "C16329" "C16333"</span></span><br><span class="line"><span class="comment">## Background compounds: all available compounds (default)</span></span><br><span class="line"><span class="comment">## -----------------------------</span></span><br><span class="line"><span class="comment">## Hypergeometric test: ready.</span></span><br><span class="line"><span class="comment">## Top 2 p-values:</span></span><br><span class="line"><span class="comment">##     hsa00640     hsa00010 </span></span><br><span class="line"><span class="comment">## 8.540386e-09 9.999888e-01 </span></span><br><span class="line"><span class="comment">## </span></span><br><span class="line"><span class="comment">## -----------------------------</span></span><br><span class="line"><span class="comment">## Heat diffusion: ready.</span></span><br><span class="line"><span class="comment">## P-scores under 0.05:  86</span></span><br><span class="line"><span class="comment">## -----------------------------</span></span><br><span class="line"><span class="comment">## PageRank: ready.</span></span><br><span class="line"><span class="comment">## P-scores under 0.05:  70</span></span><br></pre></td></tr></table></figure>
-<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3><ul>
-<li>在<code>method = &quot;hypergeom&quot;</code>参数下画的图是包含top通路以及其对应的代谢物的图<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plot(</span><br><span class="line">    x = myAnalysis, </span><br><span class="line">    method = <span class="string">"hypergeom"</span>, </span><br><span class="line">    main = <span class="string">"My first enrichment using the hypergeometric test in FELLA"</span>, </span><br><span class="line">    threshold = <span class="number">1</span>, </span><br><span class="line">    data = FELLA.sample)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2018/12/26/F2ShPP.png" alt="图2 hypergeom图"></p>
-<ul>
-<li>在<code>method = &quot;diffusion&quot;</code>参数下画的图是包含模块、酶和生化反应途径</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plot(</span><br><span class="line">    x = myAnalysis, </span><br><span class="line">    method = <span class="string">"diffusion"</span>, </span><br><span class="line">    main = <span class="string">"My first enrichment using the diffusion analysis in FELLA"</span>, </span><br><span class="line">    threshold = <span class="number">0.1</span>, </span><br><span class="line">    data = FELLA.sample)</span><br></pre></td></tr></table></figure>
-<p><img src="https://s1.ax1x.com/2018/12/26/F2S528.png" alt="图3 diffusion图"></p>
-<ul>
-<li>在<code>method = &quot;pagerank&quot;</code>参数下画的图和diffusion类似</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plot(</span><br><span class="line">    x = myAnalysis, </span><br><span class="line">    method = <span class="string">"diffusion"</span>, </span><br><span class="line">    main = <span class="string">"My first enrichment using the diffusion analysis in FELLA"</span>, </span><br><span class="line">    threshold = <span class="number">0.1</span>, </span><br><span class="line">    data = FELLA.sample)</span><br></pre></td></tr></table></figure>
-<p><img src="https://s1.ax1x.com/2018/12/26/F2S48f.png" alt="图4 pagerank图"></p>
-<h3 id="导出结果"><a href="#导出结果" class="headerlink" title="导出结果"></a>导出结果</h3><ul>
-<li>将数据（代谢通路注释的结果导出）</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">myTempDir &lt;- getwd()</span><br><span class="line">myExp_csv &lt;- paste0(myTempDir, <span class="string">"/table.csv"</span>)</span><br><span class="line">exportResults(</span><br><span class="line">    format = <span class="string">"csv"</span>, </span><br><span class="line">    file = myExp_csv, </span><br><span class="line">    method = <span class="string">"pagerank"</span>, </span><br><span class="line">    threshold = <span class="number">0.1</span>, </span><br><span class="line">    object = myAnalysis, </span><br><span class="line">    data = FELLA.sample)</span><br></pre></td></tr></table></figure>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>那么整个关于FELLA软件的一般性使用方法就介绍到这里，当然软件背后的计算方法是需要更加细致的去学习和探究的。区别于网页分析软件<code>Metaboanalyst</code>，可以更加快速和不依赖于网络的限制，这就是我为什么更喜欢用软件的原因。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] 文章链接：<a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2487-5#Sec19" target="_blank" rel="noopener">FELLA: an R package to enrich metabolomics data</a><br>[2] FELLA包链接1：<a href="https://bioconductor.org/packages/release/bioc/html/FELLA.html" target="_blank" rel="noopener">FELLA</a><br>[3] FELLA包github网址链接：<a href="https://github.com/b2slab/FELLA" target="_blank" rel="noopener">github</a></p>
-
         
         
         <p class="article-more-link">
+          
+            <a href="/2018/12/26/FELLA-代谢组学富集分析软件介绍/#more">Read More ^_^</a>
           
        </p>
     </div>
@@ -606,10 +533,6 @@
 			
 		
 			
-				<li><a href="/tags/FXR受体/" title="FXR受体">FXR受体<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/bioconductor/" title="bioconductor">bioconductor<sup>1</sup></a></li>
 			
 		
@@ -618,11 +541,19 @@
 			
 		
 			
-				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
+				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/生化指标/" title="生化指标">生化指标<sup>1</sup></a></li>
+				<li><a href="/tags/肠道/" title="肠道">肠道<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/粘膜屏障/" title="粘膜屏障">粘膜屏障<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
 			
 		
 			
@@ -638,6 +569,26 @@
 			
 		
 			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ORF预测/" title="ORF预测">ORF预测<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Statistics/" title="Statistics">Statistics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生化指标/" title="生化指标">生化指标<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
 			
 		
@@ -646,31 +597,7 @@
 			
 		
 			
-				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/粘膜屏障/" title="粘膜屏障">粘膜屏障<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/TGR5受体/" title="TGR5受体">TGR5受体<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/糖代谢/" title="糖代谢">糖代谢<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/ggplot2/" title="ggplot2">ggplot2<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/面积图/" title="面积图">面积图<sup>1</sup></a></li>
 			
 		
 		</ul>

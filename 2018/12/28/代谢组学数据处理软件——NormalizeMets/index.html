@@ -1,0 +1,625 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  
+    <title>代谢组学数据处理软件——NormalizeMets | 有味</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dayueban">
+    
+
+    
+    <meta name="description" content="导读 NormalizeMets是一个R语言集成包，主要用于代谢组学研究中数据的归一化。这个包可以用于去除数据中的噪音，如大样本中存在的共性问题——质谱信号偏移。那么除此之外，这个包还可以进行图形的交互式可视化以及获得一些常规的统计结果，如生物标记物的发现，聚类及PCA分析，分类及相关性分析。">
+<meta name="keywords" content="R,数据归一化,biomarker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代谢组学数据处理软件——NormalizeMets">
+<meta property="og:url" content="https://dayueban.com/2018/12/28/代谢组学数据处理软件——NormalizeMets/index.html">
+<meta property="og:site_name" content="有味">
+<meta property="og:description" content="导读 NormalizeMets是一个R语言集成包，主要用于代谢组学研究中数据的归一化。这个包可以用于去除数据中的噪音，如大样本中存在的共性问题——质谱信号偏移。那么除此之外，这个包还可以进行图形的交互式可视化以及获得一些常规的统计结果，如生物标记物的发现，聚类及PCA分析，分类及相关性分析。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/28/FWQzQO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/28/FWlSyD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/28/FWQxSK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/12/28/FWQjW6.png">
+<meta property="og:updated_time" content="2018-12-28T07:56:22.759Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代谢组学数据处理软件——NormalizeMets">
+<meta name="twitter:description" content="导读 NormalizeMets是一个R语言集成包，主要用于代谢组学研究中数据的归一化。这个包可以用于去除数据中的噪音，如大样本中存在的共性问题——质谱信号偏移。那么除此之外，这个包还可以进行图形的交互式可视化以及获得一些常规的统计结果，如生物标记物的发现，聚类及PCA分析，分类及相关性分析。">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/12/28/FWQzQO.png">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
+
+    
+    <link rel="alternative" href="/atom.xml" title="有味" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon1.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman1.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman1.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo1.png" alt="有味" title="有味"></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="有味">有味</a></h1>
+				<h2 class="blog-motto">当悦纳自我时，每一刻都是最好的自己！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About me</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search">
+						<input type="hidden" name="q" value="site:dayueban.com">
+					</form>
+					
+					</li>
+				</ul>
+			</ul></nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/12/28/代谢组学数据处理软件——NormalizeMets/" title="代谢组学数据处理软件——NormalizeMets" itemprop="url">代谢组学数据处理软件——NormalizeMets</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
+		
+  </p><p class="article-time">
+    <time datetime="2018-12-28T04:03:40.000Z" itemprop="datePublished"> Published 2018-12-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pipeline"><span class="toc-number">2.</span> <span class="toc-text">Pipeline</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步-导入数据"><span class="toc-number">2.1.</span> <span class="toc-text">第一步 导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步-数据处理"><span class="toc-number">2.2.</span> <span class="toc-text">第二步 数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-log转换"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. log转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-缺失值的处理"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.缺失值的处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-可视化"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. 可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-a-那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative-log-abundance-RLA-图来展示"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">3.a 那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative log abundance(RLA)图来展示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-b-pca图，可以用于发现离异值"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">3.b pca图，可以用于发现离异值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-c-热图展示（略）"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">3.c 热图展示（略）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数据的归一化处理"><span class="toc-number">2.2.4.</span> <span class="toc-text">4. 数据的归一化处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-a-如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS-locally-estimated-scatterplot-smoothing-信号校正方法，在statTarget包也有介绍。"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">4.a 如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS(locally estimated scatterplot smoothing)信号校正方法，在statTarget包也有介绍。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-b-评估以及选择最佳的归一化方法"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">4.b 评估以及选择最佳的归一化方法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-c-用于分类classification"><span class="toc-number">3.</span> <span class="toc-text">4.c 用于分类classification</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
+<p><code>NormalizeMets</code>是一个R语言集成包，主要用于代谢组学研究中数据的归一化。这个包可以用于去除数据中的噪音，如大样本中存在的共性问题——质谱信号偏移。那么除此之外，这个包还可以进行图形的交互式可视化以及获得一些常规的统计结果，如生物标记物的发现，聚类及PCA分析，分类及相关性分析。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h1><h2 id="第一步-导入数据"><a href="#第一步-导入数据" class="headerlink" title="第一步 导入数据"></a>第一步 导入数据</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">rm(list = ls())</span><br><span class="line"><span class="keyword">library</span>(NormalizeMets)</span><br><span class="line">data(<span class="string">"alldata_eg"</span>)</span><br><span class="line">featuredata_eg&lt;-alldata_eg$featuredata</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.featuredata is a metabolomics data matrix taking the following format, with metabolites in columns and samples in rows. Unique sample names should be provided as row names.</span></span><br><span class="line">dataview(featuredata_eg)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.sampledata sampledata is a dataframe that contains sample specific information，行名是</span></span><br><span class="line"><span class="comment"># 样品名，列名是一些协变量信息，如性别、批次、年龄、BMI</span></span><br><span class="line">sampledata_eg &lt;- alldata_eg$sampledata</span><br><span class="line">dataview(sampledata_eg)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.metabolitedata 包含代谢物的特定信息，比如内标外标或者正负对照，行名是代谢物的名称</span></span><br><span class="line"><span class="comment"># ，其顺序要和featuredata一致</span></span><br><span class="line">metabolitedata_eg&lt;-alldata_eg$metabolitedata</span><br><span class="line">dataview(metabolitedata_eg)</span><br><span class="line"></span><br><span class="line">alldata_eg&lt;-list(featuredata=featuredata_eg, sampledata=sampledata_eg,</span><br><span class="line">                 metabolitedata=metabolitedata_eg)</span><br><span class="line">dataview(alldata_eg$metabolitedata)</span><br></pre></td></tr></table></figure>
+<h2 id="第二步-数据处理"><a href="#第二步-数据处理" class="headerlink" title="第二步 数据处理"></a>第二步 数据处理</h2><h3 id="1-log转换"><a href="#1-log转换" class="headerlink" title="1. log转换"></a>1. log转换</h3><p>代谢组学数据一般都呈现一个偏态分布（右偏），所以需要用一个合适的转换来使得数据的分布变得对称一些<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logdata &lt;- LogTransform(featuredata_eg,zerotona=<span class="literal">TRUE</span>) <span class="comment"># zero=TRUE表示如果存在NA值则用数字0填充</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-缺失值的处理"><a href="#2-缺失值的处理" class="headerlink" title="2.缺失值的处理"></a>2.缺失值的处理</h3><p>代谢组学数据中一个常见的问题就是存在缺失值，那么尽可能多的减少缺失值是数据分析前一项非常有必要做的一件事，这里用的填充方法是”k次最近邻算法”，或者用矩阵中最小值的”一半”作为缺失值的填充值<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">imp &lt;-  MissingValues(logdata$featuredata,sampledata_eg,metabolitedata_eg,</span><br><span class="line">                      feature.cutof=<span class="number">0.8</span>, sample.cutoff=<span class="number">0.8</span>, method=<span class="string">"knn"</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-可视化"><a href="#3-可视化" class="headerlink" title="3. 可视化"></a>3. 可视化</h3><p>经过log转换的代谢物丰度数据可以通过诸多方式进行展示，这样可以直观的看出数据的变异情况聚类情况及离异值等</p>
+<h4 id="3-a-那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative-log-abundance-RLA-图来展示"><a href="#3-a-那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative-log-abundance-RLA-图来展示" class="headerlink" title="3.a 那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative log abundance(RLA)图来展示"></a>3.a 那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative log abundance(RLA)图来展示</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RlaPlots(imp$featuredata, sampledata_eg[,<span class="number">1</span>], cex.axis = <span class="number">0.6</span>,saveinteractiveplot = <span class="literal">TRUE</span>)</span><br><span class="line">RlaPlots(t(imp$featuredata), groupdata=rep(<span class="string">"group"</span>,dim(imp$featuredata)[<span class="number">2</span>]),</span><br><span class="line">         cex.axis = <span class="number">0.6</span>,saveinteractiveplot = <span class="literal">TRUE</span>,xlabel=<span class="string">"Metabolites"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/12/28/FWQzQO.png" alt="Fig.1 Rlaplot"></p>
+<h4 id="3-b-pca图，可以用于发现离异值"><a href="#3-b-pca图，可以用于发现离异值" class="headerlink" title="3.b pca图，可以用于发现离异值"></a>3.b pca图，可以用于发现离异值</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PcaPlots(imp$featuredata,sampledata_eg[,<span class="number">1</span>],</span><br><span class="line">         scale=<span class="literal">FALSE</span>, center=<span class="literal">TRUE</span>, multiplot = <span class="literal">TRUE</span>, varplot = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-c-热图展示（略）"><a href="#3-c-热图展示（略）" class="headerlink" title="3.c 热图展示（略）"></a>3.c 热图展示（略）</h4><h3 id="4-数据的归一化处理"><a href="#4-数据的归一化处理" class="headerlink" title="4. 数据的归一化处理"></a>4. 数据的归一化处理</h3><p>这个包所采纳的数据归一化方法有4种：1)根据内标;2)根据QC样品;3)标度化方法;4)联合方法</p>
+<h4 id="4-a-如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS-locally-estimated-scatterplot-smoothing-信号校正方法，在statTarget包也有介绍。"><a href="#4-a-如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS-locally-estimated-scatterplot-smoothing-信号校正方法，在statTarget包也有介绍。" class="headerlink" title="4.a 如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS(locally estimated scatterplot smoothing)信号校正方法，在statTarget包也有介绍。"></a>4.a 如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS(locally estimated scatterplot smoothing)信号校正方法，在statTarget包也有介绍。</h4><p>这里用的是另外一个新的数据集，注意这里的参数lg，应该要在归一化后做log转换，所以lg参数应设置为lg=FALSE，示例方法<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NormQcsamples&lt;- function(featuredata, sampledata, method = c("rlsc"), span = 0,</span></span><br><span class="line"><span class="comment">#                         deg = 2, lg = TRUE, saveoutput = FALSE,</span></span><br><span class="line"><span class="comment">#                         outputname = "qcsample_results", ...)</span></span><br><span class="line">data(Didata)</span><br><span class="line">dataview(Didata$sampledata)</span><br><span class="line">Norm_rlsc&lt;- NormQcsamples(sampledata=Didata$sampledata[order(Didata$sampledata$order),],</span><br><span class="line">                    featuredata=Didata$featuredata[order(Didata$sampledata$order),],lg=<span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-b-评估以及选择最佳的归一化方法"><a href="#4-b-评估以及选择最佳的归一化方法" class="headerlink" title="4.b 评估以及选择最佳的归一化方法"></a>4.b 评估以及选择最佳的归一化方法</h4><p>通过鉴定生物标记物来评判归一化方法采集线性模型的数据归一化方法，并且能够鉴定与想要研究的目标条件相关的生物标记物<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">factormat&lt;-model.matrix(~gender +Age +bmi, sampledata_eg)</span><br><span class="line">ruv2Fit&lt;-LinearModelFit(featuredata=imp$featuredata,</span><br><span class="line">                        factormat=factormat,</span><br><span class="line">                        ruv2=<span class="literal">TRUE</span>,k=<span class="number">2</span>,</span><br><span class="line">                        qcmets = which(metabolitedata_eg$IS ==<span class="number">1</span>))</span><br><span class="line"><span class="comment"># Exploring metabolites associated with age</span></span><br><span class="line">unadjustedFit&lt;-LinearModelFit(featuredata=imp$featuredata,</span><br><span class="line">                              factormat=factormat,</span><br><span class="line">                              ruv2=<span class="literal">FALSE</span>)</span><br><span class="line">Norm_is &lt;-NormQcmets(imp$featuredata, method = <span class="string">"is"</span>, </span><br><span class="line">                     isvec = imp$featuredata[,which(metabolitedata_eg$IS ==<span class="number">1</span>)[<span class="number">1</span>]])</span><br><span class="line">isFit&lt;-LinearModelFit(featuredata=Norm_is$featuredata,</span><br><span class="line">                      factormat=factormat,</span><br><span class="line">                      ruv2=<span class="literal">FALSE</span>)</span><br><span class="line">lcoef_age&lt;-list(unadjusted=unadjustedFit$coefficients[,<span class="string">"Age"</span>],</span><br><span class="line">                is_age=isFit$coefficients[,<span class="string">"Age"</span>],</span><br><span class="line">                ruv2_age=ruv2Fit$coefficients[,<span class="string">"Age"</span>])</span><br><span class="line">lpvals_age&lt;-list(unadjusted=unadjustedFit$p.value[,<span class="string">"Age"</span>],</span><br><span class="line">                 is=isFit$p.value[,<span class="string">"Age"</span>],</span><br><span class="line">                 ruv2=ruv2Fit$p.value[,<span class="string">"Age"</span>])</span><br><span class="line">negcontrols&lt;-metabolitedata_eg$names[which(metabolitedata_eg$IS==<span class="number">1</span>)]                   </span><br><span class="line">CompareVolcanoPlots(lcoef=lcoef_age, </span><br><span class="line">                    lpvals_age, </span><br><span class="line">                    normmeth = c(<span class="string">":unadjusted"</span>, <span class="string">":is"</span>, <span class="string">":ruv2"</span>),</span><br><span class="line">                    xlab=<span class="string">"Coef"</span>,</span><br><span class="line">                    negcontrol=negcontrols)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://s1.ax1x.com/2018/12/28/FWlSyD.png" alt="Fig.2 火山图"><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 线性模型拟合的残差RLA图</span></span><br><span class="line">lresiddata&lt;-list(unadjusted=unadjustedFit$residuals,</span><br><span class="line">                 is=isFit$residuals,</span><br><span class="line">                 ruv2=ruv2Fit$residuals)</span><br><span class="line">CompareRlaPlots(lresiddata,groupdata=sampledata_eg$batch,</span><br><span class="line">                yrange=c(-<span class="number">3</span>,<span class="number">3</span>),</span><br><span class="line">                normmeth = c(<span class="string">"unadjusted:"</span>,<span class="string">"is:"</span>,<span class="string">"ruv2:"</span>))</span><br><span class="line"><span class="comment"># 不同方法之间与未校正的数据的比较，venn图</span></span><br><span class="line">lnames&lt;- list(names(ruv2Fit$coef[,<span class="string">"Age"</span>])[which(ruv2Fit$p.value[,<span class="string">"Age"</span>]&lt;<span class="number">0.05</span>)],</span><br><span class="line">              names(unadjustedFit$coef[,<span class="string">"Age"</span>])[which(unadjustedFit$p.value[,<span class="string">"Age"</span>]&lt;<span class="number">0.05</span>)],</span><br><span class="line">              names(isFit$coef[,<span class="string">"Age"</span>])[which(isFit$p.value[,<span class="string">"Age"</span>]&lt;<span class="number">0.05</span>)])</span><br><span class="line"></span><br><span class="line">VennPlot(lnames, group.labels=c(<span class="string">"ruv2"</span>,<span class="string">"unadjusted"</span>,<span class="string">"is"</span>))</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://s1.ax1x.com/2018/12/28/FWQxSK.png" alt="Fig.3 venn图"></p>
+<h1 id="4-c-用于分类classification"><a href="#4-c-用于分类classification" class="headerlink" title="4.c 用于分类classification"></a>4.c 用于分类classification</h1><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">svm&lt;-SvmFit(featuredata=uv_ruvrandclust$featuredata, </span><br><span class="line">            groupdata=UVdata$sampledata$group,</span><br><span class="line">            crossvalid=<span class="literal">TRUE</span>,</span><br><span class="line">            k=<span class="number">5</span>,</span><br><span class="line">            rocplot = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/12/28/FWQjW6.png" alt="Fig.4 ROC图"></p>
+  
+	</div>
+		
+    <script type="text/javascript">
+    var disqus_shortname = 'dayueban';
+    var disqus_config = function () {
+        this.page.url = 'https://dayueban.com/2018/12/28/代谢组学数据处理软件——NormalizeMets/';
+        this.page.identifier = '/2018/12/28/代谢组学数据处理软件——NormalizeMets/';
+        this.page.title = '代谢组学数据处理软件——NormalizeMets';
+    };
+    (function(){
+      var d = document;
+      var dsq = d.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (d.head || d.body).appendChild(dsq);
+    })();
+    </script>
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/12/26/FELLA-代谢组学富集分析软件介绍/" title="FELLA:代谢组学富集分析软件介绍">
+ <strong>下一篇：</strong><br> 
+ <span>FELLA:代谢组学富集分析软件介绍
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comment">
+  
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pipeline"><span class="toc-number">2.</span> <span class="toc-text">Pipeline</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步-导入数据"><span class="toc-number">2.1.</span> <span class="toc-text">第一步 导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步-数据处理"><span class="toc-number">2.2.</span> <span class="toc-text">第二步 数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-log转换"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. log转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-缺失值的处理"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.缺失值的处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-可视化"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. 可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-a-那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative-log-abundance-RLA-图来展示"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">3.a 那么这里用的是根据个体不同批次或者整个代谢物的分布来看代谢物的一个relative log abundance(RLA)图来展示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-b-pca图，可以用于发现离异值"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">3.b pca图，可以用于发现离异值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-c-热图展示（略）"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">3.c 热图展示（略）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数据的归一化处理"><span class="toc-number">2.2.4.</span> <span class="toc-text">4. 数据的归一化处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-a-如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS-locally-estimated-scatterplot-smoothing-信号校正方法，在statTarget包也有介绍。"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">4.a 如何根据QC样品来进行归一化，其是根据QC样品在进样是有规律的插入，然后基于LOESS(locally estimated scatterplot smoothing)信号校正方法，在statTarget包也有介绍。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-b-评估以及选择最佳的归一化方法"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">4.b 评估以及选择最佳的归一化方法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-c-用于分类classification"><span class="toc-number">3.</span> <span class="toc-text">4.c 用于分类classification</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Bioinformatics/" title="Bioinformatics">Bioinformatics<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代谢组学/" title="代谢组学">代谢组学<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/宏基因组/" title="宏基因组">宏基因组<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/胆汁酸/" title="胆汁酸">胆汁酸<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/软件下载/" title="软件下载">软件下载<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/beta多样性/" title="beta多样性">beta多样性<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/变量选择/" title="变量选择">变量选择<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生化指标/" title="生化指标">生化指标<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/肠道菌群定植/" title="肠道菌群定植">肠道菌群定植<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/免疫/" title="免疫">免疫<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/菌群-宿主互作/" title="菌群-宿主互作">菌群-宿主互作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/肠道/" title="肠道">肠道<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/粘膜屏障/" title="粘膜屏障">粘膜屏障<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ggplot2/" title="ggplot2">ggplot2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面积图/" title="面积图">面积图<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/富集分析/" title="富集分析">富集分析<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bioconductor/" title="bioconductor">bioconductor<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据归一化/" title="数据归一化">数据归一化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/biomarker/" title="biomarker">biomarker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/FXR受体/" title="FXR受体">FXR受体<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.codeceo.com/" target="_blank" title="一个面向程序员交流分享的新一代社区">码农网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.jianshu.com/u/1fda92d012f8" target="_blank" title="Dayueban(简书)">Dayueban(简书)</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.sthda.com/english/" target="_blank" title="STHDA">STHDA</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">8</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/FXR受体/" style="font-size: 10px;">FXR受体</a> <a href="/tags/KEGG/" style="font-size: 10px;">KEGG</a> <a href="/tags/NMDS/" style="font-size: 10px;">NMDS</a> <a href="/tags/ORF预测/" style="font-size: 10px;">ORF预测</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/Regression/" style="font-size: 10px;">Regression</a> <a href="/tags/Statistics/" style="font-size: 10px;">Statistics</a> <a href="/tags/TGR5受体/" style="font-size: 10px;">TGR5受体</a> <a href="/tags/alpha/" style="font-size: 10px;">alpha</a> <a href="/tags/beta多样性/" style="font-size: 15px;">beta多样性</a> <a href="/tags/bioconductor/" style="font-size: 10px;">bioconductor</a> <a href="/tags/biomarker/" style="font-size: 10px;">biomarker</a> <a href="/tags/data-analysis/" style="font-size: 10px;">data analysis</a> <a href="/tags/ggplot2/" style="font-size: 10px;">ggplot2</a> <a href="/tags/代谢组学/" style="font-size: 10px;">代谢组学</a> <a href="/tags/免疫/" style="font-size: 10px;">免疫</a> <a href="/tags/变量选择/" style="font-size: 10px;">变量选择</a> <a href="/tags/实用软件包/" style="font-size: 10px;">实用软件包</a> <a href="/tags/实验设计/" style="font-size: 15px;">实验设计</a> <a href="/tags/富集分析/" style="font-size: 10px;">富集分析</a> <a href="/tags/数据分析/" style="font-size: 10px;">数据分析</a> <a href="/tags/数据归一化/" style="font-size: 10px;">数据归一化</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/比较基因组学/" style="font-size: 10px;">比较基因组学</a> <a href="/tags/生化指标/" style="font-size: 10px;">生化指标</a> <a href="/tags/粘膜屏障/" style="font-size: 10px;">粘膜屏障</a> <a href="/tags/糖代谢/" style="font-size: 10px;">糖代谢</a> <a href="/tags/肠道/" style="font-size: 10px;">肠道</a> <a href="/tags/肠道菌群定植/" style="font-size: 10px;">肠道菌群定植</a> <a href="/tags/芳香族氨基酸/" style="font-size: 10px;">芳香族氨基酸</a> <a href="/tags/菌群/" style="font-size: 10px;">菌群</a> <a href="/tags/菌群-宿主互作/" style="font-size: 10px;">菌群-宿主互作</a> <a href="/tags/面积图/" style="font-size: 10px;">面积图</a>
+    </div>
+  </div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer">
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dayueban. <br>
+			This is my blog,hope to get better.</p>
+	</section>
+	 
+	<div class="social-font">
+		
+		<a href="http://weibo.com/2689498473" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/Dayueban" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/https://twitter.com/HeMaozhang" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		<a href="https://www.linkedin.com/in/https://www.linkedin.com/in/%E8%8C%82%E7%AB%A0-%E4%BD%95-481a59122/" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/https://www.douban.com/people/146697967/" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/he-mao-zhang/activities" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:jnzd_hemaozhang@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Dayueban">Dayueban</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dayueban';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274989387'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1274989387%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

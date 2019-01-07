@@ -4,29 +4,35 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>软件密钥过期怎么办 | 看这里——宏基因组基因预测软件MetaGeneMark | 有味</title>
+    <title>statTarget-基于QC样本的代谢组学数据校正 | 有味</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dayueban">
     
 
     
-    <meta name="description" content="导读 MeteGeneMark软件的gm_key经常过一段时间就会失效，因此为了以后重新下载秘钥方便，将其过程记录下来，防止各位看众的不知所措">
-<meta name="keywords" content="数据分析,ORF预测">
+    <meta name="description" content="导读 质量控制是基于质谱组学数据获得可重复性和准确性结果的必要步骤。重复使用相同的QC样本在MS run order序列中对信号漂移的评估和校正越来越被接受，尤其有利于提高批次间实验数据的质量，statTarget是一个流线型的工具，它为基于质量控制的信号校正、多批实验的MS数据集成以及基于MS的组学数据的综合统计分析提供了图形化的用户界面。本文档旨在指导用户使用函数执行数据分析，如shiftCo">
+<meta name="keywords" content="数据分析,statTarget,QC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="软件密钥过期怎么办 | 看这里——宏基因组基因预测软件MetaGeneMark">
-<meta property="og:url" content="https://dayueban.com/2018/10/28/软件密钥过期怎么办-看这里——宏基因组基因预测软件MetaGeneMark/index.html">
+<meta property="og:title" content="statTarget-基于QC样本的代谢组学数据校正">
+<meta property="og:url" content="https://dayueban.com/2019/01/07/statTarget-基于QC样本的代谢组学数据校正/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="导读 MeteGeneMark软件的gm_key经常过一段时间就会失效，因此为了以后重新下载秘钥方便，将其过程记录下来，防止各位看众的不知所措">
+<meta property="og:description" content="导读 质量控制是基于质谱组学数据获得可重复性和准确性结果的必要步骤。重复使用相同的QC样本在MS run order序列中对信号漂移的评估和校正越来越被接受，尤其有利于提高批次间实验数据的质量，statTarget是一个流线型的工具，它为基于质量控制的信号校正、多批实验的MS数据集成以及基于MS的组学数据的综合统计分析提供了图形化的用户界面。本文档旨在指导用户使用函数执行数据分析，如shiftCo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/a04e7d69gy1ftqkn603jrj20gi0fa74v.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a04e7d69gy1ftqkn6oaq5j20kk09xmxi.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a04e7d69gy1ftqkn76qebj20g707gmxb.jpg">
-<meta property="og:updated_time" content="2018-10-28T16:04:00.433Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/Fb6uo6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/Fb4uGt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/FbIQHg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/FbI3Nj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/FbITPA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/FbII5d.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/Fb7fbT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/Fb7pj0.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/07/Fb7tgI.png">
+<meta property="og:updated_time" content="2019-01-07T08:54:27.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="软件密钥过期怎么办 | 看这里——宏基因组基因预测软件MetaGeneMark">
-<meta name="twitter:description" content="导读 MeteGeneMark软件的gm_key经常过一段时间就会失效，因此为了以后重新下载秘钥方便，将其过程记录下来，防止各位看众的不知所措">
-<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/a04e7d69gy1ftqkn603jrj20gi0fa74v.jpg">
+<meta name="twitter:title" content="statTarget-基于QC样本的代谢组学数据校正">
+<meta name="twitter:description" content="导读 质量控制是基于质谱组学数据获得可重复性和准确性结果的必要步骤。重复使用相同的QC样本在MS run order序列中对信号漂移的评估和校正越来越被接受，尤其有利于提高批次间实验数据的质量，statTarget是一个流线型的工具，它为基于质量控制的信号校正、多批实验的MS数据集成以及基于MS的组学数据的综合统计分析提供了图形化的用户界面。本文档旨在指导用户使用函数执行数据分析，如shiftCo">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/01/07/Fb6uo6.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
     
@@ -87,14 +93,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/10/28/软件密钥过期怎么办-看这里——宏基因组基因预测软件MetaGeneMark/" title="软件密钥过期怎么办 | 看这里——宏基因组基因预测软件MetaGeneMark" itemprop="url">软件密钥过期怎么办 | 看这里——宏基因组基因预测软件MetaGeneMark</a>
+      <a href="/2019/01/07/statTarget-基于QC样本的代谢组学数据校正/" title="statTarget-基于QC样本的代谢组学数据校正" itemprop="url">statTarget-基于QC样本的代谢组学数据校正</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
 		
   </p><p class="article-time">
-    <time datetime="2018-10-28T15:58:58.000Z" itemprop="datePublished"> Published 2018-10-28</time>
+    <time datetime="2019-01-07T05:46:50.000Z" itemprop="datePublished"> Published 2019-01-07</time>
     
   </p>
 </header>
@@ -103,38 +109,80 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#软件下载"><span class="toc-number">2.</span> <span class="toc-text">软件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考链接"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">2.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#statTarget是如何工作的"><span class="toc-number">3.</span> <span class="toc-text">statTarget是如何工作的</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#statTarget包括两方面内容"><span class="toc-number">3.1.</span> <span class="toc-text">statTarget包括两方面内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#statTarget包的功能列表"><span class="toc-number">3.2.</span> <span class="toc-text">statTarget包的功能列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#statTargetGUI"><span class="toc-number">3.3.</span> <span class="toc-text">statTargetGUI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号校正"><span class="toc-number">3.4.</span> <span class="toc-text">信号校正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计分析"><span class="toc-number">3.5.</span> <span class="toc-text">统计分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理质谱数据"><span class="toc-number">3.6.</span> <span class="toc-text">处理质谱数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
 		
 		</div>
 		
 		<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
-<p>MeteGeneMark软件的gm_key经常过一段时间就会失效，因此为了以后重新下载秘钥方便，将其过程记录下来，防止各位看众的不知所措</p>
+<p>质量控制是基于质谱组学数据获得可重复性和准确性结果的必要步骤。重复使用相同的QC样本在MS run order序列中对信号漂移的评估和校正越来越被接受，尤其有利于提高批次间实验数据的质量，statTarget是一个流线型的工具，它为基于质量控制的信号校正、多批实验的MS数据集成以及基于MS的组学数据的综合统计分析提供了图形化的用户界面。本文档旨在指导用户使用函数执行数据分析，如shiftCor、statAnalysis、statTargetGUI函数等。</p>
 </blockquote>
+<p><img src="https://s2.ax1x.com/2019/01/07/Fb6uo6.png" alt="Fig.1"></p>
 <a id="more"></a>
-<h1 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h1><ol>
-<li>网址（为软件的下载界面）：<a href="http://topaz.gatech.edu/GeneMark/license_download.cgi" target="_blank" rel="noopener">http://topaz.gatech.edu/GeneMark/license_download.cgi</a>  </li>
-<li><p>选择MetaGeneMark Linux 64版本，如下图所示：<br><img src="http://wx4.sinaimg.cn/mw690/a04e7d69gy1ftqkn603jrj20gi0fa74v.jpg" alt="image"></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><code>statTarget</code>一个精简的可以提供图形用户界面，基于质QC样本进行信号校正，可以整合不同批次之间的代谢组学和蛋白质组学数据，并进行全面的统计分析。</p>
+<h1 id="statTarget是如何工作的"><a href="#statTarget是如何工作的" class="headerlink" title="statTarget是如何工作的"></a>statTarget是如何工作的</h1><h2 id="statTarget包括两方面内容"><a href="#statTarget包括两方面内容" class="headerlink" title="statTarget包括两方面内容"></a>statTarget包括两方面内容</h2><ul>
+<li><p>一个是信号校正（见后面的<strong>shiftCor</strong>函数）。其包括基于<code>QC</code>样本进行信号校正的集成学习方法。比如：<br>1) 基于QC样本的随机森林校正（QC-based random forest correction, QC-RFSC）;<br>2) 基于QC样本的LOESS(locally weighted scatterplot smoothing)信号校正（QC-based LOESS signal correction, QCRLSC）</p>
 </li>
-<li><p>注册信息：如下图<br><img src="http://wx2.sinaimg.cn/mw690/a04e7d69gy1ftqkn6oaq5j20kk09xmxi.jpg" alt="image">  </p>
+<li><p>第二部分内容是<code>统计分析</code>（详见后面介绍的<strong>statAnalysis</strong>函数）。提供了较为全面的用于分析组学数据的计算和统计方法，并且为生物标志物的发现提供多种结果。另外还提供了一个statTargetGUI功能，可以交互界面进行上述功能的操作。</p>
 </li>
-<li>进入下载界面：<br><img src="http://wx3.sinaimg.cn/mw690/a04e7d69gy1ftqkn76qebj20g707gmxb.jpg" alt="image">  </li>
-<li>由于已经下载过MetaGeneMark软件，这里只需要更新秘钥即可，秘钥下载后，解压</li>
-</ol>
-<ul>
-<li>gunzip gm_key64.gz</li>
-<li>mv gm_key64 gm_key   (重命名)  </li>
-<li>拷贝权限：cp gm_key ~/.gm_key  </li>
 </ul>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>[1] <a href="https://wenku.baidu.com/view/b5a8ee92bed5b9f3f80f1c41.html" target="_blank" rel="noopener">宏基因组上机操作手册</a></p>
+<h2 id="statTarget包的功能列表"><a href="#statTarget包的功能列表" class="headerlink" title="statTarget包的功能列表"></a>statTarget包的功能列表</h2><ul>
+<li>数据前处理（Data preprocessing）:80%的原则，总丰度归一化（sum normalization），概率系数归一化（probabilistic quotient normalization），glog转化（glog transformation），K-近邻算法数据填充<sup>[3]</sup>、中位数、最小值填充都是针对缺失数据进行填充的方法。</li>
+<li>数据描述：比如平均值、中位数、和、四分位数及标准差等</li>
+<li>多元统计分析：如PCA, PLSDA, VIP, Random forest, Permutation-based feature selection。</li>
+<li>单变量分析：Welch t检验，Shapiro-Wilk normality test（数据正态性检验） and Mann-Whitney test。</li>
+<li>生物标记物分析：ROC, Odd ratio（优势比）, P值多重校正，箱线图和火山图</li>
+</ul>
+<h2 id="statTargetGUI"><a href="#statTargetGUI" class="headerlink" title="statTargetGUI"></a>statTargetGUI</h2><blockquote>
+<p>因为该函数提供了一个交互式界面分析的功能<code>statTargetGUI</code>，所以先看下如何使用</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Examples Code for graphical user interface </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">library</span>(statTarget)</span><br><span class="line"></span><br><span class="line">statTargetGUI()</span><br><span class="line"></span><br><span class="line"><span class="comment">#For mac PC,  the GUI function 'statTargetGUI()' need the XQuartz instead of X11 support. Download it from https://www.xquartz.org. R 3.3.0 and RGtk2 2.20.31 are recommended for RGtk2 installation.</span></span><br></pre></td></tr></table></figure>
+<p><strong>工作界面如下图所示</strong><br><img src="https://s2.ax1x.com/2019/01/07/Fb4uGt.png" alt="Fig.2 statTargetGUI工作界面"></p>
+<ul>
+<li>另外关于statTargetGUI的参考手册见官网<sup>[4]</sup></li>
+</ul>
+<h2 id="信号校正"><a href="#信号校正" class="headerlink" title="信号校正"></a>信号校正</h2><ul>
+<li>文件准备<br><code>Meta file</code><br>该文件包含样品名称，分组信息，批次和进样顺序。<br>1.Class:QC样品此处标为NA<br>2.Order:进样顺序<br>3.Batch:样本的批次信息<br>4.<strong>Meta文件和Profile文件的样品名称必须一致</strong></li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/01/07/FbIQHg.png" alt="Fig.3 Meta文件格式"></p>
+<p><code>Profile file</code><br>就是组学数据的丰度表</p>
+<p><img src="https://s2.ax1x.com/2019/01/07/FbI3Nj.png" alt="Fig.4 Profile文件格式"></p>
+<ul>
+<li><p>代码</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Examples Code</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">library</span>(statTarget)</span><br><span class="line"></span><br><span class="line">datpath &lt;- system.file(<span class="string">'extdata'</span>,package = <span class="string">'statTarget'</span>)</span><br><span class="line">samPeno &lt;- paste(datpath,<span class="string">'MTBLS79_sampleList.csv'</span>, sep=<span class="string">'/'</span>)</span><br><span class="line">samFile &lt;- paste(datpath,<span class="string">'MTBLS79.csv'</span>, sep=<span class="string">'/'</span>)</span><br><span class="line">shiftCor(samPeno,samFile, Frule = <span class="number">0.8</span>, MLmethod = <span class="string">"QCRFSC"</span>, QCspan = <span class="number">0</span>,imputeM = <span class="string">"KNN"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>该步运行的结果会得到校正后的文件以及图形展示<br><img src="https://s2.ax1x.com/2019/01/07/FbITPA.png" alt="Fig.5 质控前后丰度分布和相对标准偏差分布"><br><img src="https://s2.ax1x.com/2019/01/07/FbII5d.png" alt=""></p>
+</li>
+</ul>
+<h2 id="统计分析"><a href="#统计分析" class="headerlink" title="统计分析"></a>统计分析</h2><ul>
+<li>文件准备<br><code>Stat File</code><br>该文件包含样品名称，分组（处理or未处理），丰度数据</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/01/07/Fb7fbT.png" alt="Fig.6 Stat File数据格式"></p>
+<ul>
+<li><p>代码</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Examples Code</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#library(statTarget)</span></span><br><span class="line"></span><br><span class="line">datpath &lt;- system.file(<span class="string">'extdata'</span>,package = <span class="string">'statTarget'</span>)</span><br><span class="line">file &lt;- paste(datpath,<span class="string">'data_example.csv'</span>, sep=<span class="string">'/'</span>)</span><br><span class="line">statAnalysis(file,Frule = <span class="number">0.8</span>, normM = <span class="string">"NONE"</span>, imputeM = <span class="string">"KNN"</span>, glog = <span class="literal">TRUE</span>,scaling = <span class="string">"Pareto"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结果展示<br>包括PCA, PLS-DA, 火山图，随机森林等<br><img src="https://s2.ax1x.com/2019/01/07/Fb7pj0.png" alt="Fig.7 结果展示"></p>
+</li>
+</ul>
+<h2 id="处理质谱数据"><a href="#处理质谱数据" class="headerlink" title="处理质谱数据"></a>处理质谱数据</h2><ul>
+<li>另外还提供了XCMS，MZmine2，SIEVE和SKYLINE</li>
+<li>下面以xcms处理后的数据为例</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/01/07/Fb7tgI.png" alt="Fig.8 xcms处理后的数据"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Examples Code</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">library</span>(statTarget)</span><br><span class="line"></span><br><span class="line">datpath &lt;- system.file(<span class="string">'extdata'</span>,package = <span class="string">'statTarget'</span>)</span><br><span class="line">dataXcms &lt;- paste(datpath,<span class="string">'xcmsOutput.tsv'</span>, sep=<span class="string">'/'</span>)</span><br><span class="line"><span class="comment">#dataSkyline &lt;- paste(datpath,'skylineDemo.csv', sep='/')</span></span><br><span class="line">transX(dataXcms,<span class="string">'xcms'</span>)</span><br><span class="line"><span class="comment">#transX(dataSkyline,'skyline')</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>处理后的数据也同上述数据分析步骤</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] Luan H., Ji F., Chen Y., Cai Z. (2018) statTarget: A streamlined tool for signal drift correction and interpretations of quantitative mass spectrometry-based omics data. Analytica Chimica Acta. dio: <a href="https://doi.org/10.1016/j.aca.2018.08.002" target="_blank" rel="noopener">https://doi.org/10.1016/j.aca.2018.08.002</a><br>[2] Luan H., Ji F., Chen Y., Cai Z. (2018) Quality control-based signal drift correction and interpretations of metabolomics/proteomics data using random forest regression. bioRxiv 253583; doi: <a href="https://doi.org/10.1101/253583" target="_blank" rel="noopener">https://doi.org/10.1101/253583</a><br>[3] <a href="https://cosx.org/2008/11/lowess-to-explore-bivariate-correlation-by-yihui/" target="_blank" rel="noopener">KNN,k-临近算法</a><br>[4] <a href="https://bioconductor.org/packages/release/bioc/vignettes/statTarget/inst/doc/statTarget.html" target="_blank" rel="noopener">statTarget官网</a></p>
   
 	</div>
 		
     <script type="text/javascript">
     var disqus_shortname = 'dayueban';
     var disqus_config = function () {
-        this.page.url = 'https://dayueban.com/2018/10/28/软件密钥过期怎么办-看这里——宏基因组基因预测软件MetaGeneMark/';
-        this.page.identifier = '/2018/10/28/软件密钥过期怎么办-看这里——宏基因组基因预测软件MetaGeneMark/';
-        this.page.title = '软件密钥过期怎么办 | 看这里——宏基因组基因预测软件MetaGeneMark';
+        this.page.url = 'https://dayueban.com/2019/01/07/statTarget-基于QC样本的代谢组学数据校正/';
+        this.page.identifier = '/2019/01/07/statTarget-基于QC样本的代谢组学数据校正/';
+        this.page.title = 'statTarget-基于QC样本的代谢组学数据校正';
     };
     (function(){
       var d = document;
@@ -150,19 +198,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev">
- <a href="/2018/11/05/回归专题-1-线性回归基础/" title="回归专题-1 | 线线性回归基础">
-  <strong>上一篇：</strong><br>
-  <span>
-  回归专题-1 | 线线性回归基础</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/10/17/肠道菌群与宿主互作-菌群定植影响肠道免疫和基因表达/" title="肠道菌群与宿主互作 | 菌群定植影响肠道免疫和基因表达">
+<a href="/2018/12/31/我的2018，从快乐出发到草草收场/" title="我的2018，从快乐出发到草草收场">
  <strong>下一篇：</strong><br> 
- <span>肠道菌群与宿主互作 | 菌群定植影响肠道免疫和基因表达
+ <span>我的2018，从快乐出发到草草收场
 </span>
 </a>
 </div>
@@ -184,7 +224,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#软件下载"><span class="toc-number">2.</span> <span class="toc-text">软件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考链接"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">2.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#statTarget是如何工作的"><span class="toc-number">3.</span> <span class="toc-text">statTarget是如何工作的</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#statTarget包括两方面内容"><span class="toc-number">3.1.</span> <span class="toc-text">statTarget包括两方面内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#statTarget包的功能列表"><span class="toc-number">3.2.</span> <span class="toc-text">statTarget包的功能列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#statTargetGUI"><span class="toc-number">3.3.</span> <span class="toc-text">statTargetGUI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号校正"><span class="toc-number">3.4.</span> <span class="toc-text">信号校正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计分析"><span class="toc-number">3.5.</span> <span class="toc-text">统计分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理质谱数据"><span class="toc-number">3.6.</span> <span class="toc-text">处理质谱数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
  
   </div>
 

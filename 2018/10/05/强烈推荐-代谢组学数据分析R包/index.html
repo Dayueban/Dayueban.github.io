@@ -4,7 +4,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>强烈推荐|代谢组学数据分析R包 | 有味</title>
+    <title>强烈推荐|代谢组学数据分析R包——ropls | 有味</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dayueban">
@@ -14,15 +14,17 @@
     <meta name="description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
 <meta name="keywords" content="R,bioconductor,data analysis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强烈推荐|代谢组学数据分析R包">
+<meta property="og:title" content="强烈推荐|代谢组学数据分析R包——ropls">
 <meta property="og:url" content="https://dayueban.com/2018/10/05/强烈推荐-代谢组学数据分析R包/index.html">
 <meta property="og:site_name" content="有味">
 <meta property="og:description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg">
-<meta property="og:updated_time" content="2018-10-05T13:06:00.116Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/17/kSzzWQ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/17/kSzxJg.png">
+<meta property="og:updated_time" content="2019-01-16T17:17:16.702Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="强烈推荐|代谢组学数据分析R包">
+<meta name="twitter:title" content="强烈推荐|代谢组学数据分析R包——ropls">
 <meta name="twitter:description" content="介绍 包的名称：ropls（主要用于组学数据的多变量统计分析以及特征值的选择），收藏于bioconductor中  如何使用该包提供了可供练习的数据集 小插曲：代谢物的鉴定要符合MSI(Metabolomics standards initiative,代谢组学标准倡议)   过拟合：就是说构建的模型对训练集的效果很好，但是对于验证集的效果很差 特别是在变量比样品数多的情况下容易产生过拟合的情况">
 <meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
@@ -85,7 +87,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/10/05/强烈推荐-代谢组学数据分析R包/" title="强烈推荐|代谢组学数据分析R包" itemprop="url">强烈推荐|代谢组学数据分析R包</a>
+      <a href="/2018/10/05/强烈推荐-代谢组学数据分析R包/" title="强烈推荐|代谢组学数据分析R包——ropls" itemprop="url">强烈推荐|代谢组学数据分析R包——ropls</a>
   </h1>
   <p class="article-author">By
        
@@ -101,7 +103,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R代码"><span class="toc-number">2.2.</span> <span class="toc-text">R代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCA-PLSDA-OPLS-DA几个模型"><span class="toc-number">2.2.</span> <span class="toc-text">PCA,PLSDA,OPLS-DA几个模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重要变量的选择（VIP值和统计P值）"><span class="toc-number">2.3.</span> <span class="toc-text">重要变量的选择（VIP值和统计P值）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#针对表型是连续型变量（如年龄）"><span class="toc-number">2.3.1.</span> <span class="toc-text">针对表型是连续型变量（如年龄）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#针对表型是分类变量（如性别）"><span class="toc-number">2.3.2.</span> <span class="toc-text">针对表型是分类变量（如性别）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
 		
 		</div>
 		
@@ -116,9 +118,16 @@
 <li>特别是在变量比样品数多的情况下容易产生过拟合的情况</li>
 <li>如果实在是变量比样品数多，因为毕竟不是人人都能搞得起大样本的数据的，那么这时候就要结合permutation的结果，看是否达到显著(诊断值pQ2Y)</li>
 </ul>
-<h2 id="R代码"><a href="#R代码" class="headerlink" title="R代码"></a>R代码</h2><a id="more"></a>
+<h2 id="PCA-PLSDA-OPLS-DA几个模型"><a href="#PCA-PLSDA-OPLS-DA几个模型" class="headerlink" title="PCA,PLSDA,OPLS-DA几个模型"></a>PCA,PLSDA,OPLS-DA几个模型</h2><a id="more"></a>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ropls)</span><br><span class="line"><span class="comment">#' 加载数据</span></span><br><span class="line">data(<span class="string">"sacurine"</span>)</span><br><span class="line">names(sacurine)</span><br><span class="line"><span class="comment">## [1] "dataMatrix"       "sampleMetadata"   "variableMetadata"</span></span><br><span class="line"><span class="keyword">attach</span>(sacurine)</span><br><span class="line">strF(sacurine)</span><br><span class="line"><span class="comment">#----------------------- Principal Component Analysis (PCA) --------------------------#</span></span><br><span class="line"><span class="comment">#' We perform a PCA on the dataMatrix matrix (samples as rows, variables as columns), with</span></span><br><span class="line"><span class="comment">#' the opls method:</span></span><br><span class="line">sacurine.pca &lt;- opls(dataMatrix)</span><br><span class="line">genderFc &lt;- sampleMetadata[, <span class="string">"gender"</span>]</span><br><span class="line">plot(sacurine.pca, typeVc = <span class="string">"x-score"</span>,</span><br><span class="line">     parAsColFcVn = genderFc, parEllipsesL = <span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------- Partial least-squares: PLS and PLS-DA -----------------------#</span></span><br><span class="line"><span class="comment">#' For PLS (and OPLS), the Y response(s) must be provided to the opls method. Y can</span></span><br><span class="line"><span class="comment">#' be either a numeric vector (respectively matrix) for single (respectively multiple) (O)PLS</span></span><br><span class="line"><span class="comment">#' regression, or a character factor for (O)PLS-DA classification as in the following example</span></span><br><span class="line"><span class="comment">#' with the gender qualitative response:</span></span><br><span class="line">sacurine.plsda &lt;- opls(dataMatrix, genderFc)</span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------------- Orthogonal partial least squares: OPLS and OPLS-DA -----------#</span></span><br><span class="line"><span class="comment">#' To perform OPLS(-DA), we set orthoI (number of components which are orthogonal;</span></span><br><span class="line"><span class="comment">#' Integer) to either a specific number of orthogonal components, or to NA. Let us build an</span></span><br><span class="line"><span class="comment">#' OPLS-DA model of the gender response.</span></span><br><span class="line">sacurine.oplsda &lt;- opls(dataMatrix, genderFc,</span><br><span class="line">                        predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>)</span><br><span class="line"><span class="comment">#' Let us assess the predictive performance of our model. We first train the model on a subset</span></span><br><span class="line"><span class="comment">#' of the samples (here we use the odd subset value which splits the data set into two halves</span></span><br><span class="line"><span class="comment">#' with similar proportions of samples for each class; alternatively, we could have used a specific</span></span><br><span class="line"><span class="comment">#' subset of indices for training):</span></span><br><span class="line">sacurine.oplsda &lt;- opls(dataMatrix, genderFc, predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>,</span><br><span class="line">                        subset = <span class="string">"odd"</span>)</span><br><span class="line"><span class="comment">#' 1)We first check the predictions on the training subset:</span></span><br><span class="line">trainVi &lt;- getSubsetVi(sacurine.oplsda)</span><br><span class="line">table(genderFc[trainVi], fitted(sacurine.oplsda))</span><br><span class="line"><span class="comment">#' 2)We then compute the performances on the test subset:</span></span><br><span class="line">table(genderFc[-trainVi],</span><br><span class="line">      predict(sacurine.oplsda, dataMatrix[-trainVi, ]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#--------------- Pre-processing and annotation of mass spectrometry data ---------#</span></span><br><span class="line"><span class="comment">#' To illustrate how dataMatrix, sampleMetadata and variableMetadata can be obtained from</span></span><br><span class="line"><span class="comment">#' raw mass spectra file, we use the LC-MS data from the faahKO package (Saghatelian et</span></span><br><span class="line"><span class="comment">#' al. 2004). We will pre-process the raw files with the xcms package (Smith et al. 2006) and</span></span><br><span class="line"><span class="comment">#' annotate isotopes and adducts with the CAMERA package (Kuhl et al. 2012), as described</span></span><br><span class="line"><span class="comment">#' in the corresponding vignettes (all these packages are from bioconductor).</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#' Let us start by getting the paths to the 12 raw files (6 KO and 6 WT mice) in the .cdf open</span></span><br><span class="line"><span class="comment">#' format. The files are grouped in two sub-directories (KO and WT) since xcms can use sample</span></span><br><span class="line"><span class="comment">#' class information when grouping the peaks and correcting retention times.</span></span><br><span class="line"><span class="keyword">library</span>(faahKO)</span><br></pre></td></tr></table></figure>
-<p><img src="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg" alt=""></p>
+<p><img src="http://wx2.sinaimg.cn/mw690/a04e7d69ly1fvn1vb9ch3j20f60dxzmn.jpg" alt="Fig.1 OPLS-DA模型"></p>
+<h2 id="重要变量的选择（VIP值和统计P值）"><a href="#重要变量的选择（VIP值和统计P值）" class="headerlink" title="重要变量的选择（VIP值和统计P值）"></a>重要变量的选择（VIP值和统计P值）</h2><h3 id="针对表型是连续型变量（如年龄）"><a href="#针对表型是连续型变量（如年龄）" class="headerlink" title="针对表型是连续型变量（如年龄）"></a>针对表型是连续型变量（如年龄）</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ageVn &lt;- sampleMetadata[, <span class="string">"age"</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pvaVn &lt;- apply(dataMatrix, <span class="number">2</span>,</span><br><span class="line">               <span class="keyword">function</span>(feaVn) cor.test(ageVn, feaVn)[[<span class="string">"p.value"</span>]])  <span class="comment"># 代谢物（变量）与年龄（响应变量）的相关性检验</span></span><br><span class="line"></span><br><span class="line">vipVn &lt;- getVipVn(opls(dataMatrix, ageVn, predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>, plot = <span class="literal">FALSE</span>)) <span class="comment"># 得到每个变量对应的VIP值</span></span><br><span class="line"></span><br><span class="line">quantVn &lt;- qnorm(<span class="number">1</span> - pvaVn / <span class="number">2</span>)</span><br><span class="line">rmsQuantN &lt;- sqrt(mean(quantVn^<span class="number">2</span>)) <span class="comment"># 拟合VIP值与P值的曲线</span></span><br><span class="line"></span><br><span class="line">par(font = <span class="number">2</span>, font.axis = <span class="number">2</span>, font.lab = <span class="number">2</span>, las = <span class="number">1</span>,</span><br><span class="line">    mar = c(<span class="number">5.1</span>, <span class="number">4.6</span>, <span class="number">4.1</span>, <span class="number">2.1</span>),</span><br><span class="line">    lwd = <span class="number">2</span>, pch = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">plot(pvaVn, vipVn,</span><br><span class="line">     col = <span class="string">"red"</span>, main = <span class="string">"Y variable-age"</span>,</span><br><span class="line">     pch = <span class="number">16</span>,</span><br><span class="line">     xlab = <span class="string">"p-value"</span>, ylab = <span class="string">"VIP"</span>, xaxs = <span class="string">"i"</span>, yaxs = <span class="string">"i"</span>)</span><br><span class="line"></span><br><span class="line">box(lwd = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">curve(qnorm(<span class="number">1</span> - x / <span class="number">2</span>) / rmsQuantN, <span class="number">0</span>, <span class="number">1</span>, add = <span class="literal">TRUE</span>, col = <span class="string">"red"</span>, lwd = <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">abline(h = <span class="number">1</span>, col = <span class="string">"blue"</span>)</span><br><span class="line">abline(v = <span class="number">0.05</span>, col = <span class="string">"blue"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.ax1x.com/2019/01/17/kSzzWQ.png" alt="Fig.2 VIP值和P值（年龄）的关系"></p>
+<h3 id="针对表型是分类变量（如性别）"><a href="#针对表型是分类变量（如性别）" class="headerlink" title="针对表型是分类变量（如性别）"></a>针对表型是分类变量（如性别）</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">pvaVn2 &lt;- apply(dataMatrix, <span class="number">2</span>,</span><br><span class="line">               <span class="keyword">function</span>(feaVn) wilcox.test(feaVn ~ genderFc)$p.value)</span><br><span class="line"></span><br><span class="line">vipVn2 &lt;- getVipVn(opls(dataMatrix, genderFc, predI = <span class="number">1</span>, orthoI = <span class="literal">NA</span>, plot = <span class="literal">FALSE</span>))</span><br><span class="line"></span><br><span class="line">quantVn2 &lt;- qnorm(<span class="number">1</span> - pvaVn2 / <span class="number">2</span>)</span><br><span class="line">rmsQuantN2 &lt;- sqrt(mean(quantVn2^<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">par(font = <span class="number">2</span>, font.axis = <span class="number">2</span>, font.lab = <span class="number">2</span>, las = <span class="number">1</span>,</span><br><span class="line">    mar = c(<span class="number">5.1</span>, <span class="number">4.6</span>, <span class="number">4.1</span>, <span class="number">2.1</span>),</span><br><span class="line">    lwd = <span class="number">2</span>, pch = <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">plot(pvaVn2, vipVn2,</span><br><span class="line">     col = <span class="string">"red"</span>, main = <span class="string">"Y variable-sex"</span>,</span><br><span class="line">     pch = <span class="number">16</span>,</span><br><span class="line">     xlab = <span class="string">"p-value"</span>, ylab = <span class="string">"VIP"</span>, xaxs = <span class="string">"i"</span>, yaxs = <span class="string">"i"</span>)</span><br><span class="line"></span><br><span class="line">box(lwd = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">curve(qnorm(<span class="number">1</span> - x / <span class="number">2</span>) / rmsQuantN2, <span class="number">0</span>, <span class="number">1</span>, add = <span class="literal">TRUE</span>, col = <span class="string">"red"</span>, lwd = <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">abline(h = <span class="number">1</span>, col = <span class="string">"blue"</span>)</span><br><span class="line">abline(v = <span class="number">0.05</span>, col = <span class="string">"blue"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.ax1x.com/2019/01/17/kSzxJg.png" alt="Fig.3 VIP值和P值（性别）的关系"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p>当然我只是对该包的其中一小部分内容进行了操作和记录，其实还有很多功能有待开发。ropls包是我目前看到过处理代谢组学数据较好的R包之一。</p>
+</blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/ropls/inst/doc/ropls-vignette.html#44_orthogonal_partial_least_squares:_opls_and_opls-da" target="_blank" rel="noopener">ropls</a></li>
 </ol>
@@ -130,7 +139,7 @@
     var disqus_config = function () {
         this.page.url = 'https://dayueban.com/2018/10/05/强烈推荐-代谢组学数据分析R包/';
         this.page.identifier = '/2018/10/05/强烈推荐-代谢组学数据分析R包/';
-        this.page.title = '强烈推荐|代谢组学数据分析R包';
+        this.page.title = '强烈推荐|代谢组学数据分析R包——ropls';
     };
     (function(){
       var d = document;
@@ -180,7 +189,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R代码"><span class="toc-number">2.2.</span> <span class="toc-text">R代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该包提供了可供练习的数据集"><span class="toc-number">2.1.</span> <span class="toc-text">该包提供了可供练习的数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCA-PLSDA-OPLS-DA几个模型"><span class="toc-number">2.2.</span> <span class="toc-text">PCA,PLSDA,OPLS-DA几个模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重要变量的选择（VIP值和统计P值）"><span class="toc-number">2.3.</span> <span class="toc-text">重要变量的选择（VIP值和统计P值）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#针对表型是连续型变量（如年龄）"><span class="toc-number">2.3.1.</span> <span class="toc-text">针对表型是连续型变量（如年龄）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#针对表型是分类变量（如性别）"><span class="toc-number">2.3.2.</span> <span class="toc-text">针对表型是分类变量（如性别）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
  
   </div>
 
@@ -239,7 +248,15 @@
 			
 		
 			
-				<li><a href="/tags/生化指标/" title="生化指标">生化指标<sup>1</sup></a></li>
+				<li><a href="/tags/粘膜屏障/" title="粘膜屏障">粘膜屏障<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/使用软件包/" title="使用软件包">使用软件包<sup>1</sup></a></li>
 			
 		
 			
@@ -247,23 +264,7 @@
 			
 		
 			
-				<li><a href="/tags/data-analysis/" title="data analysis">data analysis<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ORF预测/" title="ORF预测">ORF预测<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/肠道/" title="肠道">肠道<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/粘膜屏障/" title="粘膜屏障">粘膜屏障<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
+				<li><a href="/tags/生化指标/" title="生化指标">生化指标<sup>1</sup></a></li>
 			
 		
 			
@@ -283,14 +284,6 @@
 			
 		
 			
-				<li><a href="/tags/Statistics/" title="Statistics">Statistics<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Regression/" title="Regression">Regression<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
 			
 		
@@ -300,6 +293,22 @@
 		
 			
 				<li><a href="/tags/ggplot2/" title="ggplot2">ggplot2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面积图/" title="面积图">面积图<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/FXR受体/" title="FXR受体">FXR受体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/TGR5受体/" title="TGR5受体">TGR5受体<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/糖代谢/" title="糖代谢">糖代谢<sup>1</sup></a></li>
 			
 		
 		</ul>

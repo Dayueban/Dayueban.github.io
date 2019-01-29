@@ -98,69 +98,13 @@
         
         <p><img src="https://s2.ax1x.com/2019/01/29/kQoewF.png" alt="文章截图"></p>
 <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><ul>
-<li><p>比较非靶向代谢组学是向质谱分析领域之外的研究人员通过商业供应商提供代谢组学成熟起来的。<code>MetaboDiff</code>包的目的是从代谢物的相对含量表开始，为差异代谢组学分析提供一个比较简单入门的的方法。此外，还介绍了加权相关网络分析在代谢组学中的应用。</p>
-</li>
-<li><p>R包：MetaboDiff 0.9.2</p>
-</li>
+<li>比较非靶向代谢组学是向质谱分析领域之外的研究人员通过商业供应商提供代谢组学成熟起来的。<code>MetaboDiff</code>包的目的是从代谢物的相对含量表开始，为差异代谢组学分析提供一个比较简单入门的的方法。此外，还介绍了加权相关网络分析在代谢组学中的应用。</li>
 </ul>
-<h1 id="Getting-started"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started</h1><ul>
-<li><code>MetaboDiff</code>包需要R &gt;=3.4</li>
-</ul>
-<h2 id="Installing-dependencies"><a href="#Installing-dependencies" class="headerlink" title="Installing dependencies"></a>Installing dependencies</h2><p>在安装MetaboDiff之前需要安装好<code>WGCNA</code>。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(<span class="string">"WGCNA"</span>)</span><br><span class="line"><span class="keyword">library</span>(WGCNA)</span><br></pre></td></tr></table></figure>
-<p>然后安装MetaboDiff，可以通过Github安装</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(<span class="string">"devtools"</span>)</span><br><span class="line">install_github(<span class="string">"andreasmock/MetaboDiff"</span>)</span><br><span class="line"><span class="keyword">library</span>(<span class="string">"MetaboDiff"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 由于用install_github()下载不成功，选择后期通过加载特定的MetaboDiff里的函数来进行分析</span></span><br></pre></td></tr></table></figure>
-<h1 id="Part-I-Data-processing"><a href="#Part-I-Data-processing" class="headerlink" title="Part I: Data processing"></a>Part I: Data processing</h1><h2 id="Input-data"><a href="#Input-data" class="headerlink" title="Input data"></a>Input data</h2><p>MetaboDiff的输入文件包括<code>三个</code></p>
-<ul>
-<li><code>assay</code> - 是一个包括代谢物相对丰度的矩阵 </li>
-<li><code>rowData</code> - 包含可用代谢物注释的数据框</li>
-<li><code>colData</code> - 一个包含样品信息的数据框</li>
-</ul>
-<p>本教程的示例数据来源于Priolo及其同事的一项研究,作者使用了Metabolome®比较61份前列腺癌25正常前列腺标本组织代谢物</p>
-<p><strong>注意请确保assay的列名 (sample)对应于colData的行名 (patients)，assay的行名对应于rowData的行名</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">assay[<span class="number">1</span>:<span class="number">5</span>,<span class="number">1</span>:<span class="number">5</span>]</span><br><span class="line"><span class="comment">##          pat1      pat2      pat3     pat4      pat5</span></span><br><span class="line"><span class="comment">## met1 33964.73 117318.43 118856.90  78670.7 102565.94</span></span><br><span class="line"><span class="comment">## met2 18505.56 167585.32  59621.97  66220.4  74892.27</span></span><br><span class="line"><span class="comment">## met3       NA  42373.93  27141.21       NA  38390.78</span></span><br><span class="line"><span class="comment">## met4 61638.77  74595.78        NA       NA        NA</span></span><br><span class="line"><span class="comment">## met5       NA 148363.61  43861.79 105835.2  25589.08</span></span><br><span class="line">head(colData)</span><br><span class="line"><span class="comment">##        id tumor_normal random_gender   group</span></span><br><span class="line"><span class="comment">## pat1  cp2            N        female Control</span></span><br><span class="line"><span class="comment">## pat2  cp7            N        female Control</span></span><br><span class="line"><span class="comment">## pat3 cp19            N          male Control</span></span><br><span class="line"><span class="comment">## pat4 cp26            N          male Control</span></span><br><span class="line"><span class="comment">## pat5 cp29            N        female Control</span></span><br><span class="line"><span class="comment">## pat6 cp32            N          male Control</span></span><br><span class="line">head(rowData)</span><br><span class="line"><span class="comment">##                                     BIOCHEMICAL    SUPER_PATHWAY</span></span><br><span class="line"><span class="comment">## met1  1-arachidonoylglycerophosphoethanolamine*            Lipid</span></span><br><span class="line"><span class="comment">## met2      1-arachidonoylglycerophosphoinositol*            Lipid</span></span><br><span class="line"><span class="comment">## met3                      1-arachidonylglycerol            Lipid</span></span><br><span class="line"><span class="comment">## met4      1-eicosadienoylglycerophosphocholine*            Lipid</span></span><br><span class="line"><span class="comment">## met5 1-heptadecanoylglycerophosphoethanolamine* No Super Pathway</span></span><br><span class="line"><span class="comment">## met6       1-linoleoylglycerol (1-monolinolein)            Lipid</span></span><br><span class="line"><span class="comment">##           SUB_PATHWAY METABOLON_ID  PLATFORM KEGG_ID   HMDB_ID</span></span><br><span class="line"><span class="comment">## met1        Lysolipid        35186 LC/MS neg    &lt;NA&gt; HMDB11517</span></span><br><span class="line"><span class="comment">## met2        Lysolipid        34214 LC/MS neg    &lt;NA&gt;      &lt;NA&gt;</span></span><br><span class="line"><span class="comment">## met3 Monoacylglycerol        34397 LC/MS neg  C13857 HMDB11572</span></span><br><span class="line"><span class="comment">## met4        Lysolipid        33871 LC/MS pos    &lt;NA&gt;      &lt;NA&gt;</span></span><br><span class="line"><span class="comment">## met5       No Pathway        37419 LC/MS neg    &lt;NA&gt;      &lt;NA&gt;</span></span><br><span class="line"><span class="comment">## met6 Monoacylglycerol        27447 LC/MS neg    &lt;NA&gt;      &lt;NA&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>该包的函数<code>create_mae</code>合并三个对象为一个综合对象<code>MultiAssayExperiment</code>对象，从而简化下游的分析</strong></p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(met &lt;- create_mae(assay,rowData,colData))</span><br><span class="line"></span><br><span class="line"><span class="comment">## A MultiAssayExperiment object of 1 listed</span></span><br><span class="line"><span class="comment">##  experiment with a user-defined name and respective class. </span></span><br><span class="line"><span class="comment">##  Containing an ExperimentList class object of length 1: </span></span><br><span class="line"><span class="comment">##  [1] raw: SummarizedExperiment with 307 rows and 86 columns </span></span><br><span class="line"><span class="comment">## Features: </span></span><br><span class="line"><span class="comment">##  experiments() - obtain the ExperimentList instance </span></span><br><span class="line"><span class="comment">##  colData() - the primary/phenotype DataFrame </span></span><br><span class="line"><span class="comment">##  sampleMap() - the sample availability DataFrame </span></span><br><span class="line"><span class="comment">##  `$`, `[`, `[[` - extract colData columns, subset, or experiment </span></span><br><span class="line"><span class="comment">##  *Format() - convert into a long or wide DataFrame </span></span><br><span class="line"><span class="comment">##  assays() - convert ExperimentList to a SimpleList of matrices</span></span><br></pre></td></tr></table></figure>
-<h2 id="Metabolite-annotation"><a href="#Metabolite-annotation" class="headerlink" title="Metabolite annotation"></a>Metabolite annotation</h2><p>如果HMDB，KEGG或ChEBI id是rowData对象的一部分，则可以从小分子途径数据库（SMPDB）检索代谢物注释<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Please specify the accoding column in rowData. In the example data set, the KEGG id was in column 6 and the HMBD id in column 7. A ChEBI id was not available.</span></span><br><span class="line">met &lt;- get_SMPDBanno(met,</span><br><span class="line">                        column_kegg_id=<span class="number">6</span>,</span><br><span class="line">                        column_hmdb_id=<span class="number">7</span>,</span><br><span class="line">                        column_chebi_id=<span class="literal">NA</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Imputation-of-missing-values"><a href="#Imputation-of-missing-values" class="headerlink" title="Imputation of missing values"></a>Imputation of missing values</h2><p>与其他高通量技术相比，缺失值在定量代谢组数据集中很常见。<code>na_heatmap</code>函数可视化了样本中缺失的代谢物测量值。但是需要指定用于分组的colData中的列的名称和这两组的标签颜色。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">na_heatmap(met,</span><br><span class="line">           group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">           label_colors=c(<span class="string">"darkseagreen"</span>,<span class="string">"dodgerblue"</span>))</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://s2.ax1x.com/2019/01/29/kQO9Bt.png" alt="Fig.1 缺失值热图展示"></p>
-<p><strong>填充函数用到knn_impute</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">met = knn_impute(met,cutoff=<span class="number">0.4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## A MultiAssayExperiment object of 2 listed</span></span><br><span class="line"><span class="comment">##  experiments with user-defined names and respective classes. </span></span><br><span class="line"><span class="comment">##  Containing an ExperimentList class object of length 2: </span></span><br><span class="line"><span class="comment">##  [1] raw: SummarizedExperiment with 307 rows and 86 columns </span></span><br><span class="line"><span class="comment">##  [2] imputed: SummarizedExperiment with 238 rows and 86 columns </span></span><br><span class="line"><span class="comment">## Features: </span></span><br><span class="line"><span class="comment">##  experiments() - obtain the ExperimentList instance </span></span><br><span class="line"><span class="comment">##  colData() - the primary/phenotype DataFrame </span></span><br><span class="line"><span class="comment">##  sampleMap() - the sample availability DataFrame </span></span><br><span class="line"><span class="comment">##  `$`, `[`, `[[` - extract colData columns, subset, or experiment </span></span><br><span class="line"><span class="comment">##  *Format() - convert into a long or wide DataFrame </span></span><br><span class="line"><span class="comment">##  assays() - convert ExperimentList to a SimpleList of matrices</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="Outlier-heatmap"><a href="#Outlier-heatmap" class="headerlink" title="Outlier heatmap"></a>Outlier heatmap</h2><p>在数据归一化之前，我们希望排除数据集中存在的异常值。为此，我们提供了<code>outlier_heatmap</code>函数。该函数提供了参数k的设置，用于识别缺失值集群</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">outlier_heatmap(met,</span><br><span class="line">                group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">                label_colors=c(<span class="string">"darkseagreen"</span>,<span class="string">"dodgerblue"</span>),</span><br><span class="line">                k=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://s2.ax1x.com/2019/01/29/kQXuxH.png" alt="Fig.3 代谢物丰度值的层次聚类"></p>
-<p><strong>从图形可以看出cluster=1因为丰度值较低，是缺失值，那么后期可以通过函数<code>remove_cluster</code>将该簇的个体移除</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">met &lt;- remove_cluster(met,cluster=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h2><p>方差稳定归一化（vsn）的方法用于保证方差在测量的质谱图上保持几乎恒定<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">met &lt;- normalize_met(met)</span><br></pre></td></tr></table></figure></p>
-<p>这一步归一化之后，对象<code>MultiAssayExperiment</code>包含4个数据集</p>
-<ul>
-<li>raw - raw relative metabolic measurements as provided by company or core facility</li>
-<li>imputed - imputed relative metabolic measurements (k-nearest neighbor imputation)</li>
-<li>norm - normalized relative metabolic measurements (vsn)</li>
-<li>norm_imputed - normalized and imputed relative metabolic measurements (vsn)</li>
-</ul>
-<h2 id="Quality-control-of-normalization"><a href="#Quality-control-of-normalization" class="headerlink" title="Quality control of normalization"></a>Quality control of normalization</h2><p>查看四个数据集的质量值分布<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br><span class="line">quality_plot(met,</span><br><span class="line">             group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">             label_colors=c(<span class="string">"darkseagreen"</span>,<span class="string">"dodgerblue"</span>))</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://s2.ax1x.com/2019/01/29/kQjD6H.png" alt="Fig.4 质量值分布"></p>
-<h1 id="Part-II-Data-analysis"><a href="#Part-II-Data-analysis" class="headerlink" title="Part II: Data analysis"></a>Part II: Data analysis</h1><p>下面这个表格总结了<code>MetaboDiff</code>包能回答的生物学问题<br><img src="https://s2.ax1x.com/2019/01/29/kQjWh8.png" alt="Table 1"></p>
-<h2 id="Unsupervised-analysis"><a href="#Unsupervised-analysis" class="headerlink" title="Unsupervised analysis"></a>Unsupervised analysis</h2><p>为了以无监督的方式探索样品之间的代谢组学特征，MetaboDiff提供PCA作为线性和tSNE作为非线性降维方法<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span>(<span class="string">"http://peterhaschke.com/Code/multiplot.R"</span>)</span><br><span class="line">multiplot(</span><br><span class="line">pca_plot(met,</span><br><span class="line">         group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">             label_colors=c(<span class="string">"darkseagreen"</span>,<span class="string">"dodgerblue"</span>)),</span><br><span class="line">tsne_plot(met,</span><br><span class="line">          group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">             label_colors=c(<span class="string">"darkseagreen"</span>,<span class="string">"dodgerblue"</span>)),</span><br><span class="line">cols=<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://s2.ax1x.com/2019/01/29/kQv9BR.png" alt="Fig.4 PCA图和tsne图"></p>
-<h2 id="Hypothesis-testing"><a href="#Hypothesis-testing" class="headerlink" title="Hypothesis testing"></a>Hypothesis testing</h2><p>组间代谢物差异检验用的函数是<code>diff_test</code>，如果是两个组，则用student t’ test，如果大于两个组，则用方差检验。并且P值经过多重检验校正。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">met = diff_test(met,</span><br><span class="line">                group_factors = c(<span class="string">"tumor_normal"</span>,<span class="string">"random_gender"</span>))</span><br><span class="line"><span class="comment"># The results of the hypothesis testing is saved in the metadata slot of the  MultiAssayExperiment object</span></span><br><span class="line"></span><br><span class="line">str(metadata(met), max.level=<span class="number">2</span>)<span class="comment">#查看</span></span><br><span class="line"><span class="comment">## List of 2</span></span><br><span class="line"><span class="comment">##  $ ttest_tumor_normal_T_vs_N         :'data.frame':  238 obs. of  3 variables:</span></span><br><span class="line"><span class="comment">##   ..$ pval       : num [1:238] 0.0206 0.7808 0.0832 0.0432 0.5859 ...</span></span><br><span class="line"><span class="comment">##   ..$ adj_pval   : num [1:238] 0.102 0.904 0.221 0.158 0.758 ...</span></span><br><span class="line"><span class="comment">##   ..$ fold_change: num [1:238] 0.2872 0.0366 -0.3936 -0.5391 -0.1646 ...</span></span><br><span class="line"><span class="comment">##  $ ttest_random_gender_male_vs_female:'data.frame':  238 obs. of  3 variables:</span></span><br><span class="line"><span class="comment">##   ..$ pval       : num [1:238] 0.2318 0.8626 0.4048 0.0121 0.2111 ...</span></span><br><span class="line"><span class="comment">##   ..$ adj_pval   : num [1:238] 0.83 0.959 0.862 0.386 0.83 ...</span></span><br><span class="line"><span class="comment">##   ..$ fold_change: num [1:238] -0.1372 -0.0208 0.1742 0.607 0.3438 ...</span></span><br></pre></td></tr></table></figure>
-<p><strong>比较分析的结果可以用火山图进行展示</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">par(mfrow=c(<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">volcano_plot(met, </span><br><span class="line">             group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">             label_colors=c(<span class="string">"darkseagreen"</span>,<span class="string">"dodgerblue"</span>),</span><br><span class="line">             p_adjust = <span class="literal">FALSE</span>)</span><br><span class="line">volcano_plot(met, </span><br><span class="line">             group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">             label_colors=c(<span class="string">"darkseagreen"</span>,<span class="string">"dodgerblue"</span>),</span><br><span class="line">             p_adjust = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://s2.ax1x.com/2019/01/29/kQvs8U.png" alt="Fig.5 差异分析火山图，左边未校正P值，右边为校正后的P值"></p>
-<h1 id="Metabolic-correlation-network-analysis"><a href="#Metabolic-correlation-network-analysis" class="headerlink" title="Metabolic correlation network analysis"></a>Metabolic correlation network analysis</h1><h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>得到有意义的子代谢通路，并且这些子通路是在不同的组之间富集的。MetaboDiff可以生成代谢相关网络。在MetaboDiff中，代谢相关网络分析由一下4组函数分析完成</p>
-<ul>
-<li>diss_matrix - construction of dissimilarity matrix</li>
-<li>identify_modules - identification of metabolic correlation modules</li>
-<li>name_modules - name metabolic correlation modules</li>
-<li>calculate_MS - calculation of module signficance to relate sample traits to modules</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 事先要加载相应的函数 diss_matrix identify_modules name_modules calculate_MS</span></span><br><span class="line">met &lt;- met %&gt;%</span><br><span class="line">    diss_matrix %&gt;%</span><br><span class="line">    identify_modules(min_module_size=<span class="number">5</span>) %&gt;%</span><br><span class="line">    name_modules(pathway_annotation=<span class="string">"SUB_PATHWAY"</span>) %&gt;%</span><br><span class="line">    calculate_MS(group_factors=c(<span class="string">"tumor_normal"</span>,<span class="string">"random_gender"</span>))</span><br><span class="line">	</span><br><span class="line"><span class="comment">##  ..cutHeight not given, setting it to 0.991  ===&gt;  99% of the (truncated) height range in dendro.</span></span><br><span class="line"><span class="comment">##  ..done.</span></span><br></pre></td></tr></table></figure>
-<h2 id="Association-of-sample-traits-with-correlation-modules"><a href="#Association-of-sample-traits-with-correlation-modules" class="headerlink" title="Association of sample traits with correlation modules"></a>Association of sample traits with correlation modules</h2><p>以下图表说明了感兴趣的样本性状（肿瘤与正常）与从数据中得到的代谢相关性模块的关联。选项p_adjust允许选择校正或者未校正的P值。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MS_plot(met,</span><br><span class="line">        group_factor=<span class="string">"tumor_normal"</span>,</span><br><span class="line">        p_value_cutoff=<span class="number">0.05</span>,</span><br><span class="line">        p_adjust=<span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://s2.ax1x.com/2019/01/30/kQxirj.png" alt="肿瘤与正常性状与代谢相关模块的关系"></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1]<a href="https://rawgit.com/andreasmock/MetaboDiff/master/vignettes/MetaboDiff_tutorial.html" target="_blank" rel="noopener">https://rawgit.com/andreasmock/MetaboDiff/master/vignettes/MetaboDiff_tutorial.html</a></p>
-
         
         
         <p class="article-more-link">
+          
+            <a href="/2019/01/29/MetaboDiff-代谢组学数据差异分析R包/#more">Read More ^_^</a>
           
        </p>
     </div>
@@ -485,7 +429,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/12/18/ggplot2-如何将菌群分类数据作面积图/" title="ggplot2 | 如何将菌群分类数据作面积图" itemprop="url">ggplot2 | 如何将菌群分类数据作面积图</a>
+      <a href="/2018/12/18/20181214-hmz-多元统计模型-MUVR的使用/" title="利用R语言构建一种无偏变量选择的多元统计方法" itemprop="url">利用R语言构建一种无偏变量选择的多元统计方法</a>
   </h1>
   <p class="article-author">By
        
@@ -498,14 +442,14 @@
 </header>
     <div class="article-content">
         
-        <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><ul>
-<li>菌群分类数据的可视化，包括丰度在个体之间以以及组间的一个比较怎么生动形象，一直是我想解决的问题，今天看到一篇文章上面用的是ggplot2包做的一个面积图，主要利用到了里面的geom_area()函数，这样的图有一个好处就是可以看菌群丰度随着采样时间点的变化而变化。那么我在想，如果横坐标是个体号呢，怎么想办法也能像下图（图1）这样展示。所以我想通过自己平时下载的数据来重现这个图。好了，话不多说，开始作图！<br><img src="https://media.springernature.com/lw785/springer-static/image/art%3A10.1186%2Fs40168-018-0584-3/MediaObjects/40168_2018_584_Fig2_HTML.png" alt="图1"></li>
-</ul>
+        <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><blockquote>
+<p>今天给大家介绍的是一款施琳大神（现就读于查尔默斯大学，postdoc）于几年发表的一个R包-<code>MUVR</code> (Multivariate methods with Unbiased Variable selection in R)，主要是为计算预测变量和相应变量之间的关系提供了一种新的算法，那么这里的响应变量既可以是<code>连续变量</code>用于回归分析，也可以是<code>因子变量</code>用于分类分析。另外一个我之所以介绍这个软件的原因是，它可以用于处理大规模变量数目大于观测数的数据格式，所以还是很友好的一个软件。因为大多数科研单位都不太可能做到那么大的样本量，除非是豪门！</p>
+</blockquote>
         
         
         <p class="article-more-link">
           
-            <a href="/2018/12/18/ggplot2-如何将菌群分类数据作面积图/#more">Read More ^_^</a>
+            <a href="/2018/12/18/20181214-hmz-多元统计模型-MUVR的使用/#more">Read More ^_^</a>
           
        </p>
     </div>
@@ -580,15 +524,7 @@
 			
 		
 			
-				<li><a href="/tags/粘膜屏障/" title="粘膜屏障">粘膜屏障<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/使用软件包/" title="使用软件包">使用软件包<sup>1</sup></a></li>
+				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
 			
 		
 			
@@ -596,31 +532,27 @@
 			
 		
 			
-				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
+				<li><a href="/tags/肠道菌群定植/" title="肠道菌群定植">肠道菌群定植<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
+				<li><a href="/tags/免疫/" title="免疫">免疫<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/FXR受体/" title="FXR受体">FXR受体<sup>1</sup></a></li>
+				<li><a href="/tags/菌群-宿主互作/" title="菌群-宿主互作">菌群-宿主互作<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/TGR5受体/" title="TGR5受体">TGR5受体<sup>1</sup></a></li>
+				<li><a href="/tags/肠道/" title="肠道">肠道<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/糖代谢/" title="糖代谢">糖代谢<sup>1</sup></a></li>
+				<li><a href="/tags/粘膜屏障/" title="粘膜屏障">粘膜屏障<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
+				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
 			
 		
 			
@@ -632,15 +564,27 @@
 			
 		
 			
-				<li><a href="/tags/NMDS/" title="NMDS">NMDS<sup>1</sup></a></li>
+				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/data-analysis/" title="data analysis">data analysis<sup>1</sup></a></li>
+				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/肠道菌群定植/" title="肠道菌群定植">肠道菌群定植<sup>1</sup></a></li>
+				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ggplot2/" title="ggplot2">ggplot2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面积图/" title="面积图">面积图<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/FXR受体/" title="FXR受体">FXR受体<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -4,24 +4,31 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>Hello World | 有味</title>
+    <title>机器学习简介 | 有味</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dayueban">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="@我的简书：Dayueban 写在前面 在年前将要进行靶向代谢组学测定的样品送去公司，随之想想，还有一个半月的时间数据才会回来，那么这段时间是不是可以先学习下分类数据如何分析呢（PS:因为数据是属于分类性质的），所以不久前买的一本书——《机器学习与R语言》稍微系统学一遍，该书为美国的Brett Lantz所著，翻译工作由我国学者李洪成、许金炜、李舰完成。学习本书的主要目的是了解机器学习的思想，以及">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://dayueban.com/2018/10/03/hello-world/index.html">
+<meta property="og:title" content="机器学习简介">
+<meta property="og:url" content="https://dayueban.com/2019/02/12/机器学习简介/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="@我的简书：Dayueban 写在前面 在年前将要进行靶向代谢组学测定的样品送去公司，随之想想，还有一个半月的时间数据才会回来，那么这段时间是不是可以先学习下分类数据如何分析呢（PS:因为数据是属于分类性质的），所以不久前买的一本书——《机器学习与R语言》稍微系统学一遍，该书为美国的Brett Lantz所著，翻译工作由我国学者李洪成、许金炜、李舰完成。学习本书的主要目的是了解机器学习的思想，以及">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-03T15:18:18.078Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-64fbfbb8e8dea6d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-64f7905ce0373103.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-aaa2afa0ad2f9641.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-080db977731ae7a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-5140db4975658692.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-12T15:35:20.106Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="机器学习简介">
+<meta name="twitter:description" content="@我的简书：Dayueban 写在前面 在年前将要进行靶向代谢组学测定的样品送去公司，随之想想，还有一个半月的时间数据才会回来，那么这段时间是不是可以先学习下分类数据如何分析呢（PS:因为数据是属于分类性质的），所以不久前买的一本书——《机器学习与R语言》稍微系统学一遍，该书为美国的Brett Lantz所著，翻译工作由我国学者李洪成、许金炜、李舰完成。学习本书的主要目的是了解机器学习的思想，以及">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6673686-64fbfbb8e8dea6d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
     
@@ -81,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/10/03/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2019/02/12/机器学习简介/" title="机器学习简介" itemprop="url">机器学习简介</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
 		
   </p><p class="article-time">
-    <time datetime="2018-10-03T10:42:34.729Z" itemprop="datePublished"> Published 2018-10-03</time>
+    <time datetime="2019-02-12T15:32:58.000Z" itemprop="datePublished"> Published 2019-02-12</time>
     
   </p>
 </header>
@@ -97,29 +104,81 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#书籍结构"><span class="toc-number">2.</span> <span class="toc-text">书籍结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习的起源"><span class="toc-number">2.1.</span> <span class="toc-text">机器学习的起源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习的使用与滥用"><span class="toc-number">2.2.</span> <span class="toc-text">机器学习的使用与滥用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机器如何学习"><span class="toc-number">2.3.</span> <span class="toc-text">机器如何学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将机器学习应用于数据中的步骤"><span class="toc-number">2.4.</span> <span class="toc-text">将机器学习应用于数据中的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择机器学习算法"><span class="toc-number">2.5.</span> <span class="toc-text">选择机器学习算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#考虑输入的数据"><span class="toc-number">2.5.1.</span> <span class="toc-text">考虑输入的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#考虑机器学习算法的类型"><span class="toc-number">2.5.2.</span> <span class="toc-text">考虑机器学习算法的类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为数据匹配合适的算法"><span class="toc-number">2.5.3.</span> <span class="toc-text">为数据匹配合适的算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用R进行机器学习"><span class="toc-number">2.6.</span> <span class="toc-text">使用R进行机器学习</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+		<p>@<a href="https://www.jianshu.com/u/1fda92d012f8" target="_blank" rel="noopener">我的简书：Dayueban</a></p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>在年前将要进行靶向代谢组学测定的样品送去公司，随之想想，还有一个半月的时间数据才会回来，那么这段时间是不是可以先学习下分类数据如何分析呢（PS:因为数据是属于分类性质的），所以不久前买的一本书——《机器学习与R语言》稍微系统学一遍，该书为美国的Brett Lantz所著，翻译工作由我国学者李洪成、许金炜、李舰完成。学习本书的主要目的是了解机器学习的思想，以及所应用的领域，当然最直接的是用于指导后续的代谢组学数据分析工作。</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-64fbfbb8e8dea6d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="机器学习与R语言"></p>
+<a id="more"></a>
+<h2 id="书籍结构"><a href="#书籍结构" class="headerlink" title="书籍结构"></a>书籍结构</h2><ul>
+<li><p>本书共分为12章，第一章主要介绍了什么事机器学习；第二章则对R语言的数据结构和管理做了回顾；第三到第九章分别介绍了目前机器学习有哪些实现方法；最后三章则主要介绍了模型的性能和其它机器学习的方法。  </p>
+</li>
+<li><p>那么今天先学习<strong>第一章</strong>。</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-64f7905ce0373103.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="第一章内容"></p>
+<ul>
+<li>在本章中，将会学习到下列只是</li>
+</ul>
+<ol>
+<li>机器学习的起源及其实际应用</li>
+<li>知识是如何在计算机中定义和表达的</li>
+<li>用来区分机器学习方法的基本概念</li>
+</ol>
+<h3 id="机器学习的起源"><a href="#机器学习的起源" class="headerlink" title="机器学习的起源"></a>机器学习的起源</h3><p>可以说机器学习是一门依赖数据的科学，就比如拿我们个人来说，我们身体的感官——眼睛、耳朵、鼻子、舌头以及神经一直被数据包围着，大脑把它们转化成视觉、听觉、嗅觉和感知。通过语言的交流，我们得以和他人分享这些感受。</p>
+<p>当然，由于科学技术的发展，比如一些传感器的发明使得可以替代甚至是可以更加丰富的记录数据。从而获得更加庞大的数据。</p>
+<p><strong>机器学习</strong>的研究领域是发明计算机算法，把数据转化为智能行为。这个领域是在现有数据、统计方法以及计算能力迅速并且同步发展的环境下发展起来的。数据量的增加使得<code>计算能力</code>增强成为必须条件，而计算能力的增强又反过来促进了分析大数据的统计方法的发展。这就创造了一个闭环式的发展，它使得更多更加有趣的数据得以收集。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-aaa2afa0ad2f9641.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="机器学习相关行为"></p>
+<p>机器学习的一个紧密相关的学科是<strong>数据挖掘</strong>,那么数据挖掘涉及从大型的数据库中产生新的洞察（这里要注意的是不要和<code>挖掘数据</code>相混淆，“挖掘数据”指的是挑选最合适的数据来支持某个理论的行为）。 目前对于这两个领域之间有多少是存在交叉的尚且存在争议，但是一个可能的差别是机器学习侧重执行一个已知的任务，而数据挖掘则是侧重寻找有价值的信息。例如，你可能会用机器学习方法去教一个机器人开车，然而你会利用数据挖掘了解哪种类型的车是最安全的。</p>
+<h3 id="机器学习的使用与滥用"><a href="#机器学习的使用与滥用" class="headerlink" title="机器学习的使用与滥用"></a>机器学习的使用与滥用</h3><p>机器学习的核心任务主要侧重于找出复杂数据的潜在意义，其应用非常广泛，如以下领域（不止限于）：</p>
+<ol>
+<li>预测选举的结果</li>
+<li>识别并且过滤垃圾邮件</li>
+<li>预测犯罪活动</li>
+<li>根据路况，实现交通信号灯的自动化</li>
+<li>给出暴风雨和自然灾害后经济损失的估计</li>
+<li>检测客户流失</li>
+<li>设计自动驾驶飞机和自动驾驶汽车</li>
+<li>确定每个人捐助的能力</li>
+<li>把广告定位到特殊类型的顾客  </li>
+</ol>
+<p>现在还不用关心机器如何学习去执行这些任务，后面会具体介绍。上面提到到的每种任务的背景不同，但是他们的机器学习过程是一样的。机器学习算法应用数据，找出那些可以应用到实际行动中的模式。在一些案例中，机器学习的结果非常成功，甚至达到了神奇的程度</p>
+<p><strong>伦理方面的考虑</strong>，由于机器学习是一个相对较新的，正处于发展之中的学科，所以与之相对应的法律法规和社会准则尚不确定，并且一直在变化。<strong>获取和分析数据时要小心谨慎，避免违法、违反服务条例或者数据使用协议</strong>，避免滥用人们的信任，避免侵犯消费者或者公众的隐私。</p>
+<h3 id="机器如何学习"><a href="#机器如何学习" class="headerlink" title="机器如何学习"></a>机器如何学习</h3><p>著名的计算机科学家<code>Tom M. Mitchell</code>提出：如果机器能够获取经验并且利用它们，在以后的类似经验中能够提高它的表现，该机器就称为机器学习。</p>
+<p>无论学习者是人还是一个机器，基础的学习过程是类似的。这一过程等可以分成如下3个部分：</p>
+<ol>
+<li>数据输入：这部分利用观察、记忆存储，以及回忆来提供进一步推理的事实依据。</li>
+<li>抽象化：这部分涉及把数据转换成更宽泛的表现形式（broader representation）。</li>
+<li>一般化：这部分应用抽象的数据来形成行动的基础。</li>
+</ol>
+<h3 id="将机器学习应用于数据中的步骤"><a href="#将机器学习应用于数据中的步骤" class="headerlink" title="将机器学习应用于数据中的步骤"></a>将机器学习应用于数据中的步骤</h3><p><strong>任何机器学习任务都能分解成一系列更容易管理的步骤。本书组织的步骤如下：</strong></p>
+<p>1）<strong>收集数据</strong>：无论数据是写在纸上，记录在文本文件、电子表格中或者存储在SQL（结构化查询语言，Structured Query Language）数据库中，你都要把它转为适合分析的电子格式。数据将作为机器学习算法的学习材料，从而产生可行动的知识。<br>2）<strong>探索数据和准备数据</strong>：任何机器学习项目的质量很大程度上取决于它使用的数据的质量。机器学习过程的这个步骤一般需要大量的人工干预。一项常被引用的统计数据指出，机器学习中80%的努力花费在数据上。这其中的大多数时间都花费在一项数据探索的实践中，它要学习更多的数据信息和他们的细微差别。<br>3）<strong>基于数据训练模型</strong>：在已经准备好用于分析的数据时，你很有可能已经有了希望从数据中学习到什么的设想。具体的机器学习任务将会告诉你选择合适的算法，算法将会以模型的形式来表现数据。<br>4）<strong>评价模型的性能</strong>：由于每个机器模型将会产生一个学习问题的有偏差的解决方法，所以评价算法从经验中学习的优劣是很重要的。根据使用模型的类型，应该能用一个测试数据集来评价模型的精确性，或者可能需要针对目标应用设计模型性能的检验标准。<br>5）<strong>改进模型的性能</strong>：如果需要更好的性能，就需要利用更加高级的方法来提高模型的性能。有时候，需要完全更换为不同的模型。可能需要补充另外的数据，或者如这个过程的第二步中所做的那样，进行一些额外的数据准备工作。</p>
+<p>如果完成这些步骤后模型的表现令人满意，就能将它应用到预期的任务中。根据具体的情况，为了预测（也可能是实时预测）的目的，可能需要模型给出预测分数。</p>
+<h3 id="选择机器学习算法"><a href="#选择机器学习算法" class="headerlink" title="选择机器学习算法"></a>选择机器学习算法</h3><blockquote>
+<p>机器学习算法的选择涉及衡量要学习数据的特征和可以使用的方法所具有的偏差。因为机器学习算法的选择很大程度上依赖于你所分析数据的类型和任务，当你在收集、探索和清理数据时就需要开始考虑这个过程，而且很有必要。</p>
+</blockquote>
+<h4 id="考虑输入的数据"><a href="#考虑输入的数据" class="headerlink" title="考虑输入的数据"></a>考虑输入的数据</h4><p>所有的机器学习算法都要求输入训练数据，虽然精确的格式可能不同，但是就最基础的格式而言，数据数据是以<strong>案例</strong>和<strong>特征</strong>组成的表格形式呈现的。如下图所示：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-080db977731ae7a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="案例和特征表格形式"></p>
+<p><strong>案例</strong>：从名称上看，案例是一个被学习概念的示例性示例，它是要分析事物的最基本单位的一组数据。如果你要建立一个识别垃圾邮件的学习算法，案例就是从诸多个人电子邮件中获得的数据。想要诊断癌症肿瘤，案例可能由一些病人的活检切片组成。</p>
+<p><strong>特征</strong>：特征则是指案例的一个属性或者特性，它们可能对学习目标概念有帮助。比如在癌症数据集中，属性可能是活检细胞染色体数据或者测得的病人的一些体征，如体重、身高或者血压等。</p>
+<h4 id="考虑机器学习算法的类型"><a href="#考虑机器学习算法的类型" class="headerlink" title="考虑机器学习算法的类型"></a>考虑机器学习算法的类型</h4><p>机器学习算法可以分为两类：用来建立预测模型的<code>有监督学习算法</code>和用来建立描述模型的<code>无监督学习算法</code>。使用哪一种类型的算法取决于你需要完成的学习任务。</p>
+<h4 id="为数据匹配合适的算法"><a href="#为数据匹配合适的算法" class="headerlink" title="为数据匹配合适的算法"></a>为数据匹配合适的算法</h4><p>下表列出了该书在后续要具体介绍的机器学习算法的类型，其中每一类算法都可能由多种实现方式。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-5140db4975658692.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常见的机器学习算法类型"></p>
+<p><strong>为了给学习任务找到相应的机器学习方法，需要从下面4种类型的任务之一开始，他们分别是：<code>分类、数值预测、模式识别或者聚类</code></strong>。确定的学习任务将使算法的选择变得简单。</p>
+<h3 id="使用R进行机器学习"><a href="#使用R进行机器学习" class="headerlink" title="使用R进行机器学习"></a>使用R进行机器学习</h3><p>机器学习算法被很多对R软件做出贡献的专家加载到了R的基础配置里，可以通过基本的R软件包安装方式进行下载使用。</p>
   
 	</div>
 		
     <script type="text/javascript">
     var disqus_shortname = 'dayueban';
     var disqus_config = function () {
-        this.page.url = 'https://dayueban.com/2018/10/03/hello-world/';
-        this.page.identifier = '/2018/10/03/hello-world/';
-        this.page.title = 'Hello World';
+        this.page.url = 'https://dayueban.com/2019/02/12/机器学习简介/';
+        this.page.identifier = '/2019/02/12/机器学习简介/';
+        this.page.title = '机器学习简介';
     };
     (function(){
       var d = document;
@@ -135,14 +194,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev">
- <a href="/2018/10/03/My-New-Post/" title="My New Post">
-  <strong>上一篇：</strong><br>
-  <span>
-  My New Post</span>
+
+<div class="next">
+<a href="/2019/02/08/支链氨基酸与疾病/" title="支链氨基酸与疾病">
+ <strong>下一篇：</strong><br> 
+ <span>支链氨基酸与疾病
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -161,7 +220,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#书籍结构"><span class="toc-number">2.</span> <span class="toc-text">书籍结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习的起源"><span class="toc-number">2.1.</span> <span class="toc-text">机器学习的起源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习的使用与滥用"><span class="toc-number">2.2.</span> <span class="toc-text">机器学习的使用与滥用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机器如何学习"><span class="toc-number">2.3.</span> <span class="toc-text">机器如何学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将机器学习应用于数据中的步骤"><span class="toc-number">2.4.</span> <span class="toc-text">将机器学习应用于数据中的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择机器学习算法"><span class="toc-number">2.5.</span> <span class="toc-text">选择机器学习算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#考虑输入的数据"><span class="toc-number">2.5.1.</span> <span class="toc-text">考虑输入的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#考虑机器学习算法的类型"><span class="toc-number">2.5.2.</span> <span class="toc-text">考虑机器学习算法的类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为数据匹配合适的算法"><span class="toc-number">2.5.3.</span> <span class="toc-text">为数据匹配合适的算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用R进行机器学习"><span class="toc-number">2.6.</span> <span class="toc-text">使用R进行机器学习</span></a></li></ol></li></ol>
  
   </div>
 

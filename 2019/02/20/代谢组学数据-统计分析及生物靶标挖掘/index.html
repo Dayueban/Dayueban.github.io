@@ -4,23 +4,27 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>有味</title>
+    <title>代谢组学数据-统计分析及生物靶标挖掘 | 有味</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Dayueban">
     
 
     
-    <meta name="description" content="记录日常学习心得，并整理分享！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="有味">
-<meta property="og:url" content="https://dayueban.com/index.html">
+    <meta name="description" content="导读 写这篇文档的初衷就是一直想把代谢组学数据写成一个小流程，之前关于非靶向代谢组学写了一个分析总结——非靶向 | 靶向代谢组学数据分析总结-纲要。那么今天我将把代谢组数据的具体分析思路做个整理。思路参考的是中科院大连化物所许国旺老师不久前发表的一篇文章。附上文章截图如下：">
+<meta name="keywords" content="单变量分析,多元统计分析,代谢物靶标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代谢组学数据-统计分析及生物靶标挖掘">
+<meta property="og:url" content="https://dayueban.com/2019/02/20/代谢组学数据-统计分析及生物靶标挖掘/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="记录日常学习心得，并整理分享！">
+<meta property="og:description" content="导读 写这篇文档的初衷就是一直想把代谢组学数据写成一个小流程，之前关于非靶向代谢组学写了一个分析总结——非靶向 | 靶向代谢组学数据分析总结-纲要。那么今天我将把代谢组数据的具体分析思路做个整理。思路参考的是中科院大连化物所许国旺老师不久前发表的一篇文章。附上文章截图如下：">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/02/20/kR978S.png">
+<meta property="og:updated_time" content="2019-02-20T15:32:25.890Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有味">
-<meta name="twitter:description" content="记录日常学习心得，并整理分享！">
+<meta name="twitter:title" content="代谢组学数据-统计分析及生物靶标挖掘">
+<meta name="twitter:description" content="导读 写这篇文档的初衷就是一直想把代谢组学数据写成一个小流程，之前关于非靶向代谢组学写了一个分析总结——非靶向 | 靶向代谢组学数据分析总结-纲要。那么今天我将把代谢组数据的具体分析思路做个整理。思路参考的是中科院大连化物所许国旺老师不久前发表的一篇文章。附上文章截图如下：">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/02/20/kR978S.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
     
@@ -74,12 +78,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2019/02/20/代谢组学数据-统计分析及生物靶标挖掘/" title="代谢组学数据-统计分析及生物靶标挖掘" itemprop="url">代谢组学数据-统计分析及生物靶标挖掘</a>
@@ -93,9 +95,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
 <p>写这篇文档的初衷就是一直想把代谢组学数据写成一个小流程，之前关于非靶向代谢组学写了一个分析总结——<a href="https://www.jianshu.com/p/ce3f27635019" target="_blank" rel="noopener">非靶向 | 靶向代谢组学数据分析总结-纲要</a>。那么今天我将把代谢组数据的具体分析思路做个整理。思路参考的是中科院大连化物所<code>许国旺</code>老师不久前发表的一篇文章。附上文章截图如下：</p>
 </blockquote>
 <p><img src="https://s2.ax1x.com/2019/02/20/kR978S.png" alt="文章截图"></p>
@@ -137,373 +146,59 @@
 
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Description: this script was arranged for metabolomics data analysis</span></span><br><span class="line"><span class="comment"># under the guidelines of article "A Large-Scale, Multicenter Serum Metabolite Biomarker Identification</span></span><br><span class="line"><span class="comment"># Study for the Early Detection of Hepatocellular Carcinoma"</span></span><br><span class="line"><span class="comment"># the mock data was from the R package statTarget</span></span><br><span class="line">rm(list = ls())</span><br><span class="line">setwd(<span class="string">"D:\\R\\R-exercise\\metabo_data"</span>)</span><br><span class="line"><span class="keyword">library</span>(statTarget)</span><br><span class="line"><span class="keyword">library</span>(impute)</span><br><span class="line">datapath &lt;- system.file(<span class="string">'extdata'</span>,package = <span class="string">'statTarget'</span>)</span><br><span class="line">file &lt;- paste(datapath,<span class="string">'data_example.csv'</span>,sep = <span class="string">'/'</span>)</span><br><span class="line">example1 &lt;- read.csv(file)</span><br><span class="line"><span class="comment">## the second example data</span></span><br><span class="line">example2 &lt;- read.csv(choose.files(),check.names = <span class="literal">F</span>,header = <span class="literal">T</span>,row.names = <span class="number">1</span>)</span><br><span class="line"><span class="comment"># to impute the value NA by KNN method in the package impute</span></span><br><span class="line">group_label &lt;- as.factor(example2[,<span class="number">1</span>])</span><br><span class="line">example2[,<span class="number">1</span>] &lt;- <span class="literal">NULL</span></span><br><span class="line">example3 &lt;- as.data.frame(t(example2))</span><br><span class="line">example4 &lt;- impute.knn(as.matrix(example3),k=<span class="number">9</span>)</span><br><span class="line">example5 &lt;- as.data.frame(t(example4$data))</span><br><span class="line"></span><br><span class="line"><span class="comment">## PCAj无监督分析用于评估整体代谢物在组间的变化</span></span><br><span class="line"><span class="keyword">library</span>(<span class="string">"FactoMineR"</span>)</span><br><span class="line"><span class="keyword">library</span>(<span class="string">"factoextra"</span>)</span><br><span class="line"><span class="comment"># 数据间进行标度化处理</span></span><br><span class="line">Z_score &lt;- <span class="keyword">function</span>(x)&#123;</span><br><span class="line">  x &lt;- (x - mean(x))/sd(x)</span><br><span class="line">&#125;</span><br><span class="line">example5 &lt;- apply(example5, <span class="number">1</span>, Z_score)</span><br><span class="line">example5 &lt;- as.data.frame(t(example5))</span><br><span class="line">data.pca &lt;- PCA(example5,graph = <span class="literal">FALSE</span>)</span><br><span class="line">Group &lt;- group_label</span><br><span class="line">data &lt;- cbind(example5, Group)</span><br><span class="line">colnames(data)[ncol(data)] &lt;- <span class="string">"class"</span></span><br><span class="line"><span class="comment"># Scree plot to determine the number of principal components</span></span><br><span class="line">tiff(<span class="string">"meta_scree.tiff"</span>,width=<span class="number">2000</span>,height=<span class="number">2000</span>,res=<span class="number">300</span>)</span><br><span class="line">fviz_eig(data.pca, addlabels = <span class="literal">TRUE</span>, ylim = c(<span class="number">0</span>, <span class="number">100</span>))</span><br><span class="line">dev.off()</span><br><span class="line"><span class="comment"># individual plot</span></span><br><span class="line">tiff(<span class="string">"meta_PCA.tiff"</span>,width=<span class="number">2000</span>,height=<span class="number">2000</span>,res=<span class="number">300</span>)</span><br><span class="line">ind.p &lt;- fviz_pca_ind(data.pca, geom = <span class="string">"point"</span>, col.ind = data$class)</span><br><span class="line">ggpubr::ggpar(ind.p,</span><br><span class="line">              title = <span class="string">"Principal Component Analysis"</span>,</span><br><span class="line">              subtitle = <span class="string">"metabolomic sets"</span>,</span><br><span class="line">              <span class="comment">#caption = "Source: factoextra",</span></span><br><span class="line">              xlab = <span class="string">"PC1(53.2%)"</span>, ylab = <span class="string">"PC2(7.3%)"</span>,</span><br><span class="line">              legend.title = <span class="string">"Group"</span>, legend.position = <span class="string">"top"</span>,</span><br><span class="line">              ggtheme = theme_gray(), palette = <span class="string">"npg"</span></span><br><span class="line">)</span><br><span class="line">dev.off()</span><br><span class="line"></span><br><span class="line"><span class="comment">## pls-da分析</span></span><br><span class="line"><span class="keyword">library</span>(ropls)</span><br><span class="line">example5_oplsda &lt;- opls(example5,Group,predI = <span class="number">1</span>,orthoI = <span class="literal">NA</span>)</span><br><span class="line"><span class="comment"># calculate the vip value</span></span><br><span class="line">VipVn &lt;- getVipVn(opls(example5,Group,predI = <span class="number">1</span>,orthoI = <span class="literal">NA</span>,plot = <span class="literal">FALSE</span>))</span><br><span class="line"><span class="comment"># extract the variable name which the VIP value &gt; 1</span></span><br><span class="line">VipVn_great_than_1 &lt;- names(VipVn[VipVn &gt; <span class="number">1</span>])</span><br><span class="line"><span class="comment"># univariate statistics to extract variables differred between groups</span></span><br><span class="line">pvaVn &lt;- apply(example5,<span class="number">2</span>,<span class="keyword">function</span>(feaVn) wilcox.test(feaVn ~ Group,paired=<span class="literal">FALSE</span>)$p.value)</span><br><span class="line">pvaVn_adj &lt;- p.adjust(pvaVn,method = <span class="string">"BH"</span>,n=length(pvaVn))</span><br><span class="line"><span class="comment"># extract the adjusted p-value less than 0.05</span></span><br><span class="line">pvaVn_adj_less_0.05 &lt;- names(pvaVn_adj[pvaVn_adj &lt; <span class="number">0.05</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># use intersect function to obtain the variables both VIP value great than 1</span></span><br><span class="line"><span class="comment"># and p value less than 0.05</span></span><br><span class="line">final_variable &lt;- intersect(VipVn_great_than_1,pvaVn_adj_less_0.05)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 热图展示13个final_variable的丰度</span></span><br><span class="line">heatmap_df &lt;- example4$data</span><br><span class="line">heatmap_df &lt;- as.data.frame(t(heatmap_df))</span><br><span class="line">heatmap_df &lt;- heatmap_df[,final_variable]</span><br><span class="line">heatmap_df_log10 &lt;- log10(heatmap_df)</span><br><span class="line">heatmap_df_log10 &lt;- as.matrix(t(heatmap_df_log10))</span><br><span class="line"><span class="keyword">library</span>(pheatmap)</span><br><span class="line">annotation_col &lt;- data.frame(Group=factor(rep(c(<span class="string">"N"</span>,<span class="string">"T"</span>),c(<span class="number">25</span>,<span class="number">61</span>))))</span><br><span class="line">rownames(annotation_col) &lt;- colnames(heatmap_df_log10)</span><br><span class="line">ann_colors &lt;- list(Group=c(N=<span class="string">"#4DAF4A"</span>,<span class="literal">T</span>=<span class="string">"#984EA3"</span>))</span><br><span class="line"><span class="comment">#plot.new()</span></span><br><span class="line">tiff(<span class="string">"metabo_biomarker_pheatmap.tiff"</span>,width = <span class="number">3000</span>,height = <span class="number">700</span>,res = <span class="number">300</span>)</span><br><span class="line">pheatmap(heatmap_df_log10,treeheight_col = <span class="number">20</span>,annotation_colors = ann_colors,cluster_cols = <span class="literal">FALSE</span>,</span><br><span class="line">         cluster_rows = <span class="literal">TRUE</span>,show_colnames = <span class="literal">FALSE</span>,annotation_col=annotation_col,</span><br><span class="line">         gaps_col = c(<span class="number">25</span>,<span class="number">25</span>),border_color = <span class="string">"NA"</span>,cellwidth = <span class="number">4.7</span>,cellheight = <span class="number">10</span>)</span><br><span class="line">dev.off()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 建立模型</span></span><br><span class="line"><span class="comment">## first transform the Group 'N' and 'T' into '0' and '1'</span></span><br><span class="line">example6 &lt;- example5[,final_variable]</span><br><span class="line">outcome = Group</span><br><span class="line">outcome &lt;- sub(<span class="string">"N"</span>,<span class="number">0</span>,outcome) <span class="comment"># 将分类变量转为0,1变量</span></span><br><span class="line">outcome &lt;- sub(<span class="string">"T"</span>,<span class="number">1</span>,outcome)</span><br><span class="line"><span class="comment"># merge the data without classification with outcome</span></span><br><span class="line">data_logi &lt;- cbind(example6,outcome)</span><br><span class="line"><span class="comment"># 按照一定比例选择，训练集70%样本，验证集30%的样本</span></span><br><span class="line">index &lt;- sample(x=<span class="number">2</span>,size = nrow(data_logi),replace = <span class="literal">TRUE</span>,prob = c(<span class="number">0.7</span>,<span class="number">0.3</span>))</span><br><span class="line">traindata &lt;- data_logi[index==<span class="number">1</span>,]</span><br><span class="line">testdata &lt;- data_logi[index==<span class="number">2</span>,]</span><br><span class="line"><span class="comment"># 先对训练集数据构建logit模型</span></span><br><span class="line">logit_lm &lt;- glm(outcome ~.,family = binomial,data=traindata)</span><br><span class="line"><span class="comment"># summary(logit_lm)</span></span><br><span class="line">logit_step &lt;- step(logit_lm,direction = <span class="string">"backward"</span>)</span><br><span class="line"><span class="comment"># summary(logit_step)</span></span><br><span class="line"><span class="comment"># 模型的显著性检验，不止变量要显著，模型也要显著</span></span><br><span class="line">anova(object = logit_step,test = <span class="string">"Chisq"</span>)</span><br><span class="line"><span class="comment"># 模型对样本外数据（验证集）的预测</span></span><br><span class="line">prob &lt;- predict(object = logit_step,newdata=testdata,type=<span class="string">"response"</span>)</span><br><span class="line">prediction &lt;- ifelse(prob &gt;=<span class="number">0.5</span>, <span class="number">1</span>,<span class="number">0</span>)</span><br><span class="line">prediction &lt;- factor(prediction,levels = c(<span class="number">1</span>,<span class="number">0</span>),ordered = <span class="literal">TRUE</span>)</span><br><span class="line">f &lt;- table(testdata$outcome,prediction)</span><br><span class="line">f</span><br><span class="line">agreement &lt;- as.vector(prediction) == testdata$outcome</span><br><span class="line">table(agreement)</span><br><span class="line">prop.table(table(agreement))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ROC curve and AUC value calculation</span></span><br><span class="line"><span class="keyword">library</span>(pROC)</span><br><span class="line">roc(testdata$outcome,prob)</span><br><span class="line">roc1 &lt;- roc(testdata$outcome,</span><br><span class="line">            prob,</span><br><span class="line">            percent=<span class="literal">TRUE</span>,</span><br><span class="line">            partial.auc.correct=<span class="literal">TRUE</span>,</span><br><span class="line">            ci=<span class="literal">TRUE</span>, boot.n=<span class="number">100</span>, ci.alpha=<span class="number">0.9</span>, stratified=<span class="literal">FALSE</span>,</span><br><span class="line">            plot=<span class="literal">F</span>, auc.polygon=<span class="literal">TRUE</span>, max.auc.polygon=<span class="literal">TRUE</span>, grid=<span class="literal">TRUE</span>)</span><br><span class="line">tiff(<span class="string">"example_variable_pROC.tiff"</span>,width=<span class="number">2000</span>,height=<span class="number">2000</span>,res=<span class="number">300</span>)</span><br><span class="line">roc1 &lt;- roc(testdata$outcome,prob,</span><br><span class="line">            ci=<span class="literal">TRUE</span>, boot.n=<span class="number">100</span>, ci.alpha=<span class="number">0.9</span>, stratified=<span class="literal">FALSE</span>,</span><br><span class="line">            plot=<span class="literal">TRUE</span>, percent=roc1$percent,col=<span class="string">"#F781BF"</span>,cex.lab=<span class="number">1.2</span>, cex.axis=<span class="number">1.2</span>,cex.main=<span class="number">1.5</span>)</span><br><span class="line">sens.ci &lt;- ci.se(roc1, specificities=seq(<span class="number">0</span>, <span class="number">100</span>, <span class="number">5</span>))</span><br><span class="line">plot(sens.ci, type=<span class="string">"shape"</span>, col=<span class="string">"#FF69B4"</span>)</span><br><span class="line">plot(sens.ci, type=<span class="string">"bars"</span>)</span><br><span class="line">plot(roc1,col=<span class="string">"black"</span>,add=<span class="literal">T</span>)</span><br><span class="line">legend(<span class="string">"bottomright"</span>,cex=<span class="number">1.2</span>,c(paste(<span class="string">"AUC="</span>,round(roc1$ci[<span class="number">2</span>],<span class="number">2</span>),<span class="string">"%"</span>),</span><br><span class="line">                               paste(<span class="string">"95% CI:"</span>,round(roc1$ci[<span class="number">1</span>],<span class="number">2</span>),<span class="string">"%-"</span>,round(roc1$ci[<span class="number">3</span>],<span class="number">2</span>),<span class="string">"%"</span>)))</span><br><span class="line">dev.off()</span><br><span class="line"></span><br><span class="line"><span class="comment">## 使用随机森林进行潜在biomarker的选择</span></span><br><span class="line"><span class="keyword">library</span>(randomForest)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 首先确定下后面要用到的参数mtry和ntree</span></span><br><span class="line">n &lt;- length(names(traindata))</span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line">names(traindata)[<span class="number">1</span>:ncol(traindata)-<span class="number">1</span>] &lt;- paste(<span class="string">"M"</span>,<span class="number">1</span>:<span class="number">13</span>,sep = <span class="string">"_"</span>)</span><br><span class="line"><span class="comment"># 选择mtry参数</span></span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:(n-<span class="number">1</span>))&#123;</span><br><span class="line">  mtry_fit &lt;- randomForest(outcome ~ ., data = traindata, mtry = i)</span><br><span class="line">  err &lt;- mean(mtry_fit$err.rate)</span><br><span class="line">  print(err)  <span class="comment"># 当mtry=2的时候误差最小</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择ntree参数</span></span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line">ntree_fit &lt;- randomForest(outcome ~., data = traindata,mtry=<span class="number">2</span>,ntree=<span class="number">1000</span>)</span><br><span class="line">plot(ntree_fit) <span class="comment"># 在400左右模型内误差基本稳定，默认值为500，可以选默认值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 变量重要性选择</span></span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line"><span class="comment">#' rfcv是随机森林交叉验证函数：Random Forest Cross Validation</span></span><br><span class="line">result &lt;- rfcv(traindata[,-ncol(traindata)],traindata$outcome,cv.fold = <span class="number">10</span>)</span><br><span class="line">result$error.cv <span class="comment">#' 查看错误率表，21时错误率最低，为最佳模型</span></span><br><span class="line"><span class="comment">#' 绘制验证结果</span></span><br><span class="line">with(result,plot(n.var,error.cv,log=<span class="string">"x"</span>,type = <span class="string">"o"</span>,lwd=<span class="number">2</span>)) <span class="comment"># 结果是选择13个变量误差最小</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建模型</span></span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line">rf &lt;- randomForest(outcome ~ ., data = traindata, mtry=<span class="number">2</span>,ntree=<span class="number">400</span>,importance=<span class="literal">TRUE</span>)</span><br><span class="line">rf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证并预测</span></span><br><span class="line">names(testdata)[<span class="number">1</span>:ncol(testdata)-<span class="number">1</span>] &lt;- paste(<span class="string">"M"</span>,<span class="number">1</span>:<span class="number">13</span>,sep = <span class="string">"_"</span>)</span><br><span class="line">pred1 &lt;- predict(rf, testdata)</span><br><span class="line"><span class="comment"># 查看准确性</span></span><br><span class="line">test_matrix &lt;- table(pred1, testdata$outcome)</span><br><span class="line">sum(diag(test_matrix))/sum(test_matrix)</span><br><span class="line"><span class="comment"># 0.8148</span></span><br></pre></td></tr></table></figure>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] A Large-Scale, Multicenter Serum Metabolite Biomarker Identification Study for the Early Detection of Hepatocellular Carcinoma</p>
--->
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/02/12/机器学习简介/" title="机器学习简介" itemprop="url">机器学习简介</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
+-->  
+	</div>
 		
-  </p><p class="article-time">
-    <time datetime="2019-02-12T15:32:58.000Z" itemprop="datePublished"> Published 2019-02-12</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>@<a href="https://www.jianshu.com/u/1fda92d012f8" target="_blank" rel="noopener">我的简书：Dayueban</a></p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
-<p>在年前将要进行靶向代谢组学测定的样品送去公司，随之想想，还有一个半月的时间数据才会回来，那么这段时间是不是可以先学习下分类数据如何分析呢（PS:因为数据是属于分类性质的），所以不久前买的一本书——《机器学习与R语言》稍微系统学一遍，该书为美国的Brett Lantz所著，翻译工作由我国学者李洪成、许金炜、李舰完成。学习本书的主要目的是了解机器学习的思想，以及所应用的领域，当然最直接的是用于指导后续的代谢组学数据分析工作。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/6673686-64fbfbb8e8dea6d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="机器学习与R语言"></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2019/02/12/机器学习简介/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
+    <script type="text/javascript">
+    var disqus_shortname = 'dayueban';
+    var disqus_config = function () {
+        this.page.url = 'https://dayueban.com/2019/02/20/代谢组学数据-统计分析及生物靶标挖掘/';
+        this.page.identifier = '/2019/02/20/代谢组学数据-统计分析及生物靶标挖掘/';
+        this.page.title = '代谢组学数据-统计分析及生物靶标挖掘';
+    };
+    (function(){
+      var d = document;
+      var dsq = d.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (d.head || d.body).appendChild(dsq);
+    })();
+    </script>
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
 
-
-
-
-
-
-   
-    
-    <article class="post-expand w" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/02/08/支链氨基酸与疾病/" title="支链氨基酸与疾病" itemprop="url">支链氨基酸与疾病</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2019-02-08T08:27:21.000Z" itemprop="datePublished"> Published 2019-02-08</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="https://s2.ax1x.com/2019/02/08/kNmV6f.png" alt="文章截图"></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2019/02/08/支链氨基酸与疾病/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/01/29/MetaboDiff-代谢组学数据差异分析R包/" title="MetaboDiff-代谢组学数据差异分析R包" itemprop="url">MetaboDiff-代谢组学数据差异分析R包</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2019-01-29T12:48:05.000Z" itemprop="datePublished"> Published 2019-01-29</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="https://s2.ax1x.com/2019/01/29/kQoewF.png" alt="文章截图"></p>
-<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><ul>
-<li>比较非靶向代谢组学是向质谱分析领域之外的研究人员通过商业供应商提供代谢组学成熟起来的。<code>MetaboDiff</code>包的目的是从代谢物的相对含量表开始，为差异代谢组学分析提供一个比较简单入门的的方法。此外，还介绍了加权相关网络分析在代谢组学中的应用。</li>
-</ul>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2019/01/29/MetaboDiff-代谢组学数据差异分析R包/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/01/13/MAIT-液质联用代谢组学数据分析全能包/" title="MAIT-液质联用代谢组学数据分析全能包" itemprop="url">MAIT-液质联用代谢组学数据分析全能包</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2019-01-13T03:32:08.000Z" itemprop="datePublished"> Published 2019-01-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="https://s2.ax1x.com/2019/01/13/Fvwjot.png" alt="文章截图"></p>
-<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
-<p>目前用于代谢组学数据的液相色谱和质谱分析的工具只涵盖有限的处理步骤，而在线工具很难以可编程的方式使用。这篇文章作者给我们分享了一个可以用于代谢物自动鉴定的工具包，可以让我们轻松驾驭从质谱数据的获到末端数据的统计结果着一整个流程。<code>MAIT(Metabolite Automatic Identification Toolkit )</code>致力于改进峰值注释阶段，并提供必要的工具来验证统计分析结果。整个流程下来可以得到统计分析的结果，峰注释的结果以及代谢物鉴定的结果。</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2019/01/13/MAIT-液质联用代谢组学数据分析全能包/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/01/11/胃肠道内的NADPH氧化酶类和活性氧信号通路/" title="胃肠道内的NADPH氧化酶类和活性氧信号通路" itemprop="url">胃肠道内的NADPH氧化酶类和活性氧信号通路</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2019-01-11T04:52:02.000Z" itemprop="datePublished"> Published 2019-01-11</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="https://s2.ax1x.com/2019/01/25/km5fsJ.png" alt="文章截图"></p>
-<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
-<p>活性氧类(Reactive oxygen species, ROS)，起初被分类为是一种有氧代谢产生的毒性副产物，被称为是一把双刃剑。当考虑到宿主防御和氧化还原信号以及受到炎症和退行性疾病的威胁时，ROS被认为是必不可少的。NOX/DUOX NADPH氧化酶类是产生ROS的唯一来源，因为其表达的广泛性和调控的复杂性使得ROS可以在细胞内和细胞间进行交流。这篇文章主要讨论了NADPH是如何通过ROS来调控肠道屏障稳态，疾病感染和肠道炎症的。进一步研究单基因VEOIBD(very early onset of IBD，及早发炎症性肠病)和共生菌作为ROS来源支持了H2O2(过氧化氢)作为屏障生态系统中关键有益信使的观点。</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2019/01/11/胃肠道内的NADPH氧化酶类和活性氧信号通路/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/01/07/statTarget-基于QC样本的代谢组学数据校正/" title="statTarget-基于QC样本的代谢组学数据校正" itemprop="url">statTarget-基于QC样本的代谢组学数据校正</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2019-01-07T05:46:50.000Z" itemprop="datePublished"> Published 2019-01-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
-<p>质量控制是基于质谱组学数据获得可重复性和准确性结果的必要步骤。重复使用相同的QC样本在MS run order序列中对信号漂移的评估和校正越来越被接受，尤其有利于提高批次间实验数据的质量，statTarget是一个流线型的工具，它为基于质量控制的信号校正、多批实验的MS数据集成以及基于MS的组学数据的综合统计分析提供了图形化的用户界面。本文档旨在指导用户使用函数执行数据分析，如shiftCor、statAnalysis、statTargetGUI函数等。</p>
-</blockquote>
-<p><img src="https://s2.ax1x.com/2019/01/07/Fb6uo6.png" alt="Fig.1"></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2019/01/07/statTarget-基于QC样本的代谢组学数据校正/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2018/12/31/我的2018，从快乐出发到草草收场/" title="我的2018，从快乐出发到草草收场" itemprop="url">我的2018，从快乐出发到草草收场</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2018-12-31T12:50:24.000Z" itemprop="datePublished"> Published 2018-12-31</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=3ef3575d940a304e462fa8a8b0a1cce3/80cb39dbb6fd526613fa1f4da818972bd5073691.jpg" alt="匆匆那年剧照 图片来源于百度百科"><br>年轻的时候 我们对未知的事情 既好奇 又害怕 想要接近又不敢触碰 往往在这困惑和犹豫里 错过了最真挚的时刻 最美好的人 很多时候 青春往往不是鲜花的盛放 而是一场兵荒马乱的草草收场 —-九夜茴《匆匆那年》</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2018/12/31/我的2018，从快乐出发到草草收场/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2018/12/28/代谢组学数据处理软件——NormalizeMets/" title="代谢组学数据处理软件——NormalizeMets" itemprop="url">代谢组学数据处理软件——NormalizeMets</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2018-12-28T04:03:40.000Z" itemprop="datePublished"> Published 2018-12-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
-<p><code>NormalizeMets</code>是一个R语言集成包，主要用于代谢组学研究中数据的归一化。这个包可以用于去除数据中的噪音，如大样本中存在的共性问题——质谱信号偏移。那么除此之外，这个包还可以进行图形的交互式可视化以及获得一些常规的统计结果，如生物标记物的发现，聚类及PCA分析，分类及相关性分析。</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2018/12/28/代谢组学数据处理软件——NormalizeMets/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2018/12/26/FELLA-代谢组学富集分析软件介绍/" title="FELLA:代谢组学富集分析软件介绍" itemprop="url">FELLA:代谢组学富集分析软件介绍</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
-		
-  </p><p class="article-time">
-    <time datetime="2018-12-26T03:54:24.000Z" itemprop="datePublished"> Published 2018-12-26</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="https://s1.ax1x.com/2018/12/26/F2Sx2T.png" alt=""></p>
-<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
-<p>通路富集分析技术对于理解代谢组学数据背后的潜在生物学意义是非常有用的，它们的目的是根据代谢途径中所包含的先验知识，为受影响的代谢物提供上下游关系。然而，对广义代谢通路的解释仍然具有挑战性，因为路径之间会有重叠和交叉。</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2018/12/26/FELLA-代谢组学富集分析软件介绍/#more">点我更多哦</a>
-          
-       </p>
-    </div>
-    
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
-  </nav>
-
+<div class="next">
+<a href="/2019/02/12/机器学习简介/" title="机器学习简介">
+ <strong>下一篇：</strong><br> 
+ <span>机器学习简介
+</span>
+</a>
 </div>
+
+</nav>
+
+	
+<section id="comment">
+  
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -778,15 +473,112 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dayueban';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
 
 
 
@@ -875,4 +667,4 @@ _ts(option);
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>

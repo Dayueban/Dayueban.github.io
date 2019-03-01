@@ -11,25 +11,26 @@
     
 
     
-    <meta name="description" content="导读代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包muma (metabolomics univariate and multivariate statistical analysis)，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析.">
+    <meta name="description" content="导读代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包muma (metabolomics univariate and multivariate statistical analysis)，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析. 如">
 <meta name="keywords" content="单变量,多元统计,R包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="muma-代谢组学单变量和多变量统计分析R包">
 <meta property="og:url" content="https://dayueban.com/2019/02/23/muma-代谢组学单变量和多变量统计分析R包/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="导读代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包muma (metabolomics univariate and multivariate statistical analysis)，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析.">
+<meta property="og:description" content="导读代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包muma (metabolomics univariate and multivariate statistical analysis)，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析. 如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/02/23/khjOU0.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6673686-216a51cbc60e3974.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-fbf32275f588667d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-8858264663f7adbc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-2d3a80b42a0d6002.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-cfc081880f87d1f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-ff2106c0d8126c32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-2375545d7b156973.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-02-23T15:47:58.585Z">
+<meta property="og:updated_time" content="2019-02-23T15:54:27.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="muma-代谢组学单变量和多变量统计分析R包">
-<meta name="twitter:description" content="导读代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包muma (metabolomics univariate and multivariate statistical analysis)，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析.">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/02/23/khjOU0.png">
+<meta name="twitter:description" content="导读代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包muma (metabolomics univariate and multivariate statistical analysis)，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析. 如">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/6673686-216a51cbc60e3974.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
     
@@ -109,9 +110,8 @@
 		
 		</div>
 		
-		<p><img src="https://s2.ax1x.com/2019/02/23/khjOU0.png" alt="文章截图"></p>
+		<p><img src="http://upload-images.jianshu.io/upload_images/6673686-216a51cbc60e3974.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章截图"></p>
 <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><p>代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包<code>muma (metabolomics univariate and multivariate statistical analysis)</code>，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析.</p>
-<a id="more"></a>
 <h1 id="如何运行muma软件"><a href="#如何运行muma软件" class="headerlink" title="如何运行muma软件"></a>如何运行muma软件</h1><p><strong>我们先看下如下的流程图</strong><br><img src="https://upload-images.jianshu.io/upload_images/6673686-fbf32275f588667d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="muma软件流程图"></p>
 <h2 id="文件准备"><a href="#文件准备" class="headerlink" title="文件准备"></a>文件准备</h2><p><strong>文件准备如下图所示</strong></p>
 <ul>
@@ -131,8 +131,10 @@
 </ul>
 <p>2.3 | 实例运行<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explore.data(file = <span class="string">"MetaBc.csv"</span>, scaling = <span class="string">"pareto"</span>, scal = <span class="literal">TRUE</span>, </span><br><span class="line">imputation = <span class="literal">TRUE</span>, imput = <span class="string">"mean"</span>)</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>这一步做了如下这些事：<br>1）读取了数据表，以及将可能存在的负值转为数值<code>0</code>。<br>2）我们可能读取的数据表是含有缺失值的，该函数的<code>imputation</code>参数值默认为<code>FALSE</code>，但是如果设置为<code>TRUE</code>就可以通过指定填充的方法，这里有四种填充的方式：a. 平均值，一般就是用这个变量在所有个体中的平均值作为缺失值的填充值；b. 最小值；c. 最小值的一半；d. 用数值<code>0</code>作为填充值<br>3）另外，如果某个变量在大于80%的个体中都是缺失的话，那么默认会把这个变量给删除<br>4）接下来就是对数据进行标度化处理，这里也介绍了常见的<strong>5种</strong>方法：a. pareto scaling（柏拉图标准化，与标准差标准化类似，但是区别就是除的是标准差的平方根）；b. auto scaling（又叫单位方差标准化，标准差标准化，Z-core标准化等，具体实施方法就是变量减去平均值后再除以标准差，得到均值为0，标准差为1的数据结构）；c. vast scaling（在auto scaling的基础上乘以平均值和标准差的比值）；d. range scaling（就是最大值最小值标准化，每个变量减去平均值后除以最大值减去最小值的差）；e. median scaling（和range scaling类似，只不过不是减平均值，而是减去中位数）<br>5）最后一部分是该函数还进行了<strong>PCA分析</strong>。默认产生包含1个主成分的PCA图和scree图</li>
+<li>这一步做了如下这些事：<br>1）读取了数据表，以及将可能存在的负值转为数值<code>0</code>。<br>2）我们可能读取的数据表是含有缺失值的，该函数的<code>imputation</code>参数值默认为<code>FALSE</code>，但是如果设置为<code>TRUE</code>就可以通过指定填充的方法，这里有四种填充的方式：a. 平均值，一般就是用这个变量在所有个体中的平均值作为缺失值的填充值；b. 最小值；c. 最小值的一半；d. 用数值<code>0</code>作为填充值<br>3）另外，如果某个变量在大于80%的个体中都是缺失的话，那么默认会把这个变量给删除<br>4）接下来就是对数据进行标度化处理，这里也介绍了常见的<strong>5种</strong>方法：a. pareto scaling（柏拉图标准化，与标准差标准化类似，但是区别就是除的是标准差的平方根）；b. auto scaling（又叫单位方差标准化，标准差标准化，Z-core标准化等，具体实施方法就是变量减去平均值后再除以标准差，得到均值为0，标准差为1的数据结构）；c. vast scaling（在auto scaling的基础上乘以平均值和标准差的比值）；d. range scaling（就是最大值最小值标准化，每个变量减去平均值后除以最大值减去最小值的差）；e. median scaling（和range scaling类似，只不过不是减平均值，而是减去中位数）</li>
 </ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-2d3a80b42a0d6002.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="常见的代谢组学数据预处理方法"></p>
+<p>5）最后一部分是该函数还进行了<strong>PCA分析</strong>。默认产生包含1个主成分的PCA图和scree图</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/6673686-cfc081880f87d1f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PCA图"></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/6673686-ff2106c0d8126c32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Screeplot"></p>
 <p><strong>3 | 主成分分析</strong></p>
@@ -185,6 +187,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev">
+ <a href="/2019/03/01/batchCorr包-非靶向代谢组学数据校正/" title="batchCorr包-非靶向代谢组学数据校正">
+  <strong>上一篇：</strong><br>
+  <span>
+  batchCorr包-非靶向代谢组学数据校正</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2019/02/20/代谢组学数据-统计分析及生物靶标挖掘/" title="代谢组学数据-统计分析及生物靶标挖掘">
@@ -233,7 +243,7 @@
 		  
 		
 		  
-			<li><a href="/categories/代谢组学/" title="代谢组学">代谢组学<sup>10</sup></a></li>
+			<li><a href="/categories/代谢组学/" title="代谢组学">代谢组学<sup>11</sup></a></li>
 		  
 		
 		  
@@ -270,7 +280,7 @@
 			
 		
 			
-				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
+				<li><a href="/tags/R包/" title="R包">R包<sup>2</sup></a></li>
 			
 		
 			
@@ -278,11 +288,23 @@
 			
 		
 			
-				<li><a href="/tags/data-analysis/" title="data analysis">data analysis<sup>1</sup></a></li>
+				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Statistics/" title="Statistics">Statistics<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bioconductor/" title="bioconductor">bioconductor<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-analysis/" title="data analysis">data analysis<sup>1</sup></a></li>
 			
 		
 			
@@ -298,39 +320,7 @@
 			
 		
 			
-				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/alpha/" title="alpha">alpha<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/bioconductor/" title="bioconductor">bioconductor<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ORF预测/" title="ORF预测">ORF预测<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NMDS/" title="NMDS">NMDS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/2018年终总结/" title="2018年终总结">2018年终总结<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/肠道菌群定植/" title="肠道菌群定植">肠道菌群定植<sup>1</sup></a></li>
 			
 		
 			
@@ -338,7 +328,27 @@
 			
 		
 			
-				<li><a href="/tags/菌群-宿主互作/" title="菌群-宿主互作">菌群-宿主互作<sup>1</sup></a></li>
+				<li><a href="/tags/肠道菌群定植/" title="肠道菌群定植">肠道菌群定植<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ORF预测/" title="ORF预测">ORF预测<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/statTarget/" title="statTarget">statTarget<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/QC/" title="QC">QC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -373,7 +383,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">Archives</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">8</span></li></ul>
   </div>
 
 
@@ -381,7 +391,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">Tag Cloud</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/2018年终总结/" style="font-size: 10px;">2018年终总结</a> <a href="/tags/FXR受体/" style="font-size: 10px;">FXR受体</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/KEGG/" style="font-size: 10px;">KEGG</a> <a href="/tags/NADPH/" style="font-size: 10px;">NADPH</a> <a href="/tags/NMDS/" style="font-size: 10px;">NMDS</a> <a href="/tags/ORF预测/" style="font-size: 10px;">ORF预测</a> <a href="/tags/QC/" style="font-size: 10px;">QC</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/ROS/" style="font-size: 10px;">ROS</a> <a href="/tags/Regression/" style="font-size: 10px;">Regression</a> <a href="/tags/R包/" style="font-size: 10px;">R包</a> <a href="/tags/Statistics/" style="font-size: 10px;">Statistics</a> <a href="/tags/TGR5受体/" style="font-size: 10px;">TGR5受体</a> <a href="/tags/alpha/" style="font-size: 10px;">alpha</a> <a href="/tags/beta多样性/" style="font-size: 13.33px;">beta多样性</a> <a href="/tags/bioconductor/" style="font-size: 10px;">bioconductor</a> <a href="/tags/biomarker/" style="font-size: 10px;">biomarker</a> <a href="/tags/data-analysis/" style="font-size: 10px;">data analysis</a> <a href="/tags/ggplot2/" style="font-size: 10px;">ggplot2</a> <a href="/tags/statTarget/" style="font-size: 10px;">statTarget</a> <a href="/tags/代谢物靶标/" style="font-size: 10px;">代谢物靶标</a> <a href="/tags/代谢组学/" style="font-size: 10px;">代谢组学</a> <a href="/tags/使用软件包/" style="font-size: 10px;">使用软件包</a> <a href="/tags/免疫/" style="font-size: 10px;">免疫</a> <a href="/tags/单变量/" style="font-size: 10px;">单变量</a> <a href="/tags/单变量分析/" style="font-size: 10px;">单变量分析</a> <a href="/tags/变量选择/" style="font-size: 10px;">变量选择</a> <a href="/tags/多元统计/" style="font-size: 10px;">多元统计</a> <a href="/tags/多元统计分析/" style="font-size: 10px;">多元统计分析</a> <a href="/tags/实用软件包/" style="font-size: 10px;">实用软件包</a> <a href="/tags/实验设计/" style="font-size: 13.33px;">实验设计</a> <a href="/tags/富集分析/" style="font-size: 10px;">富集分析</a> <a href="/tags/支链氨基酸/" style="font-size: 10px;">支链氨基酸</a> <a href="/tags/数据分析/" style="font-size: 16.67px;">数据分析</a> <a href="/tags/数据归一化/" style="font-size: 10px;">数据归一化</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/比较基因组学/" style="font-size: 10px;">比较基因组学</a> <a href="/tags/液相色谱质谱/" style="font-size: 10px;">液相色谱质谱</a> <a href="/tags/生化指标/" style="font-size: 10px;">生化指标</a> <a href="/tags/粘膜屏障/" style="font-size: 10px;">粘膜屏障</a> <a href="/tags/糖代谢/" style="font-size: 10px;">糖代谢</a> <a href="/tags/肠道/" style="font-size: 10px;">肠道</a> <a href="/tags/肠道菌群定植/" style="font-size: 10px;">肠道菌群定植</a> <a href="/tags/芳香族氨基酸/" style="font-size: 10px;">芳香族氨基酸</a> <a href="/tags/菌群/" style="font-size: 10px;">菌群</a> <a href="/tags/菌群-宿主互作/" style="font-size: 10px;">菌群-宿主互作</a> <a href="/tags/面积图/" style="font-size: 10px;">面积图</a>
+       <a href="/tags/2018年终总结/" style="font-size: 10px;">2018年终总结</a> <a href="/tags/FXR受体/" style="font-size: 10px;">FXR受体</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/KEGG/" style="font-size: 10px;">KEGG</a> <a href="/tags/NADPH/" style="font-size: 10px;">NADPH</a> <a href="/tags/NMDS/" style="font-size: 10px;">NMDS</a> <a href="/tags/ORF预测/" style="font-size: 10px;">ORF预测</a> <a href="/tags/QC/" style="font-size: 10px;">QC</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/ROS/" style="font-size: 10px;">ROS</a> <a href="/tags/Regression/" style="font-size: 10px;">Regression</a> <a href="/tags/R包/" style="font-size: 13.33px;">R包</a> <a href="/tags/Statistics/" style="font-size: 10px;">Statistics</a> <a href="/tags/TGR5受体/" style="font-size: 10px;">TGR5受体</a> <a href="/tags/alpha/" style="font-size: 10px;">alpha</a> <a href="/tags/batchCorr/" style="font-size: 10px;">batchCorr</a> <a href="/tags/beta多样性/" style="font-size: 13.33px;">beta多样性</a> <a href="/tags/bioconductor/" style="font-size: 10px;">bioconductor</a> <a href="/tags/biomarker/" style="font-size: 10px;">biomarker</a> <a href="/tags/data-analysis/" style="font-size: 10px;">data analysis</a> <a href="/tags/ggplot2/" style="font-size: 10px;">ggplot2</a> <a href="/tags/informatics/" style="font-size: 10px;">informatics</a> <a href="/tags/statTarget/" style="font-size: 10px;">statTarget</a> <a href="/tags/代谢物靶标/" style="font-size: 10px;">代谢物靶标</a> <a href="/tags/代谢组学/" style="font-size: 10px;">代谢组学</a> <a href="/tags/使用软件包/" style="font-size: 10px;">使用软件包</a> <a href="/tags/免疫/" style="font-size: 10px;">免疫</a> <a href="/tags/单变量/" style="font-size: 10px;">单变量</a> <a href="/tags/单变量分析/" style="font-size: 10px;">单变量分析</a> <a href="/tags/变量选择/" style="font-size: 10px;">变量选择</a> <a href="/tags/多元统计/" style="font-size: 10px;">多元统计</a> <a href="/tags/多元统计分析/" style="font-size: 10px;">多元统计分析</a> <a href="/tags/实用软件包/" style="font-size: 10px;">实用软件包</a> <a href="/tags/实验设计/" style="font-size: 13.33px;">实验设计</a> <a href="/tags/富集分析/" style="font-size: 10px;">富集分析</a> <a href="/tags/支链氨基酸/" style="font-size: 10px;">支链氨基酸</a> <a href="/tags/数据分析/" style="font-size: 16.67px;">数据分析</a> <a href="/tags/数据归一化/" style="font-size: 10px;">数据归一化</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/比较基因组学/" style="font-size: 10px;">比较基因组学</a> <a href="/tags/液相色谱质谱/" style="font-size: 10px;">液相色谱质谱</a> <a href="/tags/生化指标/" style="font-size: 10px;">生化指标</a> <a href="/tags/粘膜屏障/" style="font-size: 10px;">粘膜屏障</a> <a href="/tags/糖代谢/" style="font-size: 10px;">糖代谢</a> <a href="/tags/肠道/" style="font-size: 10px;">肠道</a> <a href="/tags/肠道菌群定植/" style="font-size: 10px;">肠道菌群定植</a> <a href="/tags/芳香族氨基酸/" style="font-size: 10px;">芳香族氨基酸</a> <a href="/tags/菌群/" style="font-size: 10px;">菌群</a> <a href="/tags/菌群-宿主互作/" style="font-size: 10px;">菌群-宿主互作</a> <a href="/tags/面积图/" style="font-size: 10px;">面积图</a>
     </div>
   </div>
 

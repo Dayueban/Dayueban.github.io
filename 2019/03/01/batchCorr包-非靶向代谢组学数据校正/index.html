@@ -1,0 +1,723 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  
+    <title>batchCorr包-非靶向代谢组学数据校正 | 有味</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Dayueban">
+    
+
+    
+    <meta name="description" content="@我的博客：简书  导读 液相色谱 - 质谱（LC-MS）因为可以检测的代谢物的覆盖范围广，灵敏度高和样品制备简单快捷而广泛运用于非靶向代谢组学研究中。如血清、尿液和脑脊液等样本。然而，在大样本多批次数据采集的背景下，仪器本身随着时间的迁移，系统污染以及色谱柱活化再生过程的不当等一系列原因导致仪器对数据反映不稳定。这些不稳定性会直接影响测定的精确分子量、保留时间以及信号响应强度。尤其是在大样本，多">
+<meta name="keywords" content="R包,batchCorr,informatics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="batchCorr包-非靶向代谢组学数据校正">
+<meta property="og:url" content="https://dayueban.com/2019/03/01/batchCorr包-非靶向代谢组学数据校正/index.html">
+<meta property="og:site_name" content="有味">
+<meta property="og:description" content="@我的博客：简书  导读 液相色谱 - 质谱（LC-MS）因为可以检测的代谢物的覆盖范围广，灵敏度高和样品制备简单快捷而广泛运用于非靶向代谢组学研究中。如血清、尿液和脑脊液等样本。然而，在大样本多批次数据采集的背景下，仪器本身随着时间的迁移，系统污染以及色谱柱活化再生过程的不当等一系列原因导致仪器对数据反映不稳定。这些不稳定性会直接影响测定的精确分子量、保留时间以及信号响应强度。尤其是在大样本，多">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-3114ecd50975a685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-ee6352de5281126b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6673686-018c50718bda0c21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-03-01T09:44:40.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="batchCorr包-非靶向代谢组学数据校正">
+<meta name="twitter:description" content="@我的博客：简书  导读 液相色谱 - 质谱（LC-MS）因为可以检测的代谢物的覆盖范围广，灵敏度高和样品制备简单快捷而广泛运用于非靶向代谢组学研究中。如血清、尿液和脑脊液等样本。然而，在大样本多批次数据采集的背景下，仪器本身随着时间的迁移，系统污染以及色谱柱活化再生过程的不当等一系列原因导致仪器对数据反映不稳定。这些不稳定性会直接影响测定的精确分子量、保留时间以及信号响应强度。尤其是在大样本，多">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6673686-3114ecd50975a685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
+
+    
+    <link rel="alternative" href="/atom.xml" title="有味" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon1.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman1.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman1.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo1.png" alt="有味" title="有味"></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="有味">有味</a></h1>
+				<h2 class="blog-motto">当悦纳自我时，每一刻都是最好的自己！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">文件夹 | Archives</a></li>
+					
+						<li><a href="/about">关于我 | About me</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value=""><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</ul></nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/03/01/batchCorr包-非靶向代谢组学数据校正/" title="batchCorr包-非靶向代谢组学数据校正" itemprop="url">batchCorr包-非靶向代谢组学数据校正</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Dayueban" target="_blank" itemprop="author">Dayueban</a>
+		
+  </p><p class="article-time">
+    <time datetime="2019-03-01T09:42:50.000Z" itemprop="datePublished"> Published 2019-03-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#batchCorr包介绍"><span class="toc-number">2.</span> <span class="toc-text">batchCorr包介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用流程"><span class="toc-number">3.</span> <span class="toc-text">使用流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#包的安装和加载"><span class="toc-number">3.1.</span> <span class="toc-text">包的安装和加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例数据"><span class="toc-number">3.2.</span> <span class="toc-text">示例数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单个批次信号校正"><span class="toc-number">3.3.</span> <span class="toc-text">单个批次信号校正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多批次数据信号校正和归一化"><span class="toc-number">3.4.</span> <span class="toc-text">多批次数据信号校正和归一化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">3.5.</span> <span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.6.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>@我的博客：<a href="https://www.jianshu.com/u/1fda92d012f8" target="_blank" rel="noopener">简书</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-3114ecd50975a685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章截图"></p>
+<h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
+<p>液相色谱 - 质谱（LC-MS）因为可以检测的代谢物的覆盖范围广，灵敏度高和样品制备简单快捷而广泛运用于非靶向代谢组学研究中。如<code>血清</code>、<code>尿液</code>和<code>脑脊液</code>等样本。然而，在大样本多批次数据采集的背景下，<strong>仪器本身随着时间的迁移，系统污染以及色谱柱活化再生过程的不当等一系列原因导致仪器对数据反映不稳定</strong>。这些不稳定性会直接影响测定的<code>精确分子量</code>、<code>保留时间</code>以及<code>信号响应强度</code>。尤其是在大样本，多批次样本采集背景下，数据产生的信号漂变会比较严重，一般来说，批次间的系统信号偏差会大于批次内样本间的信号偏差。这些测量误差降低了数据的重复性和再现性，因此可能降低检测生物反应和模糊解释的能力。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="batchCorr包介绍"><a href="#batchCorr包介绍" class="headerlink" title="batchCorr包介绍"></a>batchCorr包介绍</h1><blockquote>
+<p>那么，R软件包<code>batchCorr</code>就是在这样的一个背景下孕育而生的。其主要目的就是为了解决样本在测定过程中随着时间的推移所产生的信号漂变，从而为我们带来更加清新的数据呈现。<strong>该软件包的工作模式是将批次间和批次内的变异分开来单独处理</strong>，其工作路线图如下：</p>
+</blockquote>
+<p><strong>1 | 该软件包主要包含三个模块：</strong></p>
+<ul>
+<li><strong>批次间一致性信号提取和比对；</strong></li>
+<li><strong>批次内离子信号强度偏移的校正；</strong></li>
+<li><strong>批次间数据的归一化。</strong></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-ee6352de5281126b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="a.表示批次内数据处理；b.表示批次间数据处理模式"></p>
+<p><strong>2 | 该教程拟解决的常见问题</strong></p>
+<ul>
+<li><strong>只有一个批次数据信号的校正</strong>：这个是比较容易实现的，适用于只有一个批次的数据，但是又想通过去除原始数据中仪器响应偏离的那部分而提高数据质量的情况。</li>
+<li><strong>多个批次间和批次内数据的校正</strong>：这个相对来说是个比较难啃的骨头，因为这涉及数据一致性，批次间或者批次内数据的变异识别，信号漂变校正和归一化处理，步骤比较繁琐。<blockquote>
+<p>针对以上这两种情况，该教程将讨论有关特定任务的问题以及使用程序包随附的数据显示工作代码。因此，您应该能够按照本教程生成数据输出和数据，以检查算法及其使用是否正确。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h1><h2 id="包的安装和加载"><a href="#包的安装和加载" class="headerlink" title="包的安装和加载"></a>包的安装和加载</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(<span class="string">"devtools"</span>) <span class="comment"># 先安装devtools包，后面马上要用到</span></span><br><span class="line">install_git(<span class="string">"https://gitlab.com/CarlBrunius/batchCorr.git"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="示例数据"><a href="#示例数据" class="headerlink" title="示例数据"></a>示例数据</h2><ul>
+<li><p><em>batchCorr</em>算法需要表格格式的峰数据（<strong>peakTable</strong>），行表型进样个体，列表示变量。另外还需要一个包含样品信息，批次信息，进样分类，进样顺序的<strong>metadata</strong>表格。<strong>值得注意是，metadata表和peadTable表中的进样顺序要一致。</strong>如果不确定的话，可以通过以下指令进行确证。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">identical(rownames(peakTable),metadata$sampleName)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外一个在使用前需要注意的地方就是：对于信号偏移的校正，需要<code>peakTable</code>不能含有缺失值；对于批次间的比对和数据一致性分析，需要用到没有进行缺失值处理的<code>peakTable</code>表。那么在今天介绍的数据流程分析中，作者采用<code>xcms</code>包进行峰提取，函数是<code>fillPeaks()</code>，接下来就是通过内部的多变量缺失值填充的方法。</p>
+</li>
+</ul>
+<h2 id="单个批次信号校正"><a href="#单个批次信号校正" class="headerlink" title="单个批次信号校正"></a>单个批次信号校正</h2><p><strong>1 | 首先加载分析包以及示例数据</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(batchCorr)</span><br><span class="line">data(<span class="string">'OneBatchData'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>2 | 数据组成</strong></p>
+<ul>
+<li>B_PT表含peak信息的表（没有确实数据，如经过fillPeaks处理和imputation填充）</li>
+<li>B_meta表包含批次信息（所有来自批次B的样本）、样品分组（QC或者Reference）以及进样顺序（进样序列的编号）</li>
+</ul>
+<p><strong>3 | 单个批次信号漂变的校正</strong><br><strong>3.1 | 第一条命令</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">batchBCorr &lt;- correctDrift(peakTable = B_PT, injections = B_meta$inj, </span><br><span class="line">                           sampleGroups = B_meta$grp, QCID = <span class="string">'QC'</span>, </span><br><span class="line">                           modelNames = <span class="string">'VVE'</span>, G = <span class="number">17</span>:<span class="number">22</span>)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>运行这条命令需要大概几分钟的时间，取决于你的PC电脑的配置。因为batchCorr采用的是mclust包进行分类，分析的算法采用的是<code>VVE</code>，聚类数目从17开始试到22。</p>
+</blockquote>
+<ul>
+<li>peakTable：样本信息在行，特征值信息在列，特征值id需要唯一；</li>
+<li>injection：样品或者QC的进样顺序；</li>
+<li>sampleGroup：后接一个向量，如分组信息；</li>
+<li>QCID：将QC在sampleGroup的标识名称写出，如这里就是<code>QC</code>；</li>
+<li>modelNames和G参数：可以参考mclust包的解释</li>
+</ul>
+<p><strong>3.1.1 | 结果解释</strong><br>该命令运行结束后，会得到几个PDF的图，先看下cluster_BIC图：</p>
+<ul>
+<li>从该图得到的信息有，BIC（<strong>BIC值越大则说明所选取的变量集合拟合效果越好</strong>）值取最高时对应的cluster数目，这里是22。</li>
+<li>当然这几个参数都是可以根据现实需要进行调节的，如modelNames = c(‘VVV’,’VVE’,’VEV’,’VEE’,’VEI’,’VVI’,’VII’) 和G = seq(5,35,by=10)，<strong>只不过运行时间也会延长。</strong></li>
+<li>最终变量集合拟合的结果依赖于原始数据的质量（因为仪器设备的质量和信号漂变也是随机的），如果是比较正常且质量较高的数据，聚类簇的数目一般在6~25。如果是质量比较差的数据，那么G的设置可能会&gt;50。但是实际上，作者并不认为设置如此大的聚类数是一个合理的选择，因此，40就是上限了。上述的这些一般性程序可以帮助你在有限的时间内找到合适你数据的参数。</li>
+<li>上述构建的信号漂变的校正用到了QC样本，通过在整个进样序列中QC信号强度的漂变来构建模型。作者认为batchCorr之所以和其它信号校正工具相比显得独树一帜，是因为运用了上述提及的那些聚类方法来将特征值聚成一个个信号漂变的结合从而避免将仪器噪声也聚类进去的可能。</li>
+<li>batchCorr校正信号漂变的方法有QC和外来的参考样本。当然，QC样本是目前大多数实验室采用的一种方法。主要原因有两个：1）监控仪器性能和稳定性；2）对信号校正是否提高了数据质量的五篇估计——如果质量并没有提高，那么就不会对该cluster进行信号校正，因为这可能会带来其他的数据偏差成分。</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/6673686-018c50718bda0c21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="cluster BIC图"></p>
+<p><strong>3.2 | 第二条命令</strong></p>
+<blockquote>
+<p>当然，如果在数据采集的批次中间隔插入了参考样本信息，那么<code>correctDrift()</code>函数也可以进行适当的调整来适应。可以通过增加参数’refID’来指定那些样品是参考样品（在这个数据集中就是”Ref”）:<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">batchBCorr &lt;- correctDrift(peakTable = B_PT, injections = B_meta$inj, </span><br><span class="line">                           sampleGroups = B_meta$grp, QCID = <span class="string">'QC'</span>, </span><br><span class="line">                           RefID=<span class="string">'Ref'</span>, modelNames = <span class="string">'VVE'</span>, G = <span class="number">17</span>:<span class="number">22</span>)</span><br><span class="line">testFeatsFinal &lt;- batchBCorr$TestFeatsFinal <span class="comment"># 提取信号校正后，在QC样本中CV 值小于0.3的数据，后续的统计分析用到的就是这张校正好且变异系数在合理范围内的数据</span></span><br><span class="line">testFeatsFinal &lt;- as.data.frame(testFeatsFinal)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>3.2.1 | 结果解释</strong></p>
+<ul>
+<li>这条命令运行完后得到的结果存储在<code>batchCorr</code>对象中，那么相关的信息查看可以通过<code>$</code>字符来提取。如<code>batchCorr$actionInfo</code>可以查看每个集合发生了什么变化；<code>batchCorr$testFeatsCorr</code>可以查看提取经过信号校正的数据；<code>batchCorr$testFeatsFinal</code>可以查看提取通过评判标准QC CV（变异系数）值&lt;所设置的阈值（默认是0.3）。</li>
+</ul>
+<h2 id="多批次数据信号校正和归一化"><a href="#多批次数据信号校正和归一化" class="headerlink" title="多批次数据信号校正和归一化"></a>多批次数据信号校正和归一化</h2><p><strong>4 | 多批次间数据信号漂变的校正</strong><br><strong>4.1 | 加载含多个批次的数据集合</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(batchCorr)</span><br><span class="line">data(<span class="string">'ThreeBatchData'</span>) <span class="comment"># 加载数据</span></span><br></pre></td></tr></table></figure></p>
+<p>加载的这个数据集包含三个对象：</p>
+<ul>
+<li>PTnofill是含有缺失数据的质谱峰表，比如没有进行fillPeak和imputation；</li>
+<li>PTfill则是不含缺失数据，也就是经过fillPeak和imputation的质谱峰强度信息表；</li>
+<li>meta如上所述，是包含批次信息（如样品是来自三个批次，B、F和H）、样品分组和进样顺序信息。</li>
+</ul>
+<p><strong>4.2 | 首先来执行批次间的比对</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Perform batch alignment</span></span><br><span class="line"><span class="comment"># Extract peakinfo (i.e. m/z and rt of features)</span></span><br><span class="line">peakIn &lt;- peakInfo(PT = PTnofill, sep = <span class="string">'@'</span>, start = <span class="number">3</span>) <span class="comment"># These column names have 2 leading characters describing LC-MS mode -&gt; start at 3</span></span><br><span class="line">dim(PTnofill)</span><br><span class="line"><span class="comment"># [1]    90 11815 没有比对之前是共有11815个features值</span></span><br><span class="line"><span class="comment"># Perform multi-batch alignment</span></span><br><span class="line">alignBat &lt;- alignBatches(peakInfo = peakIn, PeakTabNoFill = PTnofill, PeakTabFilled = PTfill, batches = meta$batch, sampleGroups = meta$grp, selectGroup = <span class="string">'QC'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Extract new peak table</span></span><br><span class="line">PT=alignBat$PTalign</span><br><span class="line">dim(PT)</span><br><span class="line"><span class="comment"># [1]    90 11284 比对后的feature个数减少到11284个。</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>4.2.1 | 结果解释</strong></p>
+<ul>
+<li>这一步就是以PTfill表为参考，因为PTfill是经过人为进行缺失值处理和填充处理的表。而PTnofill是原始的未经过处理的表（含有很多NA值）。<strong>这里的比对主要是将每个批次的缺失特征值集中起来并在不同批次之间进行比较：也就说如果两个特征值的mz值和rt都很接近，并且在不同批次间的缺失/存在特性一致，那么就将这两个特征值合并。</strong></li>
+</ul>
+<p><strong>4.3 | 分批进行批次内信号校正</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Batch B</span></span><br><span class="line">batchB &lt;- getBatch(peakTable = PT, meta = meta, batch = meta$batch, select = <span class="string">'B'</span>)</span><br><span class="line">BCorr &lt;- correctDrift(peakTable = batchB$peakTable, injections = batchB$meta$inj,</span><br><span class="line">                      sampleGroups = batchB$meta$grp, QCID = <span class="string">'QC'</span>,</span><br><span class="line">                      G = seq(<span class="number">5</span>,<span class="number">35</span>,by=<span class="number">3</span>), modelNames = c(<span class="string">'VVE'</span>, <span class="string">'VEE'</span>))</span><br><span class="line"><span class="comment"># Batch F</span></span><br><span class="line">batchF &lt;- getBatch(peakTable = PT, meta = meta, batch = meta$batch, select = <span class="string">'F'</span>)</span><br><span class="line">FCorr &lt;- correctDrift(peakTable = batchF$peakTable, injections = batchF$meta$inj,</span><br><span class="line">                      sampleGroups = batchF$meta$grp, QCID = <span class="string">'QC'</span>,</span><br><span class="line">                      G = seq(<span class="number">5</span>,<span class="number">35</span>,by=<span class="number">3</span>), modelNames = c(<span class="string">'VVE'</span>, <span class="string">'VEE'</span>))</span><br><span class="line"><span class="comment"># Batch H</span></span><br><span class="line">batchH &lt;- getBatch(peakTable = PT, meta = meta, batch = meta$batch, select = <span class="string">'H'</span>)</span><br><span class="line">HCorr &lt;- correctDrift(peakTable = batchH$peakTable, injections = batchH$meta$inj,</span><br><span class="line">                      sampleGroups = batchH$meta$grp, QCID = <span class="string">'QC'</span>, </span><br><span class="line">                      G = seq(<span class="number">5</span>,<span class="number">35</span>,by=<span class="number">3</span>),modelNames = c(<span class="string">'VVE'</span>, <span class="string">'VEE'</span>))</span><br></pre></td></tr></table></figure></p>
+<p><strong>4.3.1 | 结果解释</strong></p>
+<ul>
+<li>关于这几步的结果其实和前面讲的单个批次信号校正的参数和结果是一致的，可参考前面的说明</li>
+</ul>
+<p><strong>4.4 | 最后一步：不同批次校正结果合并及归一化</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mergedData &lt;- mergeBatches(list(BCorr,FCorr,HCorr))</span><br><span class="line">normData &lt;- normalizeBatches(peakTable = mergedData$peakTable, </span><br><span class="line">                             batches = meta$batch, sampleGroup = meta$grp, </span><br><span class="line">                             refGroup = <span class="string">'Ref'</span>, population = <span class="string">'sample'</span>) <span class="comment"># refGroup也可以设置为"QC"</span></span><br><span class="line">PTnorm &lt;- normData$peakTable <span class="comment"># 该数据结果可以用于后续的统计分析</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>4.1 | 结果解释</strong></p>
+<ul>
+<li>mergeBatches函数可以将QC 中CV值&lt;30%且在50%样本中存在的features合并，最终得到包含9,42个特征值的代谢物特征值丰度表。当然这个质控的比例可以通过参数qualRatio进行调整；</li>
+<li>normalizeBatches函数将会检查参考样本是否如何一定的质控标准，如果符合，那么就对其进行归一化；如果不符合标准，那么就一整个群体的中位数进行归一化。</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
+<p>基本上的流程上面已经介绍完了，由于本人知识储备不是很足，所以在个人理解上会有瑕疵，请大家酌情而论。如果我有任何错误，请您及时发送邮件<a href="mailto:jnzd_hemaozhang@hotmail.com" target="_blank" rel="noopener">jnzd_hemaozhang@hotmail.com</a>告知我，不胜感激！最后祝大家科研顺利！</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] Large-scale untargeted LC-MS metabolomics data correction using between-batch feature alignment and cluster-based within-batch signal intensity drift correction<br>[2] A Brief Tutorial on batchCorr: An R package for between- and within-batch drift correction of high-resolution mass spectrometry-based data.链接: <a href="https://pan.baidu.com/s/1rW2LTuBKolMKFfox34L3PQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1rW2LTuBKolMKFfox34L3PQ</a><br>提取码：lrxi </p>
+  
+	</div>
+		
+    <script type="text/javascript">
+    var disqus_shortname = 'dayueban';
+    var disqus_config = function () {
+        this.page.url = 'https://dayueban.com/2019/03/01/batchCorr包-非靶向代谢组学数据校正/';
+        this.page.identifier = '/2019/03/01/batchCorr包-非靶向代谢组学数据校正/';
+        this.page.title = 'batchCorr包-非靶向代谢组学数据校正';
+    };
+    (function(){
+      var d = document;
+      var dsq = d.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (d.head || d.body).appendChild(dsq);
+    })();
+    </script>
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/02/23/muma-代谢组学单变量和多变量统计分析R包/" title="muma-代谢组学单变量和多变量统计分析R包">
+ <strong>下一篇：</strong><br> 
+ <span>muma-代谢组学单变量和多变量统计分析R包
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comment">
+  
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#导读"><span class="toc-number">1.</span> <span class="toc-text">导读</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#batchCorr包介绍"><span class="toc-number">2.</span> <span class="toc-text">batchCorr包介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用流程"><span class="toc-number">3.</span> <span class="toc-text">使用流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#包的安装和加载"><span class="toc-number">3.1.</span> <span class="toc-text">包的安装和加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例数据"><span class="toc-number">3.2.</span> <span class="toc-text">示例数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单个批次信号校正"><span class="toc-number">3.3.</span> <span class="toc-text">单个批次信号校正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多批次数据信号校正和归一化"><span class="toc-number">3.4.</span> <span class="toc-text">多批次数据信号校正和归一化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">3.5.</span> <span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.6.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Bioinformatics/" title="Bioinformatics">Bioinformatics<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代谢物/" title="代谢物">代谢物<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代谢组学/" title="代谢组学">代谢组学<sup>11</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/宏基因组/" title="宏基因组">宏基因组<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/机器学习/" title="机器学习">机器学习<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/胆汁酸/" title="胆汁酸">胆汁酸<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/软件下载/" title="软件下载">软件下载<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R包/" title="R包">R包<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/beta多样性/" title="beta多样性">beta多样性<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Statistics/" title="Statistics">Statistics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bioconductor/" title="bioconductor">bioconductor<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-analysis/" title="data analysis">data analysis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ggplot2/" title="ggplot2">ggplot2<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面积图/" title="面积图">面积图<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/alpha/" title="alpha">alpha<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/免疫/" title="免疫">免疫<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/肠道菌群定植/" title="肠道菌群定植">肠道菌群定植<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ORF预测/" title="ORF预测">ORF预测<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/statTarget/" title="statTarget">statTarget<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/QC/" title="QC">QC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/芳香族氨基酸/" title="芳香族氨基酸">芳香族氨基酸<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.codeceo.com/" target="_blank" title="一个面向程序员交流分享的新一代社区">码农网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.jianshu.com/u/1fda92d012f8" target="_blank" title="Dayueban(简书)">Dayueban(简书)</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.sthda.com/english/" target="_blank" title="STHDA">STHDA</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">8</span></li></ul>
+  </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/2018年终总结/" style="font-size: 10px;">2018年终总结</a> <a href="/tags/FXR受体/" style="font-size: 10px;">FXR受体</a> <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/KEGG/" style="font-size: 10px;">KEGG</a> <a href="/tags/NADPH/" style="font-size: 10px;">NADPH</a> <a href="/tags/NMDS/" style="font-size: 10px;">NMDS</a> <a href="/tags/ORF预测/" style="font-size: 10px;">ORF预测</a> <a href="/tags/QC/" style="font-size: 10px;">QC</a> <a href="/tags/R/" style="font-size: 20px;">R</a> <a href="/tags/ROS/" style="font-size: 10px;">ROS</a> <a href="/tags/Regression/" style="font-size: 10px;">Regression</a> <a href="/tags/R包/" style="font-size: 13.33px;">R包</a> <a href="/tags/Statistics/" style="font-size: 10px;">Statistics</a> <a href="/tags/TGR5受体/" style="font-size: 10px;">TGR5受体</a> <a href="/tags/alpha/" style="font-size: 10px;">alpha</a> <a href="/tags/batchCorr/" style="font-size: 10px;">batchCorr</a> <a href="/tags/beta多样性/" style="font-size: 13.33px;">beta多样性</a> <a href="/tags/bioconductor/" style="font-size: 10px;">bioconductor</a> <a href="/tags/biomarker/" style="font-size: 10px;">biomarker</a> <a href="/tags/data-analysis/" style="font-size: 10px;">data analysis</a> <a href="/tags/ggplot2/" style="font-size: 10px;">ggplot2</a> <a href="/tags/informatics/" style="font-size: 10px;">informatics</a> <a href="/tags/statTarget/" style="font-size: 10px;">statTarget</a> <a href="/tags/代谢物靶标/" style="font-size: 10px;">代谢物靶标</a> <a href="/tags/代谢组学/" style="font-size: 10px;">代谢组学</a> <a href="/tags/使用软件包/" style="font-size: 10px;">使用软件包</a> <a href="/tags/免疫/" style="font-size: 10px;">免疫</a> <a href="/tags/单变量/" style="font-size: 10px;">单变量</a> <a href="/tags/单变量分析/" style="font-size: 10px;">单变量分析</a> <a href="/tags/变量选择/" style="font-size: 10px;">变量选择</a> <a href="/tags/多元统计/" style="font-size: 10px;">多元统计</a> <a href="/tags/多元统计分析/" style="font-size: 10px;">多元统计分析</a> <a href="/tags/实用软件包/" style="font-size: 10px;">实用软件包</a> <a href="/tags/实验设计/" style="font-size: 13.33px;">实验设计</a> <a href="/tags/富集分析/" style="font-size: 10px;">富集分析</a> <a href="/tags/支链氨基酸/" style="font-size: 10px;">支链氨基酸</a> <a href="/tags/数据分析/" style="font-size: 16.67px;">数据分析</a> <a href="/tags/数据归一化/" style="font-size: 10px;">数据归一化</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/比较基因组学/" style="font-size: 10px;">比较基因组学</a> <a href="/tags/液相色谱质谱/" style="font-size: 10px;">液相色谱质谱</a> <a href="/tags/生化指标/" style="font-size: 10px;">生化指标</a> <a href="/tags/粘膜屏障/" style="font-size: 10px;">粘膜屏障</a> <a href="/tags/糖代谢/" style="font-size: 10px;">糖代谢</a> <a href="/tags/肠道/" style="font-size: 10px;">肠道</a> <a href="/tags/肠道菌群定植/" style="font-size: 10px;">肠道菌群定植</a> <a href="/tags/芳香族氨基酸/" style="font-size: 10px;">芳香族氨基酸</a> <a href="/tags/菌群/" style="font-size: 10px;">菌群</a> <a href="/tags/菌群-宿主互作/" style="font-size: 10px;">菌群-宿主互作</a> <a href="/tags/面积图/" style="font-size: 10px;">面积图</a>
+    </div>
+  </div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer">
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Dayueban. <br>
+			You have to work really hard to look effortless.</p>
+	</section>
+	 
+	<div class="social-font">
+		
+		<a href="http://weibo.com/2689498473" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/Dayueban" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/https://twitter.com/HeMaozhang" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		<a href="https://www.linkedin.com/in/https://www.linkedin.com/in/%E8%8C%82%E7%AB%A0-%E4%BD%95-481a59122/" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		<a href="https://www.douban.com/people/https://www.douban.com/people/146697967/" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		<a href="http://www.zhihu.com/people/https://www.zhihu.com/people/he-mao-zhang/activities" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:jnzd_hemaozhang@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Dayueban">Dayueban</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'dayueban';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274989387'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1274989387%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: ''
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

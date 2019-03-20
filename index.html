@@ -138,14 +138,19 @@
         <p><img src="http://upload-images.jianshu.io/upload_images/6673686-216a51cbc60e3974.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章截图"></p>
 <h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><p>代谢组学和其它组学数据类似，也是多维的，所以分析起来不是那么清爽。这篇文章的作者开发了一个R软件包<code>muma (metabolomics univariate and multivariate statistical analysis)</code>，简单实用且高效，并且对于R语言初学者来说偶比较容易上手。这个包的涉及代谢组学数据分析过程如是说：PCA分析和（O）PLS-DA，组间差异检验等常见的分析.</p>
 <h1 id="如何运行muma软件"><a href="#如何运行muma软件" class="headerlink" title="如何运行muma软件"></a>如何运行muma软件</h1><p><strong>我们先看下如下的流程图</strong><br><img src="https://upload-images.jianshu.io/upload_images/6673686-fbf32275f588667d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="muma软件流程图"></p>
-<h2 id="文件准备"><a href="#文件准备" class="headerlink" title="文件准备"></a>文件准备</h2><p><strong>文件准备如下图所示</strong></p>
-<ul>
-<li>第一列为<code>样品名</code>，不能有重复</li>
-<li>第二列是<code>样品分组</code></li>
-<li>第三列以后接的就是<code>代谢物变量</code></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/6673686-8858264663f7adbc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文件准备"></p>
-<h2 id="流程解读"><a href="#流程解读" class="headerlink" title="流程解读"></a>流程解读</h2><p><strong>1 | 创建工作文件夹</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(muma) <span class="comment"># 加载muma包</span></span><br><span class="line">setwd(<span class="string">"D:\\R\\R-exercise\\muma"</span>)</span><br><span class="line">work.dir(dir.name=<span class="string">"WorkDir"</span>) <span class="comment">#创建名为WorkDir的文件夹用于存放后期分析的结果</span></span><br></pre></td></tr></table></figure></p>
+<!--more>
+
+## 文件准备
+**文件准备如下图所示**
+- 第一列为`样品名`，不能有重复
+- 第二列是`样品分组`
+- 第三列以后接的就是`代谢物变量`
+
+![文件准备](https://upload-images.jianshu.io/upload_images/6673686-8858264663f7adbc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## 流程解读
+**1 | 创建工作文件夹**
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(muma) <span class="comment"># 加载muma包</span></span><br><span class="line">setwd(<span class="string">"D:\\R\\R-exercise\\muma"</span>)</span><br><span class="line">work.dir(dir.name=<span class="string">"WorkDir"</span>) <span class="comment">#创建名为WorkDir的文件夹用于存放后期分析的结果</span></span><br></pre></td></tr></table></figure>
 <p><strong>2 | 开始分析</strong></p>
 <p>2.1 | <code>muma</code>分析的第一步从函数<code>explore.data()</code>开始，这个函数的主要功能就是数据的预处理（pre-processing）和数据探索。其基本用法如下：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; explore.data(file=<span class="string">"YourFile.csv"</span>, scaling=<span class="string">"ScalingType"</span>, scal=<span class="literal">TRUE</span>, normalize=<span class="literal">TRUE</span>, imputation=<span class="literal">FALSE</span>, imput=<span class="string">"ImputType"</span>)</span><br></pre></td></tr></table></figure></p>
 <p>2.2 | 这个函数执行的结果是可以产生三个新的文件夹</p>
@@ -188,7 +193,7 @@
 <p>现在关于代谢组学数据分析的软件（包括在线的和本地安装的，不同编程语言的）层出不穷，但是万变不离其宗。还是要根据自己的实验目的来选择最契合的统计方法。</p>
 </blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] muma, An R Package for Metabolomics Univariate and Multivariate<br>Statistical Analysis</p>
-
+-->
         
         
         <p class="article-more-link">
@@ -573,7 +578,7 @@
 			
 		
 			
-				<li><a href="/tags/R包/" title="R包">R包<sup>2</sup></a></li>
+				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
 			
 		
 			
@@ -581,11 +586,15 @@
 			
 		
 			
-				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
+				<li><a href="/tags/R包/" title="R包">R包<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Statistics/" title="Statistics">Statistics<sup>1</sup></a></li>
+				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
 			
 		
 			
@@ -601,23 +610,11 @@
 			
 		
 			
-				<li><a href="/tags/实用软件包/" title="实用软件包">实用软件包<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/ggplot2/" title="ggplot2">ggplot2<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/面积图/" title="面积图">面积图<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/alpha/" title="alpha">alpha<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/免疫/" title="免疫">免疫<sup>1</sup></a></li>
 			
 		
 			
@@ -629,11 +626,15 @@
 			
 		
 			
-				<li><a href="/tags/statTarget/" title="statTarget">statTarget<sup>1</sup></a></li>
+				<li><a href="/tags/NMDS/" title="NMDS">NMDS<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/QC/" title="QC">QC<sup>1</sup></a></li>
+				<li><a href="/tags/免疫/" title="免疫">免疫<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/alpha/" title="alpha">alpha<sup>1</sup></a></li>
 			
 		
 			
@@ -642,6 +643,10 @@
 		
 			
 				<li><a href="/tags/比较基因组学/" title="比较基因组学">比较基因组学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据归一化/" title="数据归一化">数据归一化<sup>1</sup></a></li>
 			
 		
 		</ul>

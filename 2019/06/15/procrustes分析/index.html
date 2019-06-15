@@ -11,21 +11,21 @@
     
 
     
-    <meta name="description" content="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化一、导入数据1 | 微生物种水平丰度表">
+    <meta name="description" content="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化 一、导入数据1 | 微生物种水平丰度表">
 <meta name="keywords" content="R,普氏分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="procrustes分析">
 <meta property="og:url" content="https://dayueban.com/2019/06/15/procrustes分析/index.html">
 <meta property="og:site_name" content="有味">
-<meta property="og:description" content="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化一、导入数据1 | 微生物种水平丰度表">
+<meta property="og:description" content="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化 一、导入数据1 | 微生物种水平丰度表">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/15/Vonrp8.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/15/VoupcD.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/15/VoQ8UA.png">
-<meta property="og:updated_time" content="2019-06-15T10:27:01.970Z">
+<meta property="og:updated_time" content="2019-06-15T10:29:04.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="procrustes分析">
-<meta name="twitter:description" content="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化一、导入数据1 | 微生物种水平丰度表">
+<meta name="twitter:description" content="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化 一、导入数据1 | 微生物种水平丰度表">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/06/15/Vonrp8.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;HeMaozhang">
 
@@ -102,11 +102,12 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化"><span class="toc-number">1.</span> <span class="toc-text">目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、导入数据"><span class="toc-number">2.</span> <span class="toc-text">一、导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、进行procrustes分析并作图"><span class="toc-number">3.</span> <span class="toc-text">二、进行procrustes分析并作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目的："><span class="toc-number">1.</span> <span class="toc-text">目的：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、导入数据"><span class="toc-number">2.</span> <span class="toc-text">一、导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、进行procrustes分析并作图"><span class="toc-number">3.</span> <span class="toc-text">二、进行procrustes分析并作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化"><a href="#目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化" class="headerlink" title="目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化"></a>目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化</h2><h2 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h2><p>1 | 微生物种水平丰度表</p>
+		<h2 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h2><p>为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化</p>
+<h2 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h2><p>1 | 微生物种水平丰度表</p>
 <p><img src="https://s2.ax1x.com/2019/06/15/Vonrp8.png" alt="图一 微生物种水平丰度表"></p>
 <a id="more"></a>
 <p>2 | 食物数据的非加权unifrac矩阵</p>
@@ -168,7 +169,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化"><span class="toc-number">1.</span> <span class="toc-text">目的：为了展示相同个体不同组学数据，或者不同表型数据之间的相似性关系以及之间的差异性，所以采用了普氏分析。这里展示的是如何将两组数据进行普氏分析并进行可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、导入数据"><span class="toc-number">2.</span> <span class="toc-text">一、导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、进行procrustes分析并作图"><span class="toc-number">3.</span> <span class="toc-text">二、进行procrustes分析并作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目的："><span class="toc-number">1.</span> <span class="toc-text">目的：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、导入数据"><span class="toc-number">2.</span> <span class="toc-text">一、导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、进行procrustes分析并作图"><span class="toc-number">3.</span> <span class="toc-text">二、进行procrustes分析并作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
  
   </div>
 
@@ -231,11 +232,11 @@
 			
 		
 			
-				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
+				<li><a href="/tags/beta多样性/" title="beta多样性">beta多样性<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/beta多样性/" title="beta多样性">beta多样性<sup>2</sup></a></li>
+				<li><a href="/tags/实验设计/" title="实验设计">实验设计<sup>2</sup></a></li>
 			
 		
 			
@@ -243,11 +244,11 @@
 			
 		
 			
-				<li><a href="/tags/data-analysis/" title="data analysis">data analysis<sup>1</sup></a></li>
+				<li><a href="/tags/Statistics/" title="Statistics">Statistics<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/肠道菌群定植/" title="肠道菌群定植">肠道菌群定植<sup>1</sup></a></li>
+				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
 			
 		
 			
@@ -256,6 +257,14 @@
 		
 			
 				<li><a href="/tags/菌群-宿主互作/" title="菌群-宿主互作">菌群-宿主互作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生化指标/" title="生化指标">生化指标<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ORF预测/" title="ORF预测">ORF预测<sup>1</sup></a></li>
 			
 		
 			
@@ -271,14 +280,6 @@
 			
 		
 			
-				<li><a href="/tags/代谢组学/" title="代谢组学">代谢组学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ORF预测/" title="ORF预测">ORF预测<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/ggplot2/" title="ggplot2">ggplot2<sup>1</sup></a></li>
 			
 		
@@ -287,15 +288,15 @@
 			
 		
 			
-				<li><a href="/tags/alpha/" title="alpha">alpha<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/菌群/" title="菌群">菌群<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NMDS/" title="NMDS">NMDS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-analysis/" title="data analysis">data analysis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/alpha/" title="alpha">alpha<sup>1</sup></a></li>
 			
 		
 			
